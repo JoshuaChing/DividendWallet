@@ -12,8 +12,8 @@ struct PortfolioListView: View {
     @StateObject fileprivate var observed = Observed()
 
     var body: some View {
-        List(observed.assets, id: \.symbol) { asset in
-            PortfolioListRowView(asset: asset)
+        List(observed.stocks, id: \.symbol) { stock in
+            PortfolioListRowView(stock: stock)
         }.onAppear {
             observed.fetchQuotes()
         }
@@ -22,7 +22,7 @@ struct PortfolioListView: View {
 
 extension PortfolioListView {
     fileprivate class Observed: ObservableObject {
-        @Published var assets: [YFQuoteResult] = []
+        @Published var stocks: [YFQuoteResult] = []
         var cancellables = Set<AnyCancellable>()
 
         func fetchQuotes() {
@@ -38,7 +38,7 @@ extension PortfolioListView {
                 }, receiveValue: { [weak self] quotes in
                     if let self = self {
                         DispatchQueue.main.async {
-                            self.assets = quotes
+                            self.stocks = quotes
                         }
                     }
                 })
