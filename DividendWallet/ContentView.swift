@@ -14,7 +14,7 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
             Text("Portfolio")
-            AssetListView()
+            PortfolioListView()
         }
         .padding()
         .frame(minWidth:Constants.windowMinWidth, minHeight: Constants.windowMinHeight)

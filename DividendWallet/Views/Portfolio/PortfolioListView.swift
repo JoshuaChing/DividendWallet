@@ -1,5 +1,5 @@
 //
-//  AssetListView.swift
+//  PortfolioListView.swift
 //  DividendWallet
 //
 //  Created by Joshua Ching on 12/7/22.
@@ -8,19 +8,19 @@
 import SwiftUI
 import Combine
 
-struct AssetListView: View {
+struct PortfolioListView: View {
     @StateObject fileprivate var observed = Observed()
 
     var body: some View {
         List(observed.assets, id: \.symbol) { asset in
-            AssetRowView(asset: asset)
+            PortfolioListRowView(asset: asset)
         }.onAppear {
             observed.fetchQuotes()
         }
     }
 }
 
-extension AssetListView {
+extension PortfolioListView {
     fileprivate class Observed: ObservableObject {
         @Published var assets: [YFQuoteResult] = []
         var cancellables = Set<AnyCancellable>()
@@ -49,6 +49,6 @@ extension AssetListView {
 
 struct AssetListView_Previews: PreviewProvider {
     static var previews: some View {
-        AssetListView()
+        PortfolioListView()
     }
 }

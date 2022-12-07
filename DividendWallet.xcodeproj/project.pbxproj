@@ -11,9 +11,8 @@
 		4B90CF362940D96B006138EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF352940D96B006138EF /* ContentView.swift */; };
 		4B90CF382940D96C006138EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B90CF372940D96C006138EF /* Assets.xcassets */; };
 		4B90CF3B2940D96C006138EF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B90CF3A2940D96C006138EF /* Preview Assets.xcassets */; };
-		4B90CF462940E7C2006138EF /* AssetRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF452940E7C2006138EF /* AssetRowView.swift */; };
-		4B90CF482940E7F7006138EF /* AssetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF472940E7F7006138EF /* AssetModel.swift */; };
-		4B90CF4A2940E80D006138EF /* AssetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF492940E80D006138EF /* AssetListView.swift */; };
+		4B90CF462940E7C2006138EF /* PortfolioListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF452940E7C2006138EF /* PortfolioListRowView.swift */; };
+		4B90CF4A2940E80D006138EF /* PortfolioListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF492940E80D006138EF /* PortfolioListView.swift */; };
 		4B90CF542941054D006138EF /* YFQuoteResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF532941054D006138EF /* YFQuoteResponseModel.swift */; };
 		4B90CF5629411225006138EF /* YFApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF5529411225006138EF /* YFApiClient.swift */; };
 		4B90CF5929411F02006138EF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF5829411F02006138EF /* Constants.swift */; };
@@ -26,9 +25,8 @@
 		4B90CF372940D96C006138EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B90CF3A2940D96C006138EF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4B90CF3C2940D96C006138EF /* DividendWallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DividendWallet.entitlements; sourceTree = "<group>"; };
-		4B90CF452940E7C2006138EF /* AssetRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetRowView.swift; sourceTree = "<group>"; };
-		4B90CF472940E7F7006138EF /* AssetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetModel.swift; sourceTree = "<group>"; };
-		4B90CF492940E80D006138EF /* AssetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetListView.swift; sourceTree = "<group>"; };
+		4B90CF452940E7C2006138EF /* PortfolioListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioListRowView.swift; sourceTree = "<group>"; };
+		4B90CF492940E80D006138EF /* PortfolioListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioListView.swift; sourceTree = "<group>"; };
 		4B90CF532941054D006138EF /* YFQuoteResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YFQuoteResponseModel.swift; sourceTree = "<group>"; };
 		4B90CF5529411225006138EF /* YFApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YFApiClient.swift; sourceTree = "<group>"; };
 		4B90CF5829411F02006138EF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -64,9 +62,9 @@
 		4B90CF322940D96B006138EF /* DividendWallet */ = {
 			isa = PBXGroup;
 			children = (
+				4B90CF5A29414DFE006138EF /* Views */,
 				4B90CF5729411EF9006138EF /* Common */,
 				4B90CF4F294103D9006138EF /* Network */,
-				4B90CF422940E787006138EF /* Asset */,
 				4B90CF332940D96B006138EF /* DividendWalletApp.swift */,
 				4B90CF352940D96B006138EF /* ContentView.swift */,
 				4B90CF372940D96C006138EF /* Assets.xcassets */,
@@ -84,14 +82,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		4B90CF422940E787006138EF /* Asset */ = {
+		4B90CF422940E787006138EF /* Portfolio */ = {
 			isa = PBXGroup;
 			children = (
-				4B90CF452940E7C2006138EF /* AssetRowView.swift */,
-				4B90CF472940E7F7006138EF /* AssetModel.swift */,
-				4B90CF492940E80D006138EF /* AssetListView.swift */,
+				4B90CF452940E7C2006138EF /* PortfolioListRowView.swift */,
+				4B90CF492940E80D006138EF /* PortfolioListView.swift */,
 			);
-			path = Asset;
+			path = Portfolio;
 			sourceTree = "<group>";
 		};
 		4B90CF4F294103D9006138EF /* Network */ = {
@@ -117,6 +114,14 @@
 				4B90CF5829411F02006138EF /* Constants.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		4B90CF5A29414DFE006138EF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4B90CF422940E787006138EF /* Portfolio */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,10 +194,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B90CF4A2940E80D006138EF /* AssetListView.swift in Sources */,
-				4B90CF482940E7F7006138EF /* AssetModel.swift in Sources */,
+				4B90CF4A2940E80D006138EF /* PortfolioListView.swift in Sources */,
 				4B90CF542941054D006138EF /* YFQuoteResponseModel.swift in Sources */,
-				4B90CF462940E7C2006138EF /* AssetRowView.swift in Sources */,
+				4B90CF462940E7C2006138EF /* PortfolioListRowView.swift in Sources */,
 				4B90CF362940D96B006138EF /* ContentView.swift in Sources */,
 				4B90CF342940D96B006138EF /* DividendWalletApp.swift in Sources */,
 				4B90CF5629411225006138EF /* YFApiClient.swift in Sources */,

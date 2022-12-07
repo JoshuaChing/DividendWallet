@@ -1,5 +1,5 @@
 //
-//  AssetRowView.swift
+//  PortfolioListRowView.swift
 //  DividendWallet
 //
 //  Created by Joshua Ching on 12/7/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AssetRowView: View {
+struct PortfolioListRowView: View {
     var asset: YFQuoteResult
 
     var body: some View {
@@ -24,11 +24,11 @@ struct AssetRowView: View {
     }
 }
 
-struct AssetRowView_Previews: PreviewProvider {
+struct PortfolioListRowView_Previews: PreviewProvider {
     static var previews: some View {
-        AssetRowView(asset: YFQuoteResult(symbol: "AAPL",
-                                          quoteType: "EQUITY",
-                                          trailingAnnualDividendRate: 0.9,
-                                          trailingAnnualDividendYield: 0.6))
+        PortfolioListRowView(asset: YFQuoteResult(symbol: "AAPL",
+                                                  quoteType: "EQUITY",
+                                                  trailingAnnualDividendRate: 0.9,
+                                                  trailingAnnualDividendYield: 0.6))
     }
 }
