@@ -16,6 +16,7 @@
 		4B90CF4A2940E80D006138EF /* AssetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF492940E80D006138EF /* AssetListView.swift */; };
 		4B90CF542941054D006138EF /* YFQuoteResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF532941054D006138EF /* YFQuoteResponseModel.swift */; };
 		4B90CF5629411225006138EF /* YFApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF5529411225006138EF /* YFApiClient.swift */; };
+		4B90CF5929411F02006138EF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF5829411F02006138EF /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		4B90CF492940E80D006138EF /* AssetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetListView.swift; sourceTree = "<group>"; };
 		4B90CF532941054D006138EF /* YFQuoteResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YFQuoteResponseModel.swift; sourceTree = "<group>"; };
 		4B90CF5529411225006138EF /* YFApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YFApiClient.swift; sourceTree = "<group>"; };
+		4B90CF5829411F02006138EF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		4B90CF322940D96B006138EF /* DividendWallet */ = {
 			isa = PBXGroup;
 			children = (
+				4B90CF5729411EF9006138EF /* Common */,
 				4B90CF4F294103D9006138EF /* Network */,
 				4B90CF422940E787006138EF /* Asset */,
 				4B90CF332940D96B006138EF /* DividendWalletApp.swift */,
@@ -106,6 +109,14 @@
 				4B90CF5529411225006138EF /* YFApiClient.swift */,
 			);
 			path = YahooFinance;
+			sourceTree = "<group>";
+		};
+		4B90CF5729411EF9006138EF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4B90CF5829411F02006138EF /* Constants.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +196,7 @@
 				4B90CF362940D96B006138EF /* ContentView.swift in Sources */,
 				4B90CF342940D96B006138EF /* DividendWalletApp.swift in Sources */,
 				4B90CF5629411225006138EF /* YFApiClient.swift in Sources */,
+				4B90CF5929411F02006138EF /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

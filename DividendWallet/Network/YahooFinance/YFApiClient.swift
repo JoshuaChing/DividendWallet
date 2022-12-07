@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 enum YFError: Error {
     case invalidUrl
@@ -16,32 +17,33 @@ enum YFError: Error {
 class YFApiClient {
     static let shared = YFApiClient()
 
-    func getQuotes(completion: @escaping (Result<[YFQuoteResult], Error>) -> Void) {
-        let urlString = "https://query2.finance.yahoo.com/v7/finance/quote?symbols=AAPL,TD,TSLA,JEPI,SCHD,VTSAX"
-        guard let url = URL(string: urlString) else {
-            completion(.failure(YFError.invalidUrl))
-            return
-        }
-
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
-            if let error = error {
-                completion(.failure(error))
+    func fetchQuotes() -> Future<[YFQuoteResult], Error> {
+        return Future { promise in
+            let urlString = "https://query2.finance.yahoo.com/v7/finance/quote?symbols=AAPL,TD,TSLA,JEPI,SCHD,VTSAX,VTIAX"
+            guard let url = URL(string: urlString) else {
+                promise(.failure(YFError.invalidUrl))
                 return
             }
 
-            guard let data = data else {
-                completion(.failure(YFError.invalidData))
-                return
-            }
+            let task = URLSession.shared.dataTask(with: url) { data, _, error in
+                if let error = error {
+                    promise(.failure(error))
+                    return
+                }
 
-            do {
-                let responseModel = try JSONDecoder().decode(YFQuoteResponseModel.self, from: data)
-                completion(.success(responseModel.quoteResponse.result))
-            } catch let error {
-                print("asdasadasd")
-                completion(.failure(error))
+                guard let data = data else {
+                    promise(.failure(YFError.invalidData))
+                    return
+                }
+
+                do {
+                    let responseModel = try JSONDecoder().decode(YFQuoteResponseModel.self, from: data)
+                    promise(.success(responseModel.quoteResponse.result))
+                } catch let error {
+                    promise(.failure(error))
+                }
             }
+            task.resume()
         }
-        task.resume()
     }
 }

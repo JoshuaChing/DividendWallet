@@ -17,7 +17,7 @@ struct ContentView: View {
             AssetListView()
         }
         .padding()
-        .frame(minWidth:300, minHeight: 300)
+        .frame(minWidth:Constants.windowMinWidth, minHeight: Constants.windowMinHeight)
     }
 }
 

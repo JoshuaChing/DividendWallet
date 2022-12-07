@@ -6,22 +6,43 @@
 //
 
 import SwiftUI
+import Combine
 
 struct AssetListView: View {
-    @State var assets: [YFQuoteResult] = []
+    @StateObject fileprivate var observed = Observed()
 
     var body: some View {
-        List(assets, id: \.symbol) { asset in
+        List(observed.assets, id: \.symbol) { asset in
             AssetRowView(asset: asset)
         }.onAppear {
-            YFApiClient.shared.getQuotes { result in
-                switch result {
-                case .success(let quotes):
-                    assets = quotes
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
+            observed.fetchQuotes()
+        }
+    }
+}
+
+extension AssetListView {
+    fileprivate class Observed: ObservableObject {
+        @Published var assets: [YFQuoteResult] = []
+        var cancellables = Set<AnyCancellable>()
+
+        func fetchQuotes() {
+            YFApiClient.shared.fetchQuotes()
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    default:
+                        // do nothing
+                        break
+                    }
+                }, receiveValue: { [weak self] quotes in
+                    if let self = self {
+                        DispatchQueue.main.async {
+                            self.assets = quotes
+                        }
+                    }
+                })
+                .store(in: &cancellables)
         }
     }
 }
