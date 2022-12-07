@@ -8,21 +8,20 @@
 import SwiftUI
 
 struct AssetListView: View {
-    let assets = [
-        AssetModel(ticker: "AAPL", numberOfShares: 5.0),
-        AssetModel(ticker: "MSFT", numberOfShares: 10.0),
-        AssetModel(ticker: "AMZN", numberOfShares: 15.0),
-        AssetModel(ticker: "GOOGL", numberOfShares: 5.0),
-        AssetModel(ticker: "TSLA", numberOfShares: 10.0),
-        AssetModel(ticker: "TSM", numberOfShares: 15.0),
-        AssetModel(ticker: "TD", numberOfShares: 5.0),
-        AssetModel(ticker: "BRK.B", numberOfShares: 10.0),
-        AssetModel(ticker: "NFLX", numberOfShares: 15.0)
-    ]
+    @State var assets: [YFQuoteResult] = []
 
     var body: some View {
-        List(assets, id: \.ticker) { asset in
+        List(assets, id: \.symbol) { asset in
             AssetRowView(asset: asset)
+        }.onAppear {
+            YFApiClient.shared.getQuotes { result in
+                switch result {
+                case .success(let quotes):
+                    assets = quotes
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 }

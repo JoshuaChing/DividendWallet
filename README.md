@@ -1,1 +1,1 @@
-# DividendWallet
+# Dividend Wallet

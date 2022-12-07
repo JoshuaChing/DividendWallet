@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct AssetRowView: View {
-    var asset: AssetModel
+    var asset: YFQuoteResult
 
     var body: some View {
         HStack() {
             VStack(alignment: .leading) {
-                Text(asset.ticker)
-                Text("\(String(asset.numberOfShares)) shares")
+                Text(asset.symbol)
+                Text("1 shares")
                     .font(.caption)
             }
             Spacer()
-            Text("$\(String(format: "%.2f", asset.numberOfShares*1.23))")
+            Text("$\(String(format: "%.2f", asset.trailingAnnualDividendRate ?? 0.0))")
                 .multilineTextAlignment(.trailing)
         }
     }
@@ -26,6 +26,9 @@ struct AssetRowView: View {
 
 struct AssetRowView_Previews: PreviewProvider {
     static var previews: some View {
-        AssetRowView(asset: AssetModel(ticker: "AAPL", numberOfShares: 5.0))
+        AssetRowView(asset: YFQuoteResult(symbol: "AAPL",
+                                          quoteType: "EQUITY",
+                                          trailingAnnualDividendRate: 0.9,
+                                          trailingAnnualDividendYield: 0.6))
     }
 }

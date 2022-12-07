@@ -14,6 +14,8 @@
 		4B90CF462940E7C2006138EF /* AssetRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF452940E7C2006138EF /* AssetRowView.swift */; };
 		4B90CF482940E7F7006138EF /* AssetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF472940E7F7006138EF /* AssetModel.swift */; };
 		4B90CF4A2940E80D006138EF /* AssetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF492940E80D006138EF /* AssetListView.swift */; };
+		4B90CF542941054D006138EF /* YFQuoteResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF532941054D006138EF /* YFQuoteResponseModel.swift */; };
+		4B90CF5629411225006138EF /* YFApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF5529411225006138EF /* YFApiClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		4B90CF452940E7C2006138EF /* AssetRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetRowView.swift; sourceTree = "<group>"; };
 		4B90CF472940E7F7006138EF /* AssetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetModel.swift; sourceTree = "<group>"; };
 		4B90CF492940E80D006138EF /* AssetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetListView.swift; sourceTree = "<group>"; };
+		4B90CF532941054D006138EF /* YFQuoteResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YFQuoteResponseModel.swift; sourceTree = "<group>"; };
+		4B90CF5529411225006138EF /* YFApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YFApiClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 		4B90CF322940D96B006138EF /* DividendWallet */ = {
 			isa = PBXGroup;
 			children = (
+				4B90CF4F294103D9006138EF /* Network */,
 				4B90CF422940E787006138EF /* Asset */,
 				4B90CF332940D96B006138EF /* DividendWalletApp.swift */,
 				4B90CF352940D96B006138EF /* ContentView.swift */,
@@ -84,6 +89,23 @@
 				4B90CF492940E80D006138EF /* AssetListView.swift */,
 			);
 			path = Asset;
+			sourceTree = "<group>";
+		};
+		4B90CF4F294103D9006138EF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				4B90CF50294103E4006138EF /* YahooFinance */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		4B90CF50294103E4006138EF /* YahooFinance */ = {
+			isa = PBXGroup;
+			children = (
+				4B90CF532941054D006138EF /* YFQuoteResponseModel.swift */,
+				4B90CF5529411225006138EF /* YFApiClient.swift */,
+			);
+			path = YahooFinance;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,9 +180,11 @@
 			files = (
 				4B90CF4A2940E80D006138EF /* AssetListView.swift in Sources */,
 				4B90CF482940E7F7006138EF /* AssetModel.swift in Sources */,
+				4B90CF542941054D006138EF /* YFQuoteResponseModel.swift in Sources */,
 				4B90CF462940E7C2006138EF /* AssetRowView.swift in Sources */,
 				4B90CF362940D96B006138EF /* ContentView.swift in Sources */,
 				4B90CF342940D96B006138EF /* DividendWalletApp.swift in Sources */,
+				4B90CF5629411225006138EF /* YFApiClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
