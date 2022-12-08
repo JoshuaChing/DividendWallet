@@ -22,13 +22,13 @@ struct PortfolioView: View {
         PortfolioPosition(symbol: "VWO", shareCount: 4),
         PortfolioPosition(symbol: "MCHI", shareCount: 4),
         PortfolioPosition(symbol: "TD", shareCount: 0.4),
-        PortfolioPosition(symbol: "UPN", shareCount: 1),
+        PortfolioPosition(symbol: "UNP", shareCount: 1),
         PortfolioPosition(symbol: "COST", shareCount: 0),
     ]
 
     var body: some View {
         VStack {
-            PortfolioHeaderView()
+            PortfolioHeaderView(portfolioObserved: portfolioObserved)
             PortfolioListView(portfolioObserved: portfolioObserved)
         }
         .onAppear {

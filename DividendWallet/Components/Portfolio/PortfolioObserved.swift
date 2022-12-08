@@ -25,9 +25,19 @@ struct PortfolioListRowViewModel {
 }
 
 class PortfolioObserved: ObservableObject {
-    @Published var stocks: [YFQuoteResult] = []
-    @Published var portfolioPositions: [PortfolioListRowViewModel] = []
+    @Published var annualDividend = 0.0
+    @Published var portfolioPositions: [PortfolioListRowViewModel] = [] {
+        didSet { updateAnnualDividend() }
+    }
     var cancellables = Set<AnyCancellable>()
+
+    func updateAnnualDividend() {
+        var sum = 0.0
+        for position in portfolioPositions {
+            sum += position.estimatedAnnualDividendIncome
+        }
+        annualDividend = sum
+    }
 
     func fetchPortfolio(positions: [PortfolioPosition]) {
         let symbols = positions.map { $0.symbol }

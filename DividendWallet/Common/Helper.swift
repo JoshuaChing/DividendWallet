@@ -13,13 +13,7 @@ extension Double {
     }
 
     func toSharesString() -> String {
-        if self <= 0 {
-            return String(format: Constants.formatMultipleShares, self)
-        } else if self <= 1 {
-            return String(format: Constants.formatSingleShare, self)
-        } else {
-            return String(format: Constants.formatMultipleShares, self)
-        }
+        return String(format: Constants.formatShares, self)
     }
 }
 
