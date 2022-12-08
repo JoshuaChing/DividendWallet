@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct PortfolioView: View {
+    @StateObject var portfolioObserved = PortfolioObserved()
+
     var body: some View {
         VStack {
             PortfolioHeaderView()
-            PortfolioListView()
+            PortfolioListView(portfolioObserved: portfolioObserved)
+        }
+        .onAppear {
+            portfolioObserved.fetchQuotes()
+            portfolioObserved.fetchChart()
         }
     }
 }
