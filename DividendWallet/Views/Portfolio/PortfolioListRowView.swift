@@ -21,6 +21,10 @@ struct PortfolioListRowView: View {
             Text((stock.trailingAnnualDividendRate ?? 0.0).toMoneyString())
                 .multilineTextAlignment(.trailing)
         }
+        .padding(EdgeInsets(top: Constants.paddingSmall,
+                            leading: Constants.paddingMedium,
+                            bottom: Constants.paddingSmall,
+                            trailing: Constants.paddingMedium))
     }
 }
 

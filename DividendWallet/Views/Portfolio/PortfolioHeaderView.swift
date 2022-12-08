@@ -43,7 +43,7 @@ struct PortfolioHeaderView: View {
             }
             .padding(.init(top: Constants.paddingNone,
                            leading: Constants.paddingMedium,
-                           bottom: Constants.paddingLarge,
+                           bottom: Constants.paddingMedium,
                            trailing: Constants.paddingMedium))
         }
     }

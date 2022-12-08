@@ -16,8 +16,8 @@ struct Constants {
 
     static let paddingNone: CGFloat = 0
     static let paddingSmallest: CGFloat = 1
+    static let paddingSmall: CGFloat = 5
     static let paddingMedium: CGFloat = 10
-    static let paddingLarge: CGFloat = 25
     static let paddingXLarge: CGFloat = 40
 
     static let trackingDefault: CGFloat = 1
@@ -26,8 +26,10 @@ struct Constants {
     static let formatMonthlyText = "%@ Monthly"
     static let formatDailyText = "%@ Daily"
 
-    // dark gray color: Color(red: 34.0/255.0, green: 37.0/255.0, blue: 40.0/255.0)
-    static let primaryBackgroundColor = Color.white
-    static let primaryTextColor = Color.black
+    /*
+     dark gray color: Color(red: 34.0/255.0, green: 37.0/255.0, blue: 40.0/255.0)
+     */
+    static let primaryBackgroundColor = Color(red: 34.0/255.0, green: 37.0/255.0, blue: 40.0/255.0)
+    static let primaryTextColor = Color.white
     static let subTextColor = Color.blue
 }
