@@ -72,7 +72,7 @@
 		4B90CF322940D96B006138EF /* DividendWallet */ = {
 			isa = PBXGroup;
 			children = (
-				4B90CF5A29414DFE006138EF /* Views */,
+				4B90CF5A29414DFE006138EF /* Components */,
 				4B90CF5729411EF9006138EF /* Common */,
 				4B90CF4F294103D9006138EF /* Network */,
 				4B90CF332940D96B006138EF /* DividendWalletApp.swift */,
@@ -131,12 +131,12 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		4B90CF5A29414DFE006138EF /* Views */ = {
+		4B90CF5A29414DFE006138EF /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				4B90CF422940E787006138EF /* Portfolio */,
 			);
-			path = Views;
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

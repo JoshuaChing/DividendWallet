@@ -18,6 +18,7 @@ struct PortfolioView: View {
         .onAppear {
             portfolioObserved.fetchQuotes()
             portfolioObserved.fetchChart()
+            portfolioObserved.fetchPortfolio(positions: portfolioObserved.positions)
         }
     }
 }

@@ -8,9 +8,32 @@
 import Foundation
 import Combine
 
+struct PortfolioPosition {
+    let symbol: String
+    let shareCount: Double
+}
+
 class PortfolioObserved: ObservableObject {
     @Published var stocks: [YFQuoteResult] = []
     var cancellables = Set<AnyCancellable>()
+    let positions = [
+        PortfolioPosition(symbol: "AAPL", shareCount: 11.1),
+        PortfolioPosition(symbol: "TD", shareCount: 12),
+        PortfolioPosition(symbol: "SCHD", shareCount: 13.3),
+        PortfolioPosition(symbol: "JEPI", shareCount: 14),
+        PortfolioPosition(symbol: "VTSAX", shareCount: 15.5),
+        PortfolioPosition(symbol: "VTIAX", shareCount: 16),
+        PortfolioPosition(symbol: "BRK-B", shareCount: 17.7)
+    ]
+
+    func fetchPortfolio(positions: [PortfolioPosition]) {
+        var symbols = [String]()
+        for position in positions {
+            symbols.append(position.symbol)
+        }
+        let symbolsJoined = symbols.joined(separator: ",")
+        print(symbolsJoined)
+    }
 
     func fetchQuotes() {
         YFApiClient.shared.fetchQuotes()
