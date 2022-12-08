@@ -9,16 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            PortfolioHeaderView()
-            PortfolioListView()
-        }
-        .background(Constants.primaryBackgroundColor)
-        .foregroundColor(Constants.primaryTextColor)
-        .frame(minWidth: Constants.windowMinWidth,
-               idealWidth: Constants.windowIdealWidth,
-               minHeight: Constants.windowMinHeight,
-               idealHeight: Constants.windowIdealHeight)
+        PortfolioView()
+            .background(Constants.primaryBackgroundColor)
+            .foregroundColor(Constants.primaryTextColor)
+            .frame(minWidth: Constants.windowMinWidth,
+                   idealWidth: Constants.windowIdealWidth,
+                   minHeight: Constants.windowMinHeight,
+                   idealHeight: Constants.windowIdealHeight)
     }
 }
 

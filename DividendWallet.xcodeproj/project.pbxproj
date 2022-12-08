@@ -19,6 +19,7 @@
 		4B90CF5F29415BED006138EF /* YFChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF5E29415BED006138EF /* YFChartModel.swift */; };
 		4B90CF6129416D71006138EF /* PortfolioHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF6029416D71006138EF /* PortfolioHeaderView.swift */; };
 		4B90CF6329417E76006138EF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF6229417E76006138EF /* Helper.swift */; };
+		4B90CF6B2941A24D006138EF /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF6A2941A24D006138EF /* PortfolioView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		4B90CF5E29415BED006138EF /* YFChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YFChartModel.swift; sourceTree = "<group>"; };
 		4B90CF6029416D71006138EF /* PortfolioHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioHeaderView.swift; sourceTree = "<group>"; };
 		4B90CF6229417E76006138EF /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		4B90CF6A2941A24D006138EF /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				4B90CF452940E7C2006138EF /* PortfolioListRowView.swift */,
 				4B90CF492940E80D006138EF /* PortfolioListView.swift */,
 				4B90CF6029416D71006138EF /* PortfolioHeaderView.swift */,
+				4B90CF6A2941A24D006138EF /* PortfolioView.swift */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				4B90CF6129416D71006138EF /* PortfolioHeaderView.swift in Sources */,
 				4B90CF5629411225006138EF /* YFApiClient.swift in Sources */,
 				4B90CF6329417E76006138EF /* Helper.swift in Sources */,
+				4B90CF6B2941A24D006138EF /* PortfolioView.swift in Sources */,
 				4B90CF5F29415BED006138EF /* YFChartModel.swift in Sources */,
 				4B90CF5929411F02006138EF /* Constants.swift in Sources */,
 			);
