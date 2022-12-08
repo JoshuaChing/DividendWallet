@@ -48,9 +48,9 @@ class YFApiClient {
         }
     }
 
-    func fetchChart() -> Future<[YFChartResult], Error> {
+    func fetchChart(symbol: String) -> Future<[YFChartResult], Error> {
         return Future { promise in
-            let urlString = "https://query1.finance.yahoo.com/v8/finance/chart/JEPI"
+            let urlString = "https://query1.finance.yahoo.com/v8/finance/chart/\(symbol)"
             guard let url = URL(string: urlString) else {
                 promise(.failure(YFError.invalidUrl))
                 return

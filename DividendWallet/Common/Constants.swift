@@ -25,6 +25,12 @@ struct Constants {
     static let annualDividendTitle = "Estimated Annual Dividend Income"
     static let formatMonthlyText = "%@ Monthly"
     static let formatDailyText = "%@ Daily"
+    static let formatMoney = "$%.2f"
+    static let formatSingleShare = "%.3f Share"
+    static let formatMultipleShares = "%.3f Shares"
+
+    static let etf = "ETF"
+    static let mutualFund = "MUTUALFUND"
 
     /*
      dark gray color: Color(red: 34.0/255.0, green: 37.0/255.0, blue: 40.0/255.0)

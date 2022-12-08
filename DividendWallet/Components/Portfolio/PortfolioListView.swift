@@ -11,8 +11,8 @@ struct PortfolioListView: View {
     @ObservedObject var portfolioObserved: PortfolioObserved
 
     var body: some View {
-        List(portfolioObserved.stocks, id: \.symbol) { stock in
-            PortfolioListRowView(stock: stock)
+        List(portfolioObserved.portfolioPositions, id: \.symbol) { position in
+            PortfolioListRowView(position: position)
         }
         .scrollContentBackground(.hidden)
     }

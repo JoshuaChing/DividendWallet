@@ -21,27 +21,17 @@ struct PortfolioListRowViewModel {
     let quoteType: String
     let trailingAnnualDividendRate: Double // dividend dollar amount
     let trailingAnnualDividendYield: Double // dividend percentage yield
+    let estimatedAnnualDividendIncome: Double
 }
 
 class PortfolioObserved: ObservableObject {
     @Published var stocks: [YFQuoteResult] = []
+    @Published var portfolioPositions: [PortfolioListRowViewModel] = []
     var cancellables = Set<AnyCancellable>()
-    let positions = [
-        PortfolioPosition(symbol: "AAPL", shareCount: 11.1),
-        PortfolioPosition(symbol: "TD", shareCount: 12),
-        PortfolioPosition(symbol: "SCHD", shareCount: 13.3),
-        PortfolioPosition(symbol: "JEPI", shareCount: 14),
-        PortfolioPosition(symbol: "VTSAX", shareCount: 15.5),
-        PortfolioPosition(symbol: "VTIAX", shareCount: 16),
-        PortfolioPosition(symbol: "BRK-B", shareCount: 17.7)
-    ]
 
     func fetchPortfolio(positions: [PortfolioPosition]) {
         let symbols = positions.map { $0.symbol }
-        fetchQuotes(symbols: symbols)
-    }
 
-    private func fetchQuotes(symbols: [String]) {
         YFApiClient.shared.fetchQuotes(symbols: symbols)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -52,17 +42,42 @@ class PortfolioObserved: ObservableObject {
                     break
                 }
             }, receiveValue: { [weak self] quotes in
+                var symbolsToAppend = [PortfolioListRowViewModel]()
+                var symbolsToFetch = [YFQuoteResult]()
+
+                // first try to fetch dividend information for all positions
+                for quote in quotes {
+                    if quote.isMissingDividendInformation() {
+                        symbolsToFetch.append(quote)
+                    } else if let position = positions.first(where: { $0.symbol == quote.symbol}) {
+                        let trailingAnnualDividendRate = quote.trailingAnnualDividendRate ?? 0.0
+                        let trailingAnnualDividendYield = quote.trailingAnnualDividendYield ?? 0.0
+                        let newPosition = PortfolioListRowViewModel(symbol: position.symbol,
+                                                                    shareCount: position.shareCount,
+                                                                    quoteType: quote.quoteType,
+                                                                    trailingAnnualDividendRate: trailingAnnualDividendRate,
+                                                                    trailingAnnualDividendYield: trailingAnnualDividendYield,
+                                                                    estimatedAnnualDividendIncome: trailingAnnualDividendRate * position.shareCount)
+                        symbolsToAppend.append(newPosition)
+                    }
+                }
+
                 if let self = self {
                     DispatchQueue.main.async {
-                        self.stocks = quotes
+                        self.portfolioPositions = symbolsToAppend
                     }
+                }
+
+                // next individually fetch dividend information for remaining positions
+                for quote in symbolsToFetch {
+                    self?.fetchChart(symbol: quote.symbol)
                 }
             })
             .store(in: &cancellables)
     }
 
-    func fetchChart() {
-        YFApiClient.shared.fetchChart()
+    func fetchChart(symbol: String) {
+        YFApiClient.shared.fetchChart(symbol: symbol)
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .failure(let error):
@@ -74,12 +89,15 @@ class PortfolioObserved: ObservableObject {
             }, receiveValue: { chart in
                 if !chart.isEmpty, let dividends = chart[0].events?.dividends {
                     print("\(chart[0].meta.symbol), \(dividends.count) dividends in last twelve months")
+                    var sum = 0.0;
                     for dividend in dividends {
                         let date = Date(timeIntervalSince1970: Double(dividend.value.date))
                         let dateFormatter = DateFormatter()
                         dateFormatter.dateFormat = "MM-dd-yyyy"
                         print("date: \(dateFormatter.string(from: date)) -> \(dividend.value.amount)")
+                        sum += dividend.value.amount
                     }
+                    print("sum: \(sum)")
                 }
             }).store(in: &cancellables)
     }

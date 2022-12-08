@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct PortfolioListRowView: View {
-    var stock: YFQuoteResult
+    var position: PortfolioListRowViewModel
 
     var body: some View {
         HStack() {
             VStack(alignment: .leading) {
-                Text(stock.symbol)
-                Text("1 shares")
+                Text(position.symbol)
+                Text(position.shareCount.toSharesString())
                     .font(.caption)
             }
             Spacer()
-            Text((stock.trailingAnnualDividendRate ?? 0.0).toMoneyString())
+            Text((position.estimatedAnnualDividendIncome).toMoneyString())
                 .multilineTextAlignment(.trailing)
         }
         .padding(EdgeInsets(top: Constants.paddingSmall,
@@ -30,9 +30,11 @@ struct PortfolioListRowView: View {
 
 struct PortfolioListRowView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioListRowView(stock: YFQuoteResult(symbol: "AAPL",
-                                                  quoteType: "EQUITY",
-                                                  trailingAnnualDividendRate: 0.9,
-                                                  trailingAnnualDividendYield: 0.6))
+        PortfolioListRowView(position: PortfolioListRowViewModel(symbol: "AAPL",
+                                                                 shareCount: 1,
+                                                                 quoteType: "EQUITY",
+                                                                 trailingAnnualDividendRate: 0.9,
+                                                                 trailingAnnualDividendYield: 0.6,
+                                                                 estimatedAnnualDividendIncome: 0.9))
     }
 }
