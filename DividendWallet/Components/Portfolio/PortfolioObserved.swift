@@ -8,9 +8,19 @@
 import Foundation
 import Combine
 
+// TODO: move to separate file, consider protocol
 struct PortfolioPosition {
     let symbol: String
     let shareCount: Double
+}
+
+// TODO: move to separate file, consider protocol
+struct PortfolioListRowViewModel {
+    let symbol: String
+    let shareCount: Double
+    let quoteType: String
+    let trailingAnnualDividendRate: Double // dividend dollar amount
+    let trailingAnnualDividendYield: Double // dividend percentage yield
 }
 
 class PortfolioObserved: ObservableObject {
@@ -27,16 +37,12 @@ class PortfolioObserved: ObservableObject {
     ]
 
     func fetchPortfolio(positions: [PortfolioPosition]) {
-        var symbols = [String]()
-        for position in positions {
-            symbols.append(position.symbol)
-        }
-        let symbolsJoined = symbols.joined(separator: ",")
-        print(symbolsJoined)
+        let symbols = positions.map { $0.symbol }
+        fetchQuotes(symbols: symbols)
     }
 
-    func fetchQuotes() {
-        YFApiClient.shared.fetchQuotes()
+    private func fetchQuotes(symbols: [String]) {
+        YFApiClient.shared.fetchQuotes(symbols: symbols)
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .failure(let error):

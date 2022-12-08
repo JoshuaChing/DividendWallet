@@ -16,7 +16,6 @@ struct PortfolioView: View {
             PortfolioListView(portfolioObserved: portfolioObserved)
         }
         .onAppear {
-            portfolioObserved.fetchQuotes()
             portfolioObserved.fetchChart()
             portfolioObserved.fetchPortfolio(positions: portfolioObserved.positions)
         }

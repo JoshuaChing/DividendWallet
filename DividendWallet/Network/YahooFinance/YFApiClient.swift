@@ -17,9 +17,10 @@ enum YFError: Error {
 class YFApiClient {
     static let shared = YFApiClient()
 
-    func fetchQuotes() -> Future<[YFQuoteResult], Error> {
+    func fetchQuotes(symbols: [String]) -> Future<[YFQuoteResult], Error> {
         return Future { promise in
-            let urlString = "https://query2.finance.yahoo.com/v7/finance/quote?symbols=AAPL,TD,TSLA,JEPI,SCHD,VTSAX,VTIAX"
+            let symbolsJoined = symbols.joined(separator: ",")
+            let urlString = "https://query2.finance.yahoo.com/v7/finance/quote?symbols=\(symbolsJoined)"
             guard let url = URL(string: urlString) else {
                 promise(.failure(YFError.invalidUrl))
                 return
