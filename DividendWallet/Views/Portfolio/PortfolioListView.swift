@@ -18,6 +18,7 @@ struct PortfolioListView: View {
             observed.fetchQuotes()
             observed.fetchChart()
         }
+        .scrollContentBackground(.hidden)
     }
 }
 
