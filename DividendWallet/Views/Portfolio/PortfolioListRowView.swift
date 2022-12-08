@@ -18,7 +18,7 @@ struct PortfolioListRowView: View {
                     .font(.caption)
             }
             Spacer()
-            Text("$\(String(format: "%.2f", stock.trailingAnnualDividendRate ?? 0.0))")
+            Text((stock.trailingAnnualDividendRate ?? 0.0).toMoneyString())
                 .multilineTextAlignment(.trailing)
         }
     }

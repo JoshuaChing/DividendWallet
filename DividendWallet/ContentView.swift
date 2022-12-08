@@ -10,19 +10,22 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Portfolio")
+            PortfolioHeaderView()
             PortfolioListView()
         }
-        .padding()
-        .frame(minWidth:Constants.windowMinWidth, minHeight: Constants.windowMinHeight)
+        .background(Constants.primaryBackgroundColor)
+        .foregroundColor(Constants.primaryTextColor)
+        .frame(minWidth: Constants.windowMinWidth,
+               idealWidth: Constants.windowIdealWidth,
+               minHeight: Constants.windowMinHeight,
+               idealHeight: Constants.windowIdealHeight)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .frame(width: Constants.windowIdealWidth,
+                   height: Constants.windowIdealHeight)
     }
 }

@@ -6,8 +6,28 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Constants {
     static let windowMinWidth:CGFloat = 300
     static let windowMinHeight:CGFloat = 300
+    static let windowIdealWidth:CGFloat = windowMinWidth
+    static let windowIdealHeight: CGFloat = 450
+
+    static let paddingNone: CGFloat = 0
+    static let paddingSmallest: CGFloat = 1
+    static let paddingMedium: CGFloat = 10
+    static let paddingLarge: CGFloat = 25
+    static let paddingXLarge: CGFloat = 40
+
+    static let trackingDefault: CGFloat = 1
+
+    static let annualDividendTitle = "Estimated Annual Dividend Income"
+    static let formatMonthlyText = "%@ Monthly"
+    static let formatDailyText = "%@ Daily"
+
+    // dark gray color: Color(red: 34.0/255.0, green: 37.0/255.0, blue: 40.0/255.0)
+    static let primaryBackgroundColor = Color.white
+    static let primaryTextColor = Color.black
+    static let subTextColor = Color.blue
 }
