@@ -46,4 +46,45 @@ class YFApiClient {
             task.resume()
         }
     }
+
+    func fetchChart() -> Future<[YFChartResult], Error> {
+        return Future { promise in
+            let urlString = "https://query1.finance.yahoo.com/v8/finance/chart/JEPI"
+            guard let url = URL(string: urlString) else {
+                promise(.failure(YFError.invalidUrl))
+                return
+            }
+
+            let endTime = Int(Date().timeIntervalSince1970)
+            let secondsInYear = 60*60*24*365
+            let startTime = endTime - secondsInYear
+
+            var items = [URLQueryItem]()
+            items.append(URLQueryItem(name: "period1", value: String(startTime)))
+            items.append(URLQueryItem(name: "period2", value: String(endTime)))
+            items.append(URLQueryItem(name: "interval", value: "1d"))
+            items.append(URLQueryItem(name: "events", value: "div"))
+            let urlWithQueryItems = url.appending(queryItems: items)
+
+            let task = URLSession.shared.dataTask(with: urlWithQueryItems) { data, _, error in
+                if let error = error {
+                    promise(.failure(error))
+                    return
+                }
+
+                guard let data = data else {
+                    promise(.failure(YFError.invalidData))
+                    return
+                }
+
+                do {
+                    let responseModel = try JSONDecoder().decode(YFChartModel.self, from: data)
+                    promise(.success(responseModel.chart.result))
+                } catch let error {
+                    promise(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
 }
