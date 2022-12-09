@@ -31,7 +31,7 @@ class PortfolioObserved: ObservableObject {
     }
     var cancellables = Set<AnyCancellable>()
 
-    func updateAnnualDividend() {
+    private func updateAnnualDividend() {
         var sum = 0.0
         for position in portfolioPositions {
             sum += position.estimatedAnnualDividendIncome
@@ -42,6 +42,7 @@ class PortfolioObserved: ObservableObject {
     func fetchPortfolio(positions: [PortfolioPosition]) {
         let symbols = positions.map { $0.symbol }
 
+        // fetch initial data for all symbols in position
         YFApiClient.shared.fetchQuotes(symbols: symbols)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -52,41 +53,45 @@ class PortfolioObserved: ObservableObject {
                     break
                 }
             }, receiveValue: { [weak self] quotes in
-                var symbolsToAppend = [PortfolioListRowViewModel]()
-                var symbolsToFetch = [YFQuoteResult]()
-
-                // first try to fetch dividend information for all positions
-                for quote in quotes {
-                    if quote.isMissingDividendInformation() {
-                        symbolsToFetch.append(quote)
-                    } else if let position = positions.first(where: { $0.symbol == quote.symbol}) {
-                        let trailingAnnualDividendRate = quote.trailingAnnualDividendRate ?? 0.0
-                        let trailingAnnualDividendYield = quote.trailingAnnualDividendYield ?? 0.0
-                        let newPosition = PortfolioListRowViewModel(symbol: position.symbol,
-                                                                    shareCount: position.shareCount,
-                                                                    quoteType: quote.quoteType,
-                                                                    trailingAnnualDividendRate: trailingAnnualDividendRate,
-                                                                    trailingAnnualDividendYield: trailingAnnualDividendYield,
-                                                                    estimatedAnnualDividendIncome: trailingAnnualDividendRate * position.shareCount)
-                        symbolsToAppend.append(newPosition)
-                    }
-                }
-
                 if let self = self {
-                    DispatchQueue.main.async {
-                        self.portfolioPositions = symbolsToAppend
-                    }
-                }
-
-                // next individually fetch dividend information for remaining positions
-                for quote in symbolsToFetch {
-                    self?.fetchChart(symbol: quote.symbol)
+                    self.processYFQuoteResults(positions: positions, quotes: quotes)
                 }
             })
             .store(in: &cancellables)
     }
 
-    func fetchChart(symbol: String) {
+    private func processYFQuoteResults(positions: [PortfolioPosition], quotes: [YFQuoteResult]) {
+        var symbolsProcessed = [PortfolioListRowViewModel]()
+        var symbolsToFetch = [YFQuoteResult]()
+
+        for quote in quotes {
+            if quote.isMissingDividendInformation() {
+                // identify the symbols that require additional fetching
+                symbolsToFetch.append(quote)
+            } else if let position = positions.first(where: { $0.symbol == quote.symbol}) {
+                let trailingAnnualDividendRate = quote.trailingAnnualDividendRate ?? 0.0
+                let trailingAnnualDividendYield = quote.trailingAnnualDividendYield ?? 0.0
+                let newPosition = PortfolioListRowViewModel(symbol: position.symbol,
+                                                            shareCount: position.shareCount,
+                                                            quoteType: quote.quoteType,
+                                                            trailingAnnualDividendRate: trailingAnnualDividendRate,
+                                                            trailingAnnualDividendYield: trailingAnnualDividendYield,
+                                                            estimatedAnnualDividendIncome: trailingAnnualDividendRate * position.shareCount)
+                symbolsProcessed.append(newPosition)
+            }
+        }
+
+        DispatchQueue.main.async {
+            self.portfolioPositions = symbolsProcessed
+        }
+
+        // next individually fetch dividend information for remaining positions
+        for quote in symbolsToFetch {
+            self.fetchChart(symbol: quote.symbol)
+        }
+    }
+
+    private func fetchChart(symbol: String) {
         YFApiClient.shared.fetchChart(symbol: symbol)
             .sink(receiveCompletion: { completion in
                 switch completion {

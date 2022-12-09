@@ -13,5 +13,6 @@ struct DividendWalletApp: App {
         WindowGroup {
             ContentView()
         }
+        .defaultSize(CGSize(width: Constants.windowIdealWidth, height: Constants.windowIdealHeight))
     }
 }

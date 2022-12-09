@@ -12,7 +12,7 @@ struct Constants {
     static let windowMinWidth:CGFloat = 300
     static let windowMinHeight:CGFloat = 300
     static let windowIdealWidth:CGFloat = windowMinWidth
-    static let windowIdealHeight: CGFloat = 450
+    static let windowIdealHeight: CGFloat = 500
 
     static let paddingNone: CGFloat = 0
     static let paddingSmallest: CGFloat = 1
