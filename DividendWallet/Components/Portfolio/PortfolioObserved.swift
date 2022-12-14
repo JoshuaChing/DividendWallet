@@ -81,38 +81,50 @@ class PortfolioObserved: ObservableObject {
             }
         }
 
-        DispatchQueue.main.async {
-            self.portfolioPositions = symbolsProcessed
+        // TODO: break this out into its own method
+        let symbolsToFetchFutures: [Future<[YFChartResult], Error>] = symbolsToFetch.map { YFApiClient.shared.fetchChart(symbol: $0.symbol) }
+        let publishers = symbolsToFetchFutures.map {
+            $0
+                .map { Result<YFChartResult, Error>.success($0[0]) }
+                .catch { Just<Result<YFChartResult, Error>>(.failure($0)) }
+                .eraseToAnyPublisher()
         }
 
-        // next individually fetch dividend information for remaining positions
-        for quote in symbolsToFetch {
-            self.fetchChart(symbol: quote.symbol)
-        }
-    }
-
-    private func fetchChart(symbol: String) {
-        YFApiClient.shared.fetchChart(symbol: symbol)
-            .sink(receiveCompletion: { completion in
+        Publishers.MergeMany(publishers)
+            .collect()
+            .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .failure(let error):
                     print(error.localizedDescription)
-                default:
-                    // do nothing
-                    break
-                }
-            }, receiveValue: { chart in
-                if !chart.isEmpty, let dividends = chart[0].events?.dividends {
-                    print("\(chart[0].meta.symbol), \(dividends.count) dividends in last twelve months")
-                    var sum = 0.0;
-                    for dividend in dividends {
-                        let date = Date(timeIntervalSince1970: Double(dividend.value.date))
-                        let dateFormatter = DateFormatter()
-                        dateFormatter.dateFormat = "MM-dd-yyyy"
-                        print("date: \(dateFormatter.string(from: date)) -> \(dividend.value.amount)")
-                        sum += dividend.value.amount
+                case .finished:
+                    DispatchQueue.main.async {
+                        if let self = self {
+                            self.portfolioPositions = symbolsProcessed.sorted{ $0.estimatedAnnualDividendIncome > $1.estimatedAnnualDividendIncome }
+                        }
                     }
-                    print("sum: \(sum)")
+                }
+            }, receiveValue: { outputs in
+                for output in outputs {
+                    switch output {
+                    case .success(let chartResult):
+                        var dividendSum = 0.0
+                        if let dividends = chartResult.events?.dividends {
+                            for dividend in dividends {
+                                dividendSum += dividend.value.amount
+                            }
+                        }
+                        if let position = positions.first(where: { $0.symbol == chartResult.meta.symbol}) {
+                            let newPosition = PortfolioListRowViewModel(symbol: position.symbol,
+                                                                        shareCount: position.shareCount,
+                                                                        quoteType: chartResult.meta.instrumentType,
+                                                                        trailingAnnualDividendRate: dividendSum,
+                                                                        trailingAnnualDividendYield: 0.0, // TODO: calculate TTM dividend yield
+                                                                        estimatedAnnualDividendIncome: dividendSum * position.shareCount)
+                            symbolsProcessed.append(newPosition)
+                        }
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
                 }
             }).store(in: &cancellables)
     }
