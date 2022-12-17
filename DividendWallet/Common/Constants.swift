@@ -34,6 +34,10 @@ struct Constants {
     static let numOfMonthsInYear = 12.0
     static let numOfDaysInYear = 365.0
 
+    static let fileDelimiter = ","
+    static let filePortfolioName = "portfolio"
+    static let fileTxtExtension = "txt"
+
     /*
      dark gray color: Color(red: 34.0/255.0, green: 37.0/255.0, blue: 40.0/255.0)
      */

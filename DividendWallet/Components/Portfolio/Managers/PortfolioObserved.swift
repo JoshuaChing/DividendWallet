@@ -13,7 +13,8 @@ class PortfolioObserved: ObservableObject {
     @Published var portfolioPositions: [PortfolioListRowViewModel] = [] {
         didSet { updateAnnualDividend() }
     }
-    var cancellables = Set<AnyCancellable>()
+    private var cancellables = Set<AnyCancellable>()
+    private let fileStorageManager = FileStorageManager()
 
     private func updateAnnualDividend() {
         var sum = 0.0
@@ -23,7 +24,9 @@ class PortfolioObserved: ObservableObject {
         annualDividend = sum
     }
 
-    func fetchPortfolio(positions: [PortfolioPositionModel]) {
+    func fetchPortfolio() {
+        let positions = fileStorageManager.fetchPortfolio()
+
         let symbols = positions.map { $0.symbol }
 
         // fetch initial data for all symbols in position
@@ -88,6 +91,7 @@ class PortfolioObserved: ObservableObject {
                 case .finished:
                     DispatchQueue.main.async {
                         if let self = self {
+                            // sort positions from highest income to lowest
                             self.portfolioPositions = symbolsProcessed.sorted{ $0.estimatedAnnualDividendIncome > $1.estimatedAnnualDividendIncome }
                         }
                     }
@@ -110,7 +114,6 @@ class PortfolioObserved: ObservableObject {
             for dividend in dividends {
                 dividendSum += dividend.value.amount
             }
-            print("PortfolioObserved.swift: \(chartResult.meta.symbol), \(chartResult.meta.instrumentType), \(dividends.count) dividend events, \(dividendSum.toMoneyString()) annual")
         }
         if let position = positions.first(where: { $0.symbol == chartResult.meta.symbol}) {
             let newPosition = PortfolioListRowViewModel(symbol: position.symbol,
