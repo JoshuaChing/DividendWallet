@@ -23,7 +23,7 @@ class PortfolioObserved: ObservableObject {
         annualDividend = sum
     }
 
-    func fetchPortfolio(positions: [PortfolioPosition]) {
+    func fetchPortfolio(positions: [PortfolioPositionModel]) {
         let symbols = positions.map { $0.symbol }
 
         // fetch initial data for all symbols in position
@@ -44,7 +44,7 @@ class PortfolioObserved: ObservableObject {
             .store(in: &cancellables)
     }
 
-    private func processYFQuoteResults(positions: [PortfolioPosition], quotes: [YFQuoteResult]) {
+    private func processYFQuoteResults(positions: [PortfolioPositionModel], quotes: [YFQuoteResult]) {
         var symbolsProcessed = [PortfolioListRowViewModel]()
         var symbolsToFetch = [YFQuoteResult]()
 
@@ -65,10 +65,11 @@ class PortfolioObserved: ObservableObject {
             }
         }
 
+        // fetch remaining symbols
         fetchIndividualSymbols(positions: positions, symbolsProcessed: symbolsProcessed, symbolsToFetch: symbolsToFetch)
     }
 
-    private func fetchIndividualSymbols(positions: [PortfolioPosition], symbolsProcessed: [PortfolioListRowViewModel], symbolsToFetch: [YFQuoteResult]) {
+    private func fetchIndividualSymbols(positions: [PortfolioPositionModel], symbolsProcessed: [PortfolioListRowViewModel], symbolsToFetch: [YFQuoteResult]) {
         var symbolsProcessed = symbolsProcessed // copy symbols processed for mutable copy
         let symbolsToFetchFutures: [Future<[YFChartResult], Error>] = symbolsToFetch.map { YFApiClient.shared.fetchChart(symbol: $0.symbol) }
         let publishers = symbolsToFetchFutures.map {
@@ -103,7 +104,7 @@ class PortfolioObserved: ObservableObject {
             }).store(in: &cancellables)
     }
 
-    private func processYFChartResult(chartResult: YFChartResult, positions: [PortfolioPosition], symbolsProcessed: inout [PortfolioListRowViewModel]) {
+    private func processYFChartResult(chartResult: YFChartResult, positions: [PortfolioPositionModel], symbolsProcessed: inout [PortfolioListRowViewModel]) {
         var dividendSum = 0.0
         if let dividends = chartResult.events?.dividends {
             for dividend in dividends {

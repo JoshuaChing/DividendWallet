@@ -11,14 +11,14 @@ struct PortfolioView: View {
     @StateObject var portfolioObserved = PortfolioObserved()
 
     let positions = [
-        PortfolioPosition(symbol: "MSFT", shareCount: 100),
-        PortfolioPosition(symbol: "JEPI", shareCount: 100),
-        PortfolioPosition(symbol: "SCHD", shareCount: 100),
-        PortfolioPosition(symbol: "VTSAX", shareCount: 100),
-        PortfolioPosition(symbol: "VTIAX", shareCount: 100),
-        PortfolioPosition(symbol: "AAPL", shareCount: 100),
-        PortfolioPosition(symbol: "VWO", shareCount: 100),
-        PortfolioPosition(symbol: "COST", shareCount: 100),
+        PortfolioPositionModel(symbol: "MSFT", shareCount: 100),
+        PortfolioPositionModel(symbol: "JEPI", shareCount: 100),
+        PortfolioPositionModel(symbol: "SCHD", shareCount: 100),
+        PortfolioPositionModel(symbol: "VTSAX", shareCount: 100),
+        PortfolioPositionModel(symbol: "VTIAX", shareCount: 100),
+        PortfolioPositionModel(symbol: "AAPL", shareCount: 100),
+        PortfolioPositionModel(symbol: "VWO", shareCount: 100),
+        PortfolioPositionModel(symbol: "COST", shareCount: 100),
     ]
 
     var body: some View {
