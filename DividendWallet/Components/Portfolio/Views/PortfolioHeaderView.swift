@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PortfolioHeaderView: View {
-    @ObservedObject var portfolioObserved: PortfolioObserved
+    @ObservedObject var portfolioManager: PortfolioManager
 
     var body: some View {
         VStack {
@@ -18,7 +18,7 @@ struct PortfolioHeaderView: View {
                     .tracking(Constants.trackingDefault)
                     .font(.subheadline)
                     .fontWeight(.light)
-                Text(portfolioObserved.annualDividend.toMoneyString())
+                Text(portfolioManager.annualDividend.toMoneyString())
                     .tracking(CGFloat(Constants.trackingDefault))
                     .font(.largeTitle)
                     .fontWeight(.light)
@@ -32,10 +32,10 @@ struct PortfolioHeaderView: View {
                            bottom: Constants.paddingNone,
                            trailing: Constants.paddingMedium))
             VStack {
-                Text(String(format: Constants.formatMonthlyText, (portfolioObserved.annualDividend/Constants.numOfMonthsInYear).toMoneyString()))
+                Text(String(format: Constants.formatMonthlyText, (portfolioManager.annualDividend/Constants.numOfMonthsInYear).toMoneyString()))
                     .font(.subheadline)
                     .fontWeight(.light)
-                Text(String(format: Constants.formatDailyText, (portfolioObserved.annualDividend/Constants.numOfDaysInYear).toMoneyString()))
+                Text(String(format: Constants.formatDailyText, (portfolioManager.annualDividend/Constants.numOfDaysInYear).toMoneyString()))
                     .font(.subheadline)
                     .fontWeight(.light)
             }
@@ -49,6 +49,6 @@ struct PortfolioHeaderView: View {
 
 struct PortfolioHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioHeaderView(portfolioObserved: PortfolioObserved())
+        PortfolioHeaderView(portfolioManager: PortfolioManager())
     }
 }

@@ -20,7 +20,7 @@
 		4B90CF6129416D71006138EF /* PortfolioHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF6029416D71006138EF /* PortfolioHeaderView.swift */; };
 		4B90CF6329417E76006138EF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF6229417E76006138EF /* Helper.swift */; };
 		4B90CF6B2941A24D006138EF /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF6A2941A24D006138EF /* PortfolioView.swift */; };
-		4B90CF712941A654006138EF /* PortfolioObserved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF702941A654006138EF /* PortfolioObserved.swift */; };
+		4B90CF712941A654006138EF /* PortfolioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF702941A654006138EF /* PortfolioManager.swift */; };
 		4BC8C75E294D604500434B2F /* PortfolioPositionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8C75D294D604500434B2F /* PortfolioPositionModel.swift */; };
 		4BC8C760294D606600434B2F /* PortfolioListRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8C75F294D606600434B2F /* PortfolioListRowViewModel.swift */; };
 		4BC8C764294D617100434B2F /* portfolio.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4BC8C763294D617100434B2F /* portfolio.txt */; };
@@ -43,7 +43,7 @@
 		4B90CF6029416D71006138EF /* PortfolioHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioHeaderView.swift; sourceTree = "<group>"; };
 		4B90CF6229417E76006138EF /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		4B90CF6A2941A24D006138EF /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
-		4B90CF702941A654006138EF /* PortfolioObserved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioObserved.swift; sourceTree = "<group>"; };
+		4B90CF702941A654006138EF /* PortfolioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioManager.swift; sourceTree = "<group>"; };
 		4BC8C75D294D604500434B2F /* PortfolioPositionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioPositionModel.swift; sourceTree = "<group>"; };
 		4BC8C75F294D606600434B2F /* PortfolioListRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioListRowViewModel.swift; sourceTree = "<group>"; };
 		4BC8C763294D617100434B2F /* portfolio.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = portfolio.txt; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 		4BC8C761294D60BA00434B2F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				4B90CF702941A654006138EF /* PortfolioObserved.swift */,
+				4B90CF702941A654006138EF /* PortfolioManager.swift */,
 				4BC8C768294D73D700434B2F /* FileStorageManager.swift */,
 			);
 			path = Managers;
@@ -262,7 +262,7 @@
 				4BC8C760294D606600434B2F /* PortfolioListRowViewModel.swift in Sources */,
 				4B90CF342940D96B006138EF /* DividendWalletApp.swift in Sources */,
 				4B90CF6129416D71006138EF /* PortfolioHeaderView.swift in Sources */,
-				4B90CF712941A654006138EF /* PortfolioObserved.swift in Sources */,
+				4B90CF712941A654006138EF /* PortfolioManager.swift in Sources */,
 				4B90CF5629411225006138EF /* YFApiClient.swift in Sources */,
 				4B90CF6329417E76006138EF /* Helper.swift in Sources */,
 				4B90CF6B2941A24D006138EF /* PortfolioView.swift in Sources */,

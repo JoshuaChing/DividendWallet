@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct PortfolioView: View {
-    @StateObject var portfolioObserved = PortfolioObserved()
+    @StateObject var portfolioManager = PortfolioManager()
 
     var body: some View {
         VStack {
-            PortfolioHeaderView(portfolioObserved: portfolioObserved)
-            PortfolioListView(portfolioObserved: portfolioObserved)
+            PortfolioHeaderView(portfolioManager: portfolioManager)
+            PortfolioListView(portfolioManager: portfolioManager)
         }
         .onAppear {
-            portfolioObserved.fetchPortfolio()
+            portfolioManager.fetchPortfolio()
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  PortfolioObserved.swift
+//  PortfolioManager.swift
 //  DividendWallet
 //
 //  Created by Joshua Ching on 12/7/22.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class PortfolioObserved: ObservableObject {
+class PortfolioManager: ObservableObject {
     @Published var annualDividend = 0.0
     @Published var portfolioPositions: [PortfolioListRowViewModel] = [] {
         didSet { updateAnnualDividend() }

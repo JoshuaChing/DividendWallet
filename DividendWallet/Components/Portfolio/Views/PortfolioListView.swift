@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct PortfolioListView: View {
-    @ObservedObject var portfolioObserved: PortfolioObserved
+    @ObservedObject var portfolioManager: PortfolioManager
 
     var body: some View {
-        List(portfolioObserved.portfolioPositions, id: \.symbol) { position in
+        List(portfolioManager.portfolioPositions, id: \.symbol) { position in
             PortfolioListRowView(position: position)
         }
         .scrollContentBackground(.hidden)
@@ -20,6 +20,6 @@ struct PortfolioListView: View {
 
 struct AssetListView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioListView(portfolioObserved: PortfolioObserved())
+        PortfolioListView(portfolioManager: PortfolioManager())
     }
 }
