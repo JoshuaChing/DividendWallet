@@ -81,7 +81,11 @@ class PortfolioObserved: ObservableObject {
             }
         }
 
-        // TODO: break this out into its own method
+        fetchIndividualSymbols(positions: positions, symbolsProcessed: symbolsProcessed, symbolsToFetch: symbolsToFetch)
+    }
+
+    private func fetchIndividualSymbols(positions: [PortfolioPosition], symbolsProcessed: [PortfolioListRowViewModel], symbolsToFetch: [YFQuoteResult]) {
+        var symbolsProcessed = symbolsProcessed // copy symbols processed for mutable copy
         let symbolsToFetchFutures: [Future<[YFChartResult], Error>] = symbolsToFetch.map { YFApiClient.shared.fetchChart(symbol: $0.symbol) }
         let publishers = symbolsToFetchFutures.map {
             $0
@@ -112,6 +116,7 @@ class PortfolioObserved: ObservableObject {
                             for dividend in dividends {
                                 dividendSum += dividend.value.amount
                             }
+                            print("PortfolioObserved.swift: \(chartResult.meta.symbol), \(chartResult.meta.instrumentType), \(dividends.count) dividend events, \(dividendSum.toMoneyString()) annual")
                         }
                         if let position = positions.first(where: { $0.symbol == chartResult.meta.symbol}) {
                             let newPosition = PortfolioListRowViewModel(symbol: position.symbol,
