@@ -17,13 +17,8 @@ struct PortfolioView: View {
         PortfolioPosition(symbol: "VTSAX", shareCount: 100),
         PortfolioPosition(symbol: "VTIAX", shareCount: 100),
         PortfolioPosition(symbol: "AAPL", shareCount: 100),
-        PortfolioPosition(symbol: "SCHY", shareCount: 100),
         PortfolioPosition(symbol: "VWO", shareCount: 100),
-        PortfolioPosition(symbol: "MCHI", shareCount: 100),
-        PortfolioPosition(symbol: "TD", shareCount: 100),
-        PortfolioPosition(symbol: "UNP", shareCount: 100),
-        PortfolioPosition(symbol: "BRK-B", shareCount: 100),
-        PortfolioPosition(symbol: "COST", shareCount: 0),
+        PortfolioPosition(symbol: "COST", shareCount: 100),
     ]
 
     var body: some View {

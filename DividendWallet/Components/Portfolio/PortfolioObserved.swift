@@ -8,22 +8,6 @@
 import Foundation
 import Combine
 
-// TODO: move to separate file, consider protocol
-struct PortfolioPosition {
-    let symbol: String
-    let shareCount: Double
-}
-
-// TODO: move to separate file, consider protocol
-struct PortfolioListRowViewModel {
-    let symbol: String
-    let shareCount: Double
-    let quoteType: String
-    let trailingAnnualDividendRate: Double // dividend dollar amount
-    let trailingAnnualDividendYield: Double // dividend percentage yield
-    let estimatedAnnualDividendIncome: Double
-}
-
 class PortfolioObserved: ObservableObject {
     @Published var annualDividend = 0.0
     @Published var portfolioPositions: [PortfolioListRowViewModel] = [] {
@@ -111,26 +95,30 @@ class PortfolioObserved: ObservableObject {
                 for output in outputs {
                     switch output {
                     case .success(let chartResult):
-                        var dividendSum = 0.0
-                        if let dividends = chartResult.events?.dividends {
-                            for dividend in dividends {
-                                dividendSum += dividend.value.amount
-                            }
-                            print("PortfolioObserved.swift: \(chartResult.meta.symbol), \(chartResult.meta.instrumentType), \(dividends.count) dividend events, \(dividendSum.toMoneyString()) annual")
-                        }
-                        if let position = positions.first(where: { $0.symbol == chartResult.meta.symbol}) {
-                            let newPosition = PortfolioListRowViewModel(symbol: position.symbol,
-                                                                        shareCount: position.shareCount,
-                                                                        quoteType: chartResult.meta.instrumentType,
-                                                                        trailingAnnualDividendRate: dividendSum,
-                                                                        trailingAnnualDividendYield: 0.0, // TODO: calculate TTM dividend yield
-                                                                        estimatedAnnualDividendIncome: dividendSum * position.shareCount)
-                            symbolsProcessed.append(newPosition)
-                        }
+                        self.processYFChartResult(chartResult: chartResult, positions: positions, symbolsProcessed: &symbolsProcessed)
                     case .failure(let error):
                         print(error.localizedDescription)
                     }
                 }
             }).store(in: &cancellables)
+    }
+
+    private func processYFChartResult(chartResult: YFChartResult, positions: [PortfolioPosition], symbolsProcessed: inout [PortfolioListRowViewModel]) {
+        var dividendSum = 0.0
+        if let dividends = chartResult.events?.dividends {
+            for dividend in dividends {
+                dividendSum += dividend.value.amount
+            }
+            print("PortfolioObserved.swift: \(chartResult.meta.symbol), \(chartResult.meta.instrumentType), \(dividends.count) dividend events, \(dividendSum.toMoneyString()) annual")
+        }
+        if let position = positions.first(where: { $0.symbol == chartResult.meta.symbol}) {
+            let newPosition = PortfolioListRowViewModel(symbol: position.symbol,
+                                                        shareCount: position.shareCount,
+                                                        quoteType: chartResult.meta.instrumentType,
+                                                        trailingAnnualDividendRate: dividendSum,
+                                                        trailingAnnualDividendYield: 0.0, // TODO: calculate TTM dividend yield
+                                                        estimatedAnnualDividendIncome: dividendSum * position.shareCount)
+            symbolsProcessed.append(newPosition)
+        }
     }
 }
