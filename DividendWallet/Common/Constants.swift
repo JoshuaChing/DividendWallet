@@ -14,17 +14,17 @@ struct Constants {
     static let windowIdealWidth:CGFloat = windowMinWidth
     static let windowIdealHeight: CGFloat = 500
 
-    static let paddingNone: CGFloat = 0
-    static let paddingSmallest: CGFloat = 1
     static let paddingSmall: CGFloat = 5
     static let paddingMedium: CGFloat = 10
+    static let paddingLarge: CGFloat = 20
     static let paddingXLarge: CGFloat = 40
 
     static let trackingDefault: CGFloat = 1
 
-    static let annualDividendTitle = "Estimated Annual Dividend Income"
+    static let summaryTitle = "Summary"
+    static let annualDividendTitle = "Estimated Annual Income"
+    static let monthlyDividendTitle = "Estimated Monthly Income"
     static let formatMonthlyText = "%@ Monthly"
-    static let formatDailyText = "%@ Daily"
     static let formatMoney = "$%.2f"
     static let formatShares = "%.3f Shares"
 
@@ -32,7 +32,6 @@ struct Constants {
     static let mutualFund = "MUTUALFUND"
 
     static let numOfMonthsInYear = 12.0
-    static let numOfDaysInYear = 365.0
 
     static let fileDelimiter = ","
     static let filePortfolioName = "portfolio"
@@ -40,8 +39,13 @@ struct Constants {
 
     /*
      dark gray color: Color(red: 34.0/255.0, green: 37.0/255.0, blue: 40.0/255.0)
+     star command blue #1481BA: Color(red: 0x14/255, green: 0x81/255, blue: 0xBA/255, opacity: 1.0)
+     cyan process #11B5E4: Color(red: 0x11/255, green: 0xB5/255, blue: 0xE4/255, opacity: 1.0)
+     cerculean crayola #0CAADC: Color(red: 0x0C/255, green: 0xAA/255, blue: 0xDC/255, opacity: 1.0)
+     rich black #001021
      */
-    static let primaryBackgroundColor = Color(red: 34.0/255.0, green: 37.0/255.0, blue: 40.0/255.0)
-    static let primaryTextColor = Color.white
-    static let subTextColor = Color.blue
+    static let primaryBackgroundColor = Color.white
+    static let secondaryBackgroundColor = Color(red: 0x14/255, green: 0x81/255, blue: 0xBA/255, opacity: 1.0)
+    static let primaryTextColor = Color.black
+    static let secondaryTextColor = Color.white
 }

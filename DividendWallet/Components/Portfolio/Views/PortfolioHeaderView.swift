@@ -13,37 +13,43 @@ struct PortfolioHeaderView: View {
     var body: some View {
         VStack {
             VStack {
-                Text(Constants.annualDividendTitle)
+                Text(Constants.summaryTitle)
                     .textCase(.uppercase)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .padding(.bottom, Constants.paddingLarge)
                     .tracking(Constants.trackingDefault)
+                Text(Constants.annualDividendTitle)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .textCase(.uppercase)
                     .font(.subheadline)
-                    .fontWeight(.light)
+                    .fontWeight(.medium)
+                    .tracking(Constants.trackingDefault)
                 Text(portfolioManager.annualDividend.toMoneyString())
-                    .tracking(CGFloat(Constants.trackingDefault))
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.largeTitle)
-                    .fontWeight(.light)
-                    .padding(.init(top: Constants.paddingSmallest,
-                                   leading: Constants.paddingNone,
-                                   bottom: Constants.paddingSmallest,
-                                   trailing: Constants.paddingNone))
+                    .fontWeight(.ultraLight)
+                    .padding(.bottom, Constants.paddingMedium)
+                    .tracking(Constants.trackingDefault)
+                Text(Constants.monthlyDividendTitle)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .textCase(.uppercase)
+                    .font(.caption)
+                    .fontWeight(.medium)
+                    .tracking(Constants.trackingDefault)
+                Text((portfolioManager.annualDividend/Constants.numOfMonthsInYear).toMoneyString())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.title2)
+                    .fontWeight(.ultraLight)
+                    .tracking(Constants.trackingDefault)
             }
             .padding(.init(top: Constants.paddingXLarge,
-                           leading: Constants.paddingMedium,
-                           bottom: Constants.paddingNone,
-                           trailing: Constants.paddingMedium))
-            VStack {
-                Text(String(format: Constants.formatMonthlyText, (portfolioManager.annualDividend/Constants.numOfMonthsInYear).toMoneyString()))
-                    .font(.subheadline)
-                    .fontWeight(.light)
-                Text(String(format: Constants.formatDailyText, (portfolioManager.annualDividend/Constants.numOfDaysInYear).toMoneyString()))
-                    .font(.subheadline)
-                    .fontWeight(.light)
-            }
-            .padding(.init(top: Constants.paddingNone,
-                           leading: Constants.paddingMedium,
-                           bottom: Constants.paddingMedium,
-                           trailing: Constants.paddingMedium))
+                           leading: Constants.paddingLarge,
+                           bottom: Constants.paddingXLarge,
+                           trailing: Constants.paddingLarge))
         }
+        .background(Constants.secondaryBackgroundColor)
+        .foregroundColor(Constants.secondaryTextColor)
     }
 }
 
