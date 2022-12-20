@@ -13,7 +13,12 @@ extension Double {
     }
 
     func toSharesString() -> String {
-        return String(format: Constants.formatShares, self)
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = Constants.formatSharesMinDigits
+        formatter.maximumFractionDigits = Constants.formatSharesMaxDigits
+        let number = NSNumber(value: self)
+        let formattedNumber = formatter.string(from: number) ?? ""
+        return String(format: Constants.formatShares, formattedNumber)
     }
 }
 
