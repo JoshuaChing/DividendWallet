@@ -14,6 +14,8 @@ struct PortfolioListView: View {
         List(portfolioManager.portfolioPositions, id: \.symbol) { position in
             PortfolioListRowView(position: position)
         }
+        .padding(.leading, Constants.paddingSmall)
+        .padding(.trailing, Constants.paddingSmall)
         .scrollContentBackground(.hidden)
     }
 }

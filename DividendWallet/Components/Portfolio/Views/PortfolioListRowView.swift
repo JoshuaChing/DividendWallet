@@ -11,20 +11,22 @@ struct PortfolioListRowView: View {
     var position: PortfolioListRowViewModel
 
     var body: some View {
-        HStack() {
-            VStack(alignment: .leading) {
-                Text(position.symbol)
-                Text(position.shareCount.toSharesString())
-                    .font(.caption)
+        VStack() {
+            HStack() {
+                VStack(alignment: .leading) {
+                    Text(position.symbol)
+                    Text(position.shareCount.toSharesString())
+                        .font(.caption)
+                }
+                Spacer()
+                Text((position.estimatedAnnualDividendIncome).toMoneyString())
+                    .multilineTextAlignment(.trailing)
             }
-            Spacer()
-            Text((position.estimatedAnnualDividendIncome).toMoneyString())
-                .multilineTextAlignment(.trailing)
+            .padding()
         }
-        .padding(EdgeInsets(top: Constants.paddingSmall,
-                            leading: Constants.paddingMedium,
-                            bottom: Constants.paddingSmall,
-                            trailing: Constants.paddingMedium))
+        .background(Constants.portfolioRowBackgroundColor)
+        .foregroundColor(Constants.primaryTextColor)
+        .cornerRadius(Constants.cornerRadius)
     }
 }
 

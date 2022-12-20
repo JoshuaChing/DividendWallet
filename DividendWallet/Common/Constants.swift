@@ -11,14 +11,15 @@ import SwiftUI
 struct Constants {
     static let windowMinWidth:CGFloat = 300
     static let windowMinHeight:CGFloat = 300
-    static let windowIdealWidth:CGFloat = windowMinWidth
-    static let windowIdealHeight: CGFloat = 500
+    static let windowIdealWidth:CGFloat = 400
+    static let windowIdealHeight: CGFloat = 600
 
     static let paddingSmall: CGFloat = 5
     static let paddingMedium: CGFloat = 10
     static let paddingLarge: CGFloat = 20
     static let paddingXLarge: CGFloat = 40
 
+    static let cornerRadius: CGFloat = 5
     static let trackingDefault: CGFloat = 1
 
     static let summaryTitle = "Summary"
@@ -43,9 +44,11 @@ struct Constants {
      cyan process #11B5E4: Color(red: 0x11/255, green: 0xB5/255, blue: 0xE4/255, opacity: 1.0)
      cerculean crayola #0CAADC: Color(red: 0x0C/255, green: 0xAA/255, blue: 0xDC/255, opacity: 1.0)
      rich black #001021
+     cloud gray #ecf0f1: Color(red: 0xec/255, green: 0xf0/255, blue: 0xf1/255, opacity: 1.0)
      */
-    static let primaryBackgroundColor = Color.white
-    static let secondaryBackgroundColor = Color(red: 0x14/255, green: 0x81/255, blue: 0xBA/255, opacity: 1.0)
+    static let primaryBackgroundColor = Color(red: 0xec/255, green: 0xf0/255, blue: 0xf1/255, opacity: 1.0) // cloud gray
     static let primaryTextColor = Color.black
+    static let secondaryBackgroundColor = Color(red: 0x14/255, green: 0x81/255, blue: 0xBA/255, opacity: 1.0) // star command blue
     static let secondaryTextColor = Color.white
+    static let portfolioRowBackgroundColor = Color.white
 }
