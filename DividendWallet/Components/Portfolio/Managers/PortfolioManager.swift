@@ -24,9 +24,7 @@ class PortfolioManager: ObservableObject {
         annualDividend = sum
     }
 
-    func fetchPortfolio() {
-        let positions = fileStorageManager.fetchPortfolio()
-
+    func fetchPortfolio(positions: [PortfolioPositionModel]) {
         let symbols = positions.map { $0.symbol }
 
         // fetch initial data for all symbols in position

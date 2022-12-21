@@ -21,6 +21,7 @@
 		4B90CF6329417E76006138EF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF6229417E76006138EF /* Helper.swift */; };
 		4B90CF6B2941A24D006138EF /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF6A2941A24D006138EF /* PortfolioView.swift */; };
 		4B90CF712941A654006138EF /* PortfolioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF702941A654006138EF /* PortfolioManager.swift */; };
+		4BBE0FE4295389600018039F /* PortfolioHeaderSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBE0FE3295389600018039F /* PortfolioHeaderSettingsView.swift */; };
 		4BC8C75E294D604500434B2F /* PortfolioPositionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8C75D294D604500434B2F /* PortfolioPositionModel.swift */; };
 		4BC8C760294D606600434B2F /* PortfolioListRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8C75F294D606600434B2F /* PortfolioListRowViewModel.swift */; };
 		4BC8C764294D617100434B2F /* portfolio.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4BC8C763294D617100434B2F /* portfolio.txt */; };
@@ -44,6 +45,7 @@
 		4B90CF6229417E76006138EF /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		4B90CF6A2941A24D006138EF /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
 		4B90CF702941A654006138EF /* PortfolioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioManager.swift; sourceTree = "<group>"; };
+		4BBE0FE3295389600018039F /* PortfolioHeaderSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioHeaderSettingsView.swift; sourceTree = "<group>"; };
 		4BC8C75D294D604500434B2F /* PortfolioPositionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioPositionModel.swift; sourceTree = "<group>"; };
 		4BC8C75F294D606600434B2F /* PortfolioListRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioListRowViewModel.swift; sourceTree = "<group>"; };
 		4BC8C763294D617100434B2F /* portfolio.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = portfolio.txt; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				4B90CF452940E7C2006138EF /* PortfolioListRowView.swift */,
 				4B90CF492940E80D006138EF /* PortfolioListView.swift */,
 				4B90CF6029416D71006138EF /* PortfolioHeaderView.swift */,
+				4BBE0FE3295389600018039F /* PortfolioHeaderSettingsView.swift */,
 				4B90CF6A2941A24D006138EF /* PortfolioView.swift */,
 			);
 			path = Views;
@@ -267,6 +270,7 @@
 				4B90CF6329417E76006138EF /* Helper.swift in Sources */,
 				4B90CF6B2941A24D006138EF /* PortfolioView.swift in Sources */,
 				4B90CF5F29415BED006138EF /* YFChartModel.swift in Sources */,
+				4BBE0FE4295389600018039F /* PortfolioHeaderSettingsView.swift in Sources */,
 				4B90CF5929411F02006138EF /* Constants.swift in Sources */,
 				4BC8C75E294D604500434B2F /* PortfolioPositionModel.swift in Sources */,
 			);

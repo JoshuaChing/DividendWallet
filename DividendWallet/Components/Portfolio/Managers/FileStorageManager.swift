@@ -49,4 +49,11 @@ class FileStorageManager {
         let shareCountNum = Double(shareCount) ?? 0.0
         positions.append(PortfolioPositionModel(symbol: symbol, shareCount: shareCountNum))
     }
+
+    func editPortfolio() {
+        guard let url = Bundle.main.url(forResource: Constants.filePortfolioName, withExtension: Constants.fileTxtExtension) else {
+            return
+        }
+        print(url)
+    }
 }

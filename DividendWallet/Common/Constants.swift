@@ -53,4 +53,5 @@ struct Constants {
     static let secondaryBackgroundColor = Color(red: 0x14/255, green: 0x81/255, blue: 0xBA/255, opacity: 1.0) // star command blue
     static let secondaryTextColor = Color.white
     static let portfolioRowBackgroundColor = Color.white
+    static let iconGear = "gearshape"
 }

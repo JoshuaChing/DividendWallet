@@ -9,10 +9,13 @@ import SwiftUI
 
 struct PortfolioHeaderView: View {
     @ObservedObject var portfolioManager: PortfolioManager
+    var fileStorageManager: FileStorageManager
 
     var body: some View {
         VStack {
             VStack {
+                PortfolioHeaderSettingsView(fileStorageManager: fileStorageManager)
+                    .padding(.trailing, -Constants.paddingMedium)
                 Text(Constants.summaryTitle)
                     .textCase(.uppercase)
                     .font(.headline)
@@ -43,7 +46,7 @@ struct PortfolioHeaderView: View {
                     .fontWeight(.ultraLight)
                     .tracking(Constants.trackingDefault)
             }
-            .padding(.init(top: Constants.paddingXLarge,
+            .padding(.init(top: Constants.paddingSmall,
                            leading: Constants.paddingLarge,
                            bottom: Constants.paddingXLarge,
                            trailing: Constants.paddingLarge))
@@ -55,6 +58,6 @@ struct PortfolioHeaderView: View {
 
 struct PortfolioHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioHeaderView(portfolioManager: PortfolioManager())
+        PortfolioHeaderView(portfolioManager: PortfolioManager(), fileStorageManager: FileStorageManager())
     }
 }
