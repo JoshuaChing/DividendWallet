@@ -12,8 +12,9 @@ struct PortfolioHeaderSettingsView: View {
     var fileStorageManager: FileStorageManager
     @State private var editing = false
     @State private var portfolioEditorText = ""
-    @State private var onSaveErrorShow = false
-    @State private var onSaveErrorMessage = ""
+    @State private var alertShow = false
+    @State private var alertTitle = ""
+    @State private var alertMessage = ""
 
     var body: some View {
         VStack {
@@ -26,11 +27,6 @@ struct PortfolioHeaderSettingsView: View {
                 } else {
                     // save button
                     Button(action: { onSaveEdit() }) { Text(Constants.save) }
-                        .alert(isPresented: $onSaveErrorShow) {
-                            Alert(title: Text(Constants.saveError),
-                                  message: Text(onSaveErrorMessage),
-                                  dismissButton: .cancel(Text(Constants.ok)))
-                        }
 
                     // cancel button
                     Button(action: { onCancelEdit() }) { Text(Constants.cancel) }
@@ -40,6 +36,11 @@ struct PortfolioHeaderSettingsView: View {
             .font(.title3)
             .foregroundColor(Constants.secondaryTextColor)
             .padding(.top, Constants.paddingSmall)
+            .alert(isPresented: $alertShow) {
+                Alert(title: Text(alertTitle),
+                      message: Text(alertMessage),
+                      dismissButton: .cancel(Text(Constants.ok)))
+            }
 
             // portfolio editor
             if editing {
@@ -65,8 +66,9 @@ struct PortfolioHeaderSettingsView: View {
 
     private func onSaveEdit() {
         if let errorMessage = fileStorageManager.savePortfolioContent(content: portfolioEditorText) {
-            self.onSaveErrorMessage = errorMessage
-            self.onSaveErrorShow = true
+            self.alertMessage = errorMessage
+            self.alertTitle = Constants.saveError
+            self.alertShow = true
         } else {
             let positions = fileStorageManager.fetchPortfolio()
             portfolioManager.fetchPortfolio(positions: positions)
