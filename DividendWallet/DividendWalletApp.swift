@@ -12,6 +12,7 @@ struct DividendWalletApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .navigationTitle(Constants.windowTitle)
         }
         .defaultSize(CGSize(width: Constants.windowIdealWidth, height: Constants.windowIdealHeight))
     }

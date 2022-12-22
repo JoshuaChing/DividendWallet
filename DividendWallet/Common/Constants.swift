@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct Constants {
+    static let windowTitle = "Dividend Wallet"
     static let windowMinWidth:CGFloat = 300
     static let windowMinHeight:CGFloat = 300
     static let windowIdealWidth:CGFloat = 400

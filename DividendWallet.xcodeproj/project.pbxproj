@@ -29,7 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4B90CF302940D96B006138EF /* DividendWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DividendWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B90CF302940D96B006138EF /* Dividend Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dividend Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B90CF332940D96B006138EF /* DividendWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividendWalletApp.swift; sourceTree = "<group>"; };
 		4B90CF352940D96B006138EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4B90CF372940D96C006138EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		4B90CF312940D96B006138EF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4B90CF302940D96B006138EF /* DividendWallet.app */,
+				4B90CF302940D96B006138EF /* Dividend Wallet.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -189,9 +189,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4B90CF2F2940D96B006138EF /* DividendWallet */ = {
+		4B90CF2F2940D96B006138EF /* Dividend Wallet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4B90CF3F2940D96C006138EF /* Build configuration list for PBXNativeTarget "DividendWallet" */;
+			buildConfigurationList = 4B90CF3F2940D96C006138EF /* Build configuration list for PBXNativeTarget "Dividend Wallet" */;
 			buildPhases = (
 				4B90CF2C2940D96B006138EF /* Sources */,
 				4B90CF2D2940D96B006138EF /* Frameworks */,
@@ -201,9 +201,9 @@
 			);
 			dependencies = (
 			);
-			name = DividendWallet;
+			name = "Dividend Wallet";
 			productName = DividendWallet;
-			productReference = 4B90CF302940D96B006138EF /* DividendWallet.app */;
+			productReference = 4B90CF302940D96B006138EF /* Dividend Wallet.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -234,7 +234,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4B90CF2F2940D96B006138EF /* DividendWallet */,
+				4B90CF2F2940D96B006138EF /* Dividend Wallet */,
 			);
 		};
 /* End PBXProject section */
@@ -454,7 +454,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4B90CF3F2940D96C006138EF /* Build configuration list for PBXNativeTarget "DividendWallet" */ = {
+		4B90CF3F2940D96C006138EF /* Build configuration list for PBXNativeTarget "Dividend Wallet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4B90CF402940D96C006138EF /* Debug */,
