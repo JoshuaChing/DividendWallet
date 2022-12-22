@@ -14,12 +14,12 @@ struct PortfolioHeaderView: View {
     var body: some View {
         VStack {
             VStack {
-                PortfolioHeaderSettingsView(fileStorageManager: fileStorageManager)
-                    .padding(.trailing, -Constants.paddingMedium)
+                PortfolioHeaderSettingsView(portfolioManager: portfolioManager, fileStorageManager: fileStorageManager)
                 Text(Constants.summaryTitle)
                     .textCase(.uppercase)
                     .font(.headline)
                     .fontWeight(.semibold)
+                    .padding(.top, Constants.paddingMedium)
                     .padding(.bottom, Constants.paddingLarge)
                     .tracking(Constants.trackingDefault)
                 Text(Constants.annualDividendTitle)

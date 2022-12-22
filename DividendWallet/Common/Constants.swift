@@ -22,6 +22,8 @@ struct Constants {
     static let cornerRadius: CGFloat = 5
     static let trackingDefault: CGFloat = 1
 
+    static let portfolioEditorHeight: CGFloat = 200
+
     static let summaryTitle = "Summary"
     static let annualDividendTitle = "Estimated Annual Income"
     static let monthlyDividendTitle = "Estimated Monthly Income"
@@ -30,6 +32,10 @@ struct Constants {
     static let formatShares = "%@ Shares"
     static let formatSharesMinDigits = 0
     static let formatSharesMaxDigits = 3
+    static let save = "save"
+    static let cancel = "cancel"
+    static let saveError = "Unable to save"
+    static let ok = "ok"
 
     static let etf = "ETF"
     static let mutualFund = "MUTUALFUND"
@@ -39,6 +45,7 @@ struct Constants {
     static let fileDelimiter = ","
     static let filePortfolioName = "portfolio"
     static let fileTxtExtension = "txt"
+    static let filePortfolioError = "Internal error when getting url for \(Constants.filePortfolioName).\(Constants.fileTxtExtension)"
 
     /*
      dark gray color: Color(red: 34.0/255.0, green: 37.0/255.0, blue: 40.0/255.0)

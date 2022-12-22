@@ -18,6 +18,7 @@ class FileStorageManager {
         do {
             let fileContent = try String(contentsOf: url, encoding: .utf8)
             let lines = fileContent.components(separatedBy: .newlines)
+            positions = [PortfolioPositionModel]() // clear existing positions
             for line in lines {
                 let values = line.components(separatedBy: Constants.fileDelimiter)
                 processLine(values: values)
@@ -50,10 +51,27 @@ class FileStorageManager {
         positions.append(PortfolioPositionModel(symbol: symbol, shareCount: shareCountNum))
     }
 
-    func editPortfolio() {
+    func getPortfolioContent() -> String {
         guard let url = Bundle.main.url(forResource: Constants.filePortfolioName, withExtension: Constants.fileTxtExtension) else {
-            return
+            return Constants.filePortfolioError
         }
-        print(url)
+        do {
+            let fileContent = try String(contentsOf: url, encoding: .utf8)
+            return fileContent
+        } catch {
+            return error.localizedDescription
+        }
+    }
+
+    func savePortfolioContent(content: String) -> String? {
+        guard let url = Bundle.main.url(forResource: Constants.filePortfolioName, withExtension: Constants.fileTxtExtension) else {
+            return Constants.filePortfolioError
+        }
+        do {
+            try content.write(to: url, atomically: true, encoding: .utf8)
+            return nil
+        } catch {
+            return error.localizedDescription
+        }
     }
 }
