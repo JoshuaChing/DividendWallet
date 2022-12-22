@@ -37,7 +37,7 @@ class FileStorageManager {
 
         // process first value: ticker symbol
         let symbol = values[0].trimmingCharacters(in: .whitespacesAndNewlines)
-        if values.isEmpty || values.count <= 0 {
+        if values.isEmpty || values.count <= 0 || values[0] == "" {
             return
         }
 

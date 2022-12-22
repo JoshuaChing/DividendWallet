@@ -25,6 +25,12 @@ class PortfolioManager: ObservableObject {
     }
 
     func fetchPortfolio(positions: [PortfolioPositionModel]) {
+        // early return if there are no positions
+        if positions.isEmpty {
+            portfolioPositions = [PortfolioListRowViewModel]()
+            return
+        }
+
         let symbols = positions.map { $0.symbol }
 
         // fetch initial data for all symbols in position
@@ -32,7 +38,7 @@ class PortfolioManager: ObservableObject {
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    print("PortfolioManager.fetchPortfolio: \(error.localizedDescription)")
                 default:
                     // do nothing
                     break
@@ -85,7 +91,7 @@ class PortfolioManager: ObservableObject {
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    print("PortfolioManager.fetchIndividualSymbols.receiveCompletion: \(error.localizedDescription)")
                 case .finished:
                     DispatchQueue.main.async {
                         if let self = self {
@@ -100,7 +106,7 @@ class PortfolioManager: ObservableObject {
                     case .success(let chartResult):
                         self.processYFChartResult(chartResult: chartResult, positions: positions, symbolsProcessed: &symbolsProcessed)
                     case .failure(let error):
-                        print(error.localizedDescription)
+                        print("PortfolioManager.fetchIndividualSymbols.receiveValue: \(error.localizedDescription)")
                     }
                 }
             }).store(in: &cancellables)
