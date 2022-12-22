@@ -51,7 +51,7 @@ struct PortfolioHeaderSettingsView: View {
     }
 
     private func onEdit() {
-        portfolioEditorText = fileStorageManager.getPortfolioContent()
+        portfolioEditorText = fileStorageManager.readPortfolioContent()
         withAnimation{
             self.editing = true
         }
