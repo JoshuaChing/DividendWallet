@@ -17,6 +17,7 @@ struct PortfolioListView: View {
         .padding(.leading, Constants.paddingSmall)
         .padding(.trailing, Constants.paddingSmall)
         .scrollContentBackground(.hidden)
+        .animation(.default, value: portfolioManager.portfolioPositions.count)
     }
 }
 

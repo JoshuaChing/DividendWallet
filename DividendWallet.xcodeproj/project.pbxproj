@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B4104352956800E00D8B706 /* YFQuoteSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4104342956800E00D8B706 /* YFQuoteSummaryModel.swift */; };
 		4B90CF342940D96B006138EF /* DividendWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF332940D96B006138EF /* DividendWalletApp.swift */; };
 		4B90CF362940D96B006138EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF352940D96B006138EF /* ContentView.swift */; };
 		4B90CF382940D96C006138EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B90CF372940D96C006138EF /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B4104342956800E00D8B706 /* YFQuoteSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YFQuoteSummaryModel.swift; sourceTree = "<group>"; };
 		4B90CF302940D96B006138EF /* Dividend Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dividend Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B90CF332940D96B006138EF /* DividendWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividendWalletApp.swift; sourceTree = "<group>"; };
 		4B90CF352940D96B006138EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -124,9 +126,10 @@
 		4B90CF50294103E4006138EF /* YahooFinance */ = {
 			isa = PBXGroup;
 			children = (
-				4B90CF532941054D006138EF /* YFQuoteResponseModel.swift */,
 				4B90CF5529411225006138EF /* YFApiClient.swift */,
+				4B90CF532941054D006138EF /* YFQuoteResponseModel.swift */,
 				4B90CF5E29415BED006138EF /* YFChartModel.swift */,
+				4B4104342956800E00D8B706 /* YFQuoteSummaryModel.swift */,
 			);
 			path = YahooFinance;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				4B90CF5629411225006138EF /* YFApiClient.swift in Sources */,
 				4B90CF6329417E76006138EF /* Helper.swift in Sources */,
 				4B90CF6B2941A24D006138EF /* PortfolioView.swift in Sources */,
+				4B4104352956800E00D8B706 /* YFQuoteSummaryModel.swift in Sources */,
 				4B90CF5F29415BED006138EF /* YFChartModel.swift in Sources */,
 				4BBE0FE4295389600018039F /* PortfolioHeaderSettingsView.swift in Sources */,
 				4B90CF5929411F02006138EF /* Constants.swift in Sources */,

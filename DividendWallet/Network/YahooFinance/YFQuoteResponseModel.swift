@@ -12,10 +12,10 @@ struct YFQuoteResponseModel: Codable {
 }
 
 struct YFQuoteResponse: Codable {
-    let result: [YFQuoteResult]
+    let result: [YFQuoteResponseResult]
 }
 
-struct YFQuoteResult: Codable {
+struct YFQuoteResponseResult: Codable {
     let symbol: String
     let quoteType: String
     let trailingAnnualDividendRate: Double? // dividend dollar amount

@@ -51,9 +51,9 @@ class PortfolioManager: ObservableObject {
             .store(in: &cancellables)
     }
 
-    private func processYFQuoteResults(positions: [PortfolioPositionModel], quotes: [YFQuoteResult]) {
+    private func processYFQuoteResults(positions: [PortfolioPositionModel], quotes: [YFQuoteResponseResult]) {
         var symbolsProcessed = [PortfolioListRowViewModel]()
-        var symbolsToFetch = [YFQuoteResult]()
+        var symbolsToFetch = [YFQuoteResponseResult]()
 
         for quote in quotes {
             if quote.isMissingDividendInformation() {
@@ -76,7 +76,7 @@ class PortfolioManager: ObservableObject {
         fetchIndividualSymbols(positions: positions, symbolsProcessed: symbolsProcessed, symbolsToFetch: symbolsToFetch)
     }
 
-    private func fetchIndividualSymbols(positions: [PortfolioPositionModel], symbolsProcessed: [PortfolioListRowViewModel], symbolsToFetch: [YFQuoteResult]) {
+    private func fetchIndividualSymbols(positions: [PortfolioPositionModel], symbolsProcessed: [PortfolioListRowViewModel], symbolsToFetch: [YFQuoteResponseResult]) {
         var symbolsProcessed = symbolsProcessed // copy symbols processed for mutable copy
         let symbolsToFetchFutures: [Future<[YFChartResult], Error>] = symbolsToFetch.map { YFApiClient.shared.fetchChart(symbol: $0.symbol) }
         let publishers = symbolsToFetchFutures.map {

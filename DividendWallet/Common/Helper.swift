@@ -22,7 +22,7 @@ extension Double {
     }
 }
 
-extension YFQuoteResult {
+extension YFQuoteResponseResult {
     func isMissingDividendInformation() -> Bool {
         return self.quoteType == Constants.etf || self.quoteType == Constants.mutualFund || self.trailingAnnualDividendRate == nil
     }
