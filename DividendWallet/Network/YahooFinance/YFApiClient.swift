@@ -88,4 +88,34 @@ class YFApiClient {
             task.resume()
         }
     }
+
+    func fetchQuoteSummary(symbol: String) -> Future<[YFQuoteSummaryResult], Error> {
+        return Future { promise in
+            let urlString = "https://query2.finance.yahoo.com/v10/finance/quoteSummary/\(symbol)?modules=summaryDetail,defaultKeyStatistics,quoteType"
+            guard let url = URL(string: urlString) else {
+                promise(.failure(YFError.invalidUrl))
+                return
+            }
+
+            let task = URLSession.shared.dataTask(with: url) { data, _, error in
+                if let error = error {
+                    promise(.failure(error))
+                    return
+                }
+
+                guard let data = data else {
+                    promise(.failure(YFError.invalidData))
+                    return
+                }
+
+                do {
+                    let responseModel = try JSONDecoder().decode(YFQuoteSummaryModel.self, from: data)
+                    promise(.success(responseModel.quoteSummary.result))
+                } catch let error {
+                    promise(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
 }

@@ -28,6 +28,7 @@
 		4BC8C760294D606600434B2F /* PortfolioListRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8C75F294D606600434B2F /* PortfolioListRowViewModel.swift */; };
 		4BC8C764294D617100434B2F /* portfolio.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4BC8C763294D617100434B2F /* portfolio.txt */; };
 		4BC8C769294D73D700434B2F /* FileStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8C768294D73D700434B2F /* FileStorageManager.swift */; };
+		4BD6BADC295A475F009577DE /* DividendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6BADB295A475F009577DE /* DividendManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		4BC8C75F294D606600434B2F /* PortfolioListRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioListRowViewModel.swift; sourceTree = "<group>"; };
 		4BC8C763294D617100434B2F /* portfolio.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = portfolio.txt; sourceTree = "<group>"; };
 		4BC8C768294D73D700434B2F /* FileStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageManager.swift; sourceTree = "<group>"; };
+		4BD6BADB295A475F009577DE /* DividendManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividendManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 		4BC8C761294D60BA00434B2F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				4BD6BADA295A4745009577DE /* DividendManager */,
 				4B74A6B6295995EF00E28C4D /* PortfolioStorageManager */,
 				4B90CF702941A654006138EF /* PortfolioManager.swift */,
 			);
@@ -198,6 +201,14 @@
 				4BC8C763294D617100434B2F /* portfolio.txt */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4BD6BADA295A4745009577DE /* DividendManager */ = {
+			isa = PBXGroup;
+			children = (
+				4BD6BADB295A475F009577DE /* DividendManager.swift */,
+			);
+			path = DividendManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +298,7 @@
 				4B4104352956800E00D8B706 /* YFQuoteSummaryModel.swift in Sources */,
 				4B90CF5F29415BED006138EF /* YFChartModel.swift in Sources */,
 				4BBE0FE4295389600018039F /* PortfolioHeaderSettingsView.swift in Sources */,
+				4BD6BADC295A475F009577DE /* DividendManager.swift in Sources */,
 				4B90CF5929411F02006138EF /* Constants.swift in Sources */,
 				4BC8C75E294D604500434B2F /* PortfolioPositionModel.swift in Sources */,
 			);
