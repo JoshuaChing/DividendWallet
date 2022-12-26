@@ -14,7 +14,7 @@ class PortfolioManager: ObservableObject {
         didSet { updateAnnualDividend() }
     }
     private var cancellables = Set<AnyCancellable>()
-    private let fileStorageManager: PortfolioStorageProtocol = FileStorageManager()
+    private let portfolioStorageManager: PortfolioStorageProtocol = FileStorageManager()
 
     private func updateAnnualDividend() {
         var sum = 0.0

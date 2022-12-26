@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PortfolioHeaderSettingsView: View {
     var portfolioManager: PortfolioManager
-    var fileStorageManager: PortfolioStorageProtocol
+    var portfolioStorageManager: PortfolioStorageProtocol
     @State private var editing = false
     @State private var portfolioEditorText = ""
     @State private var alertShow = false
@@ -52,7 +52,7 @@ struct PortfolioHeaderSettingsView: View {
     }
 
     private func onEdit() {
-        portfolioEditorText = fileStorageManager.readPortfolioContent()
+        portfolioEditorText = portfolioStorageManager.readPortfolioContent()
         withAnimation{
             self.editing = true
         }
@@ -65,12 +65,12 @@ struct PortfolioHeaderSettingsView: View {
     }
 
     private func onSaveEdit() {
-        if let errorMessage = fileStorageManager.savePortfolioContent(content: portfolioEditorText) {
+        if let errorMessage = portfolioStorageManager.savePortfolioContent(content: portfolioEditorText) {
             self.alertMessage = errorMessage
             self.alertTitle = Constants.saveError
             self.alertShow = true
         } else {
-            let positions = fileStorageManager.fetchPortfolio()
+            let positions = portfolioStorageManager.fetchPortfolio()
             portfolioManager.fetchPortfolio(positions: positions)
             withAnimation{
                 self.editing = false
@@ -81,6 +81,6 @@ struct PortfolioHeaderSettingsView: View {
 
 struct PortfolioHeaderSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioHeaderSettingsView(portfolioManager: PortfolioManager(), fileStorageManager: FileStorageManager())
+        PortfolioHeaderSettingsView(portfolioManager: PortfolioManager(), portfolioStorageManager: FileStorageManager())
     }
 }
