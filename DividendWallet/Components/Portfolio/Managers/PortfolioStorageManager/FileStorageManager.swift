@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FileStorageManager {
+class FileStorageManager: PortfolioStorageProtocol {
     var positions = [PortfolioPositionModel]()
 
     func fetchPortfolio() -> [PortfolioPositionModel] {

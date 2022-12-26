@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PortfolioView: View {
     @StateObject var portfolioManager = PortfolioManager()
-    private let fileStorageManager = FileStorageManager()
+    private let fileStorageManager: PortfolioStorageProtocol = FileStorageManager()
 
     var body: some View {
         VStack {

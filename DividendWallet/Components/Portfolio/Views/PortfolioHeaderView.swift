@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PortfolioHeaderView: View {
     @ObservedObject var portfolioManager: PortfolioManager
-    var fileStorageManager: FileStorageManager
+    var fileStorageManager: PortfolioStorageProtocol
 
     var body: some View {
         VStack {

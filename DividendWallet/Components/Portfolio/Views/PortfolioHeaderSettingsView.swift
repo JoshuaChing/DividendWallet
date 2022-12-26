@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PortfolioHeaderSettingsView: View {
     var portfolioManager: PortfolioManager
-    var fileStorageManager: FileStorageManager
+    var fileStorageManager: PortfolioStorageProtocol
     @State private var editing = false
     @State private var portfolioEditorText = ""
     @State private var alertShow = false
