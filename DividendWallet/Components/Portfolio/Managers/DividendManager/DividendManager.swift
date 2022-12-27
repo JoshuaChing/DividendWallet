@@ -20,6 +20,9 @@ struct PortfolioPositionDividendModel {
 }
 
 enum DividendManagerError: Error {
+    // errors for fetchPortfolioDividendData
+    case selfNilForFetchPortfolioDividendData
+
     // errors for fetchDividendData
     case selfNilForFetchDividendData
 
@@ -35,7 +38,58 @@ enum DividendManagerError: Error {
 class DividendManager {
     private var cancellables = Set<AnyCancellable>()
 
-    func fetchDividendData(positions: [PortfolioPositionModel]) -> Future<[Future<PortfolioPositionDividendModel, Error>], Error> {
+    func fetchPortfolioDividendData(positions: [PortfolioPositionModel]) -> Future<[PortfolioPositionDividendModel], Error> {
+        return Future { [weak self] promise in
+            guard let self = self else {
+                promise(.failure(DividendManagerError.selfNilForFetchPortfolioDividendData))
+                return
+            }
+            self.fetchDividendData(positions: positions)
+                .sink { completion in
+                    switch completion {
+                    case .failure(let error):
+                        print("DividendManager.fetchPortfolioDividendData.receiveCompletion: \(error.localizedDescription)")
+                    default:
+                        // do nothing
+                        break
+                    }
+                } receiveValue: { futures in
+                    let publishers = futures.map {
+                        $0
+                            .map { Result<PortfolioPositionDividendModel, Error>.success($0) }
+                            .catch { Just<Result<PortfolioPositionDividendModel, Error>>(.failure($0)) }
+                            .eraseToAnyPublisher()
+                    }
+                    Publishers.MergeMany(publishers)
+                        .collect()
+                        .sink { completion in
+                            switch completion {
+                            case .failure(let error):
+                                print("DividendManager.fetchPortfolioDividendData.receiveCompletion: \(error.localizedDescription)")
+                            default:
+                                // do nothing
+                                break
+                            }
+                        } receiveValue: { outputs in
+                            var models = [PortfolioPositionDividendModel]()
+                            for output in outputs {
+                                switch output {
+                                case .success(let model):
+                                    models.append(model)
+                                case .failure(let error):
+                                    print("DividendManager.fetchPortfolioDividendData.receiveValue: \(error.localizedDescription)")
+                                }
+                            }
+                            promise(.success(models))
+                            return
+                        }
+                        .store(in: &self.cancellables)
+                }
+                .store(in: &self.cancellables)
+        }
+    }
+
+    private func fetchDividendData(positions: [PortfolioPositionModel]) -> Future<[Future<PortfolioPositionDividendModel, Error>], Error> {
         return Future { [weak self] promise in
             guard let self = self else {
                 promise(.failure(DividendManagerError.selfNilForFetchDividendData))
