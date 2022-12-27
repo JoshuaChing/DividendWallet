@@ -11,8 +11,32 @@ struct PortfolioListView: View {
     @ObservedObject var portfolioManager: PortfolioManager
 
     var body: some View {
-        List(portfolioManager.portfolioListRowViewModels, id: \.symbol) { position in
-            PortfolioListRowView(position: position)
+        List {
+            Section() {
+                Text(Constants.recentEventsTitle)
+                    .textCase(.uppercase)
+                    .font(.caption)
+                    .fontWeight(.medium)
+                    .tracking(Constants.trackingDefault)
+                if !portfolioManager.portfolioListEventsRowViewModels.isEmpty {
+                    ForEach(portfolioManager.portfolioListEventsRowViewModels, id: \.symbol) { position in
+                        PortfolioListEventsRowView(position: position)
+                    }
+                } else {
+                    Text(Constants.noRecentEvents)
+                        .italic(true)
+                }
+            }
+            Section() {
+                Text(Constants.portfolioTitle)
+                    .textCase(.uppercase)
+                    .font(.caption)
+                    .fontWeight(.medium)
+                    .tracking(Constants.trackingDefault)
+                ForEach(portfolioManager.portfolioListRowViewModels, id: \.symbol) { position in
+                    PortfolioListRowView(position: position)
+                }
+            }
         }
         .padding(.leading, Constants.paddingSmall)
         .padding(.trailing, Constants.paddingSmall)

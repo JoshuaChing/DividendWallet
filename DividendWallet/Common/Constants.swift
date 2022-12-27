@@ -12,8 +12,8 @@ struct Constants {
     static let windowTitle = "Dividend Wallet"
     static let windowMinWidth:CGFloat = 300
     static let windowMinHeight:CGFloat = 300
-    static let windowIdealWidth:CGFloat = 400
-    static let windowIdealHeight: CGFloat = 600
+    static let windowIdealWidth:CGFloat = 500
+    static let windowIdealHeight: CGFloat = 750
 
     static let paddingSmall: CGFloat = 5
     static let paddingMedium: CGFloat = 10
@@ -37,6 +37,14 @@ struct Constants {
     static let cancel = "cancel"
     static let saveError = "Unable to save"
     static let ok = "ok"
+    static let recentEventsTitle = "Recent Ex-Dividends"
+    static let portfolioTitle = "Portfolio"
+
+    static let dateFormat = "yyyy-MM-dd"
+    static let timezoneGMT = "GMT"
+    static let recentEventsDaysAgoThreshold = 31
+    static let noRecentEvents = "No recent events"
+    static let formatRecentEvent = "%@ %@ to pay %@ per share"
 
     static let etf = "ETF"
     static let mutualFund = "MUTUALFUND"

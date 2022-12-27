@@ -15,4 +15,5 @@ struct PortfolioListEventsRowViewModel {
     let lastDividendValue: Double
     let lastDividendDate: Double
     let lastDividendDateString: String
+    let estimatedIncome: Double
 }
