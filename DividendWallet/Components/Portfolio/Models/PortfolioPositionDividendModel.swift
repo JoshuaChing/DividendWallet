@@ -17,3 +17,14 @@ struct PortfolioPositionDividendModel {
     let lastDividendValue: Double? // (not available for ETFs & Mutual Funds)
     let lastDividendDate: Double? // (not available for ETFs & Mutual Funds)
 }
+
+extension PortfolioPositionDividendModel {
+    func toPortfolioListRowViewModel() -> PortfolioListRowViewModel {
+        return PortfolioListRowViewModel(symbol: self.symbol,
+                                         shareCount: self.shareCount,
+                                         quoteType: self.quoteType,
+                                         trailingAnnualDividendRate: self.trailingAnnualDividendRate ?? 0.0,
+                                         trailingAnnualDividendYield: self.trailingAnnualDividendYield ?? 0.0,
+                                         estimatedAnnualDividendIncome: self.estimatedAnnualDividendIncome)
+    }
+}
