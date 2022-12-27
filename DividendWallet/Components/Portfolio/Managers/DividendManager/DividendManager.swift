@@ -8,17 +8,6 @@
 import Foundation
 import Combine
 
-struct PortfolioPositionDividendModel {
-    let symbol: String
-    let shareCount: Double
-    let quoteType: String
-    let estimatedAnnualDividendIncome: Double
-    let trailingAnnualDividendRate: Double? // dividend dollar amount
-    let trailingAnnualDividendYield: Double? // dividend percentage yield (not available for ETFs & Mutual Funds)
-    let lastDividendValue: Double? // (not available for ETFs & Mutual Funds)
-    let lastDividendDate: Double? // (not available for ETFs & Mutual Funds)
-}
-
 enum DividendManagerError: Error {
     // errors for fetchPortfolioDividendData
     case selfNilForFetchPortfolioDividendData
@@ -35,7 +24,7 @@ enum DividendManagerError: Error {
     case missingDataForFetchNonEquityTypeDividendData
 }
 
-class DividendManager {
+class DividendManager: DividendManagerProtocol {
     private var cancellables = Set<AnyCancellable>()
 
     func fetchPortfolioDividendData(positions: [PortfolioPositionModel]) -> Future<[PortfolioPositionDividendModel], Error> {
