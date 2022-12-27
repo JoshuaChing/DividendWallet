@@ -11,13 +11,13 @@ struct PortfolioListView: View {
     @ObservedObject var portfolioManager: PortfolioManager
 
     var body: some View {
-        List(portfolioManager.portfolioPositions, id: \.symbol) { position in
+        List(portfolioManager.portfolioListRowViewModels, id: \.symbol) { position in
             PortfolioListRowView(position: position)
         }
         .padding(.leading, Constants.paddingSmall)
         .padding(.trailing, Constants.paddingSmall)
         .scrollContentBackground(.hidden)
-        .animation(.default, value: portfolioManager.portfolioPositions.count)
+        .animation(.default, value: portfolioManager.portfolioListRowViewModels.count)
     }
 }
 

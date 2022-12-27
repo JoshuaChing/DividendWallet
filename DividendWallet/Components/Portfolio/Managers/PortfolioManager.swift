@@ -10,8 +10,12 @@ import Combine
 
 class PortfolioManager: ObservableObject {
     @Published var annualDividend = 0.0
-    @Published var portfolioPositions: [PortfolioListRowViewModel] = [] {
-        didSet { updateAnnualDividend() }
+    @Published var portfolioListRowViewModels: [PortfolioListRowViewModel] = [PortfolioListRowViewModel]()
+    private var portfolioPositions: [PortfolioPositionDividendModel] = [] {
+        didSet {
+            updateAnnualDividend()
+            updatePortfolioListRowViewModels()
+        }
     }
     private var cancellables = Set<AnyCancellable>()
     private let portfolioStorageManager: PortfolioStorageProtocol = FileStorageManager()
@@ -22,7 +26,16 @@ class PortfolioManager: ObservableObject {
         for position in portfolioPositions {
             sum += position.estimatedAnnualDividendIncome
         }
-        annualDividend = sum
+        DispatchQueue.main.async {
+            self.annualDividend = sum
+        }
+    }
+
+    private func updatePortfolioListRowViewModels() {
+        DispatchQueue.main.async {
+            let convertedModels = self.portfolioPositions.map { $0.toPortfolioListRowViewModel() }
+            self.portfolioListRowViewModels = convertedModels.sorted{ $0.estimatedAnnualDividendIncome > $1.estimatedAnnualDividendIncome }
+        }
     }
 
     func fetchPortfolio(positions: [PortfolioPositionModel]) {
@@ -37,10 +50,7 @@ class PortfolioManager: ObservableObject {
                 }
             }, receiveValue: { [weak self] models in
                 if let self = self {
-                    DispatchQueue.main.async {
-                        let convertedModels = models.map { $0.toPortfolioListRowViewModel() }
-                        self.portfolioPositions =  convertedModels.sorted{ $0.estimatedAnnualDividendIncome > $1.estimatedAnnualDividendIncome }
-                    }
+                    self.portfolioPositions = models
                 }
             }).store(in: &cancellables)
     }
