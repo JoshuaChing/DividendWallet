@@ -203,8 +203,8 @@ class DividendManager: DividendManagerProtocol {
                                                                estimatedAnnualDividendIncome: dividendSum * shareCount,
                                                                trailingAnnualDividendRate: dividendSum,
                                                                trailingAnnualDividendYield: nil, // TODO: calculate TTM dividend yield,
-                                                               lastDividendValue: lastDividendDate == 0 ? nil : lastDividendValue, // TODO: calculate
-                                                               lastDividendDate: lastDividendDate == 0 ? nil : Double(lastDividendDate)) // TODO: calculate
+                                                               lastDividendValue: lastDividendDate == 0 ? nil : lastDividendValue,
+                                                               lastDividendDate: lastDividendDate == 0 ? nil : Double(lastDividendDate))
                     promise(.success(model))
                     return
                 })

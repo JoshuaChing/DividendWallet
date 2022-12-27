@@ -31,6 +31,8 @@
 		4BD6BADC295A475F009577DE /* DividendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6BADB295A475F009577DE /* DividendManager.swift */; };
 		4BD6BADE295A6EC6009577DE /* PortfolioPositionDividendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6BADD295A6EC6009577DE /* PortfolioPositionDividendModel.swift */; };
 		4BD6BAE0295A6EF4009577DE /* DividendManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6BADF295A6EF4009577DE /* DividendManagerProtocol.swift */; };
+		4BD6BAE4295A7F5A009577DE /* PortfolioListEventsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6BAE3295A7F5A009577DE /* PortfolioListEventsRowView.swift */; };
+		4BD6BAE6295A83C4009577DE /* PortfolioListEventsRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6BAE5295A83C4009577DE /* PortfolioListEventsRowViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		4BD6BADB295A475F009577DE /* DividendManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividendManager.swift; sourceTree = "<group>"; };
 		4BD6BADD295A6EC6009577DE /* PortfolioPositionDividendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioPositionDividendModel.swift; sourceTree = "<group>"; };
 		4BD6BADF295A6EF4009577DE /* DividendManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividendManagerProtocol.swift; sourceTree = "<group>"; };
+		4BD6BAE3295A7F5A009577DE /* PortfolioListEventsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioListEventsRowView.swift; sourceTree = "<group>"; };
+		4BD6BAE5295A83C4009577DE /* PortfolioListEventsRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioListEventsRowViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				4B90CF452940E7C2006138EF /* PortfolioListRowView.swift */,
+				4BD6BAE3295A7F5A009577DE /* PortfolioListEventsRowView.swift */,
 				4B90CF492940E80D006138EF /* PortfolioListView.swift */,
 				4B90CF6029416D71006138EF /* PortfolioHeaderView.swift */,
 				4BBE0FE3295389600018039F /* PortfolioHeaderSettingsView.swift */,
@@ -185,6 +190,7 @@
 			children = (
 				4BC8C75D294D604500434B2F /* PortfolioPositionModel.swift */,
 				4BC8C75F294D606600434B2F /* PortfolioListRowViewModel.swift */,
+				4BD6BAE5295A83C4009577DE /* PortfolioListEventsRowViewModel.swift */,
 				4BD6BADD295A6EC6009577DE /* PortfolioPositionDividendModel.swift */,
 			);
 			path = Models;
@@ -290,6 +296,7 @@
 			files = (
 				4B90CF4A2940E80D006138EF /* PortfolioListView.swift in Sources */,
 				4BD6BAE0295A6EF4009577DE /* DividendManagerProtocol.swift in Sources */,
+				4BD6BAE6295A83C4009577DE /* PortfolioListEventsRowViewModel.swift in Sources */,
 				4B90CF542941054D006138EF /* YFQuoteResponseModel.swift in Sources */,
 				4BD6BADE295A6EC6009577DE /* PortfolioPositionDividendModel.swift in Sources */,
 				4BC8C769294D73D700434B2F /* FileStorageManager.swift in Sources */,
@@ -299,6 +306,7 @@
 				4B74A6B82959960F00E28C4D /* PortfolioStorageProtocol.swift in Sources */,
 				4B90CF342940D96B006138EF /* DividendWalletApp.swift in Sources */,
 				4B90CF6129416D71006138EF /* PortfolioHeaderView.swift in Sources */,
+				4BD6BAE4295A7F5A009577DE /* PortfolioListEventsRowView.swift in Sources */,
 				4B90CF712941A654006138EF /* PortfolioManager.swift in Sources */,
 				4B90CF5629411225006138EF /* YFApiClient.swift in Sources */,
 				4B90CF6329417E76006138EF /* Helper.swift in Sources */,

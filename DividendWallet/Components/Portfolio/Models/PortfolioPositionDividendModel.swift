@@ -14,8 +14,8 @@ struct PortfolioPositionDividendModel {
     let estimatedAnnualDividendIncome: Double
     let trailingAnnualDividendRate: Double? // dividend dollar amount
     let trailingAnnualDividendYield: Double? // dividend percentage yield (not available for ETFs & Mutual Funds)
-    let lastDividendValue: Double? // (not available for ETFs & Mutual Funds)
-    let lastDividendDate: Double? // (not available for ETFs & Mutual Funds)
+    let lastDividendValue: Double?
+    let lastDividendDate: Double?
 }
 
 extension PortfolioPositionDividendModel {
