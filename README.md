@@ -1,6 +1,6 @@
 # Dividend Wallet
 
-A simple macOS app that estimates the annual dividend income of a portfolio. The data is fetched from Yahoo Finance's unofficial API.
+A simple macOS app that estimates the annual dividend income of a portfolio. The data is fetched from Yahoo Finance's unofficial API. ETF & Mutual Fund estimates are calculated using the trailing twelve month dividend rate.
 
 ## Instructions
 1. click the cog icon button in the top right corner
