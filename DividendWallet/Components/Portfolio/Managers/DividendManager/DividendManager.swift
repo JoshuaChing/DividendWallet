@@ -186,9 +186,15 @@ class DividendManager: DividendManagerProtocol {
 
                     let chartResult = chartResults[0]
                     var dividendSum = 0.0
+                    var lastDividendDate = 0
+                    var lastDividendValue = 0.0
                     if let dividends = chartResult.events?.dividends {
                         for dividend in dividends {
                             dividendSum += dividend.value.amount
+                            if dividend.value.date > lastDividendDate {
+                                lastDividendDate = dividend.value.date
+                                lastDividendValue = dividend.value.amount
+                            }
                         }
                     }
                     let model = PortfolioPositionDividendModel(symbol: symbol,
@@ -196,9 +202,9 @@ class DividendManager: DividendManagerProtocol {
                                                                quoteType: quoteType,
                                                                estimatedAnnualDividendIncome: dividendSum * shareCount,
                                                                trailingAnnualDividendRate: dividendSum,
-                                                               trailingAnnualDividendYield: 0.0, // TODO: calculate TTM dividend yield,
-                                                               lastDividendValue: 0.0, // TODO: calculate
-                                                               lastDividendDate: 0.0) // TODO: calculate
+                                                               trailingAnnualDividendYield: nil, // TODO: calculate TTM dividend yield,
+                                                               lastDividendValue: lastDividendDate == 0 ? nil : lastDividendValue, // TODO: calculate
+                                                               lastDividendDate: lastDividendDate == 0 ? nil : Double(lastDividendDate)) // TODO: calculate
                     promise(.success(model))
                     return
                 })
