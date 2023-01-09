@@ -172,14 +172,48 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		4BC8C74C294D554600434B2F /* Views */ = {
+		4BB69702296BA67900B46646 /* PortfolioListRowView */ = {
 			isa = PBXGroup;
 			children = (
 				4B90CF452940E7C2006138EF /* PortfolioListRowView.swift */,
+				4BC8C75F294D606600434B2F /* PortfolioListRowViewModel.swift */,
+			);
+			path = PortfolioListRowView;
+			sourceTree = "<group>";
+		};
+		4BB69703296BA7B200B46646 /* PortfolioListEventsRowView */ = {
+			isa = PBXGroup;
+			children = (
 				4BD6BAE3295A7F5A009577DE /* PortfolioListEventsRowView.swift */,
-				4B90CF492940E80D006138EF /* PortfolioListView.swift */,
+				4BD6BAE5295A83C4009577DE /* PortfolioListEventsRowViewModel.swift */,
+			);
+			path = PortfolioListEventsRowView;
+			sourceTree = "<group>";
+		};
+		4BB69704296BA90E00B46646 /* PortfolioHeaderView */ = {
+			isa = PBXGroup;
+			children = (
 				4B90CF6029416D71006138EF /* PortfolioHeaderView.swift */,
 				4BBE0FE3295389600018039F /* PortfolioHeaderSettingsView.swift */,
+			);
+			path = PortfolioHeaderView;
+			sourceTree = "<group>";
+		};
+		4BB69705296BA95900B46646 /* PortfolioListView */ = {
+			isa = PBXGroup;
+			children = (
+				4B90CF492940E80D006138EF /* PortfolioListView.swift */,
+				4BB69702296BA67900B46646 /* PortfolioListRowView */,
+				4BB69703296BA7B200B46646 /* PortfolioListEventsRowView */,
+			);
+			path = PortfolioListView;
+			sourceTree = "<group>";
+		};
+		4BC8C74C294D554600434B2F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4BB69704296BA90E00B46646 /* PortfolioHeaderView */,
+				4BB69705296BA95900B46646 /* PortfolioListView */,
 				4B90CF6A2941A24D006138EF /* PortfolioView.swift */,
 			);
 			path = Views;
@@ -189,8 +223,6 @@
 			isa = PBXGroup;
 			children = (
 				4BC8C75D294D604500434B2F /* PortfolioPositionModel.swift */,
-				4BC8C75F294D606600434B2F /* PortfolioListRowViewModel.swift */,
-				4BD6BAE5295A83C4009577DE /* PortfolioListEventsRowViewModel.swift */,
 				4BD6BADD295A6EC6009577DE /* PortfolioPositionDividendModel.swift */,
 			);
 			path = Models;
