@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B366FD52977A26C00FBF721 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 4B366FD42977A26C00FBF721 /* SwiftSoup */; };
 		4B4104352956800E00D8B706 /* YFQuoteSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4104342956800E00D8B706 /* YFQuoteSummaryModel.swift */; };
 		4B74A6B82959960F00E28C4D /* PortfolioStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B74A6B72959960F00E28C4D /* PortfolioStorageProtocol.swift */; };
 		4B90CF342940D96B006138EF /* DividendWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF332940D96B006138EF /* DividendWalletApp.swift */; };
@@ -71,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B366FD52977A26C00FBF721 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +265,9 @@
 			dependencies = (
 			);
 			name = "Dividend Wallet";
+			packageProductDependencies = (
+				4B366FD42977A26C00FBF721 /* SwiftSoup */,
+			);
 			productName = DividendWallet;
 			productReference = 4B90CF302940D96B006138EF /* Dividend Wallet.app */;
 			productType = "com.apple.product-type.application";
@@ -291,6 +296,9 @@
 				Base,
 			);
 			mainGroup = 4B90CF272940D96B006138EF;
+			packageReferences = (
+				4B366FD32977A26C00FBF721 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 4B90CF312940D96B006138EF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -532,6 +540,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4B366FD32977A26C00FBF721 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4B366FD42977A26C00FBF721 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B366FD32977A26C00FBF721 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4B90CF282940D96B006138EF /* Project object */;
 }
