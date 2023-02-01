@@ -37,14 +37,14 @@ struct Constants {
     static let cancel = "cancel"
     static let saveError = "Unable to save"
     static let ok = "ok"
-    static let recentEventsTitle = "Recent Ex-Dividends"
+    static let recentEventsTitle = "Upcoming Dividends"
     static let portfolioTitle = "Portfolio"
 
-    static let dateFormat = "yyyy-MM-dd"
-    static let timezoneGMT = "GMT"
-    static let recentEventsDaysAgoThreshold = 31
+    static let dateFormat = "MMM d"
+    static let recentDividendsMonthsAgoThreshold = -1
+    static let recentDividendsMonthsLaterThreshold = 1
     static let noRecentEvents = "No recent events"
-    static let formatRecentEvent = "%@ %@ to pay %@ per share"
+    static let formatRecentEvent = "%@ %@ (%@ per share)"
 
     static let etf = "ETF"
     static let mutualFund = "MUTUALFUND"

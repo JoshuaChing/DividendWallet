@@ -34,7 +34,7 @@ class WSApiClient {
         static let trTag = "tr"
     }
 
-    func getDividendEventsForETFs(symbol: String) -> [WSDividendEventModel] {
+    func getDividendEventsForFund(symbol: String) -> [WSDividendEventModel] {
         var events = [WSDividendEventModel]()
         if let url = URL(string: String(format: Constants.dividendComUrlFormat, symbol)) {
             do {

@@ -19,7 +19,7 @@ struct PortfolioListView: View {
                     .fontWeight(.medium)
                     .tracking(Constants.trackingDefault)
                 if !portfolioManager.portfolioListEventsRowViewModels.isEmpty {
-                    ForEach(portfolioManager.portfolioListEventsRowViewModels, id: \.symbol) { position in
+                    ForEach(portfolioManager.portfolioListEventsRowViewModels, id: (\.id)) { position in
                         PortfolioListEventsRowView(position: position)
                     }
                 } else {
