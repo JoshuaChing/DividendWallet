@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4B366FD52977A26C00FBF721 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 4B366FD42977A26C00FBF721 /* SwiftSoup */; };
+		4B366FD82977A6A400FBF721 /* WSApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B366FD72977A6A400FBF721 /* WSApiClient.swift */; };
 		4B4104352956800E00D8B706 /* YFQuoteSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4104342956800E00D8B706 /* YFQuoteSummaryModel.swift */; };
 		4B74A6B82959960F00E28C4D /* PortfolioStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B74A6B72959960F00E28C4D /* PortfolioStorageProtocol.swift */; };
+		4B817442298A17BC007A9CD3 /* WSDividendEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B817441298A17BC007A9CD3 /* WSDividendEventModel.swift */; };
 		4B90CF342940D96B006138EF /* DividendWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF332940D96B006138EF /* DividendWalletApp.swift */; };
 		4B90CF362940D96B006138EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF352940D96B006138EF /* ContentView.swift */; };
 		4B90CF382940D96C006138EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B90CF372940D96C006138EF /* Assets.xcassets */; };
@@ -37,8 +39,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B366FD72977A6A400FBF721 /* WSApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSApiClient.swift; sourceTree = "<group>"; };
 		4B4104342956800E00D8B706 /* YFQuoteSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YFQuoteSummaryModel.swift; sourceTree = "<group>"; };
 		4B74A6B72959960F00E28C4D /* PortfolioStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioStorageProtocol.swift; sourceTree = "<group>"; };
+		4B817441298A17BC007A9CD3 /* WSDividendEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSDividendEventModel.swift; sourceTree = "<group>"; };
 		4B90CF302940D96B006138EF /* Dividend Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dividend Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B90CF332940D96B006138EF /* DividendWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividendWalletApp.swift; sourceTree = "<group>"; };
 		4B90CF352940D96B006138EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,6 +83,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B366FD62977A4EF00FBF721 /* WebScraper */ = {
+			isa = PBXGroup;
+			children = (
+				4B366FD72977A6A400FBF721 /* WSApiClient.swift */,
+				4B817441298A17BC007A9CD3 /* WSDividendEventModel.swift */,
+			);
+			path = WebScraper;
+			sourceTree = "<group>";
+		};
 		4B74A6B6295995EF00E28C4D /* PortfolioStorageManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +154,7 @@
 		4B90CF4F294103D9006138EF /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				4B366FD62977A4EF00FBF721 /* WebScraper */,
 				4B90CF50294103E4006138EF /* YahooFinance */,
 			);
 			path = Network;
@@ -332,6 +346,7 @@
 				4B90CF542941054D006138EF /* YFQuoteResponseModel.swift in Sources */,
 				4BD6BADE295A6EC6009577DE /* PortfolioPositionDividendModel.swift in Sources */,
 				4BC8C769294D73D700434B2F /* FileStorageManager.swift in Sources */,
+				4B817442298A17BC007A9CD3 /* WSDividendEventModel.swift in Sources */,
 				4B90CF462940E7C2006138EF /* PortfolioListRowView.swift in Sources */,
 				4B90CF362940D96B006138EF /* ContentView.swift in Sources */,
 				4BC8C760294D606600434B2F /* PortfolioListRowViewModel.swift in Sources */,
@@ -343,6 +358,7 @@
 				4B90CF5629411225006138EF /* YFApiClient.swift in Sources */,
 				4B90CF6329417E76006138EF /* Helper.swift in Sources */,
 				4B90CF6B2941A24D006138EF /* PortfolioView.swift in Sources */,
+				4B366FD82977A6A400FBF721 /* WSApiClient.swift in Sources */,
 				4B4104352956800E00D8B706 /* YFQuoteSummaryModel.swift in Sources */,
 				4B90CF5F29415BED006138EF /* YFChartModel.swift in Sources */,
 				4BBE0FE4295389600018039F /* PortfolioHeaderSettingsView.swift in Sources */,
