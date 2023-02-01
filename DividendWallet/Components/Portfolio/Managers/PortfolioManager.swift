@@ -56,7 +56,7 @@ class PortfolioManager: ObservableObject {
                 // fetch dividend data
                 let events = position.isMutualFundOrETF() ?
                     WSApiClient.shared.getDividendEventsForFund(symbol: position.symbol) :
-                    WSApiClient.shared.getDividendEventsForIndividualEquity(symbol: position.symbol)
+                    WSApiClient.shared.getDividendEventsForIndividualEquity(symbol: position.symbol) // TODO: cache fetched results
 
                 // check event date if within range
                 for event in events {
