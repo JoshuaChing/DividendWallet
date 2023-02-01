@@ -16,7 +16,7 @@ class PortfolioManager: ObservableObject {
         didSet {
             updateAnnualDividend()
             updatePortfolioListRowViewModels()
-            updateRecentEvents()
+            updateRecentDividends()
         }
     }
     private var cancellables = Set<AnyCancellable>()
@@ -40,37 +40,42 @@ class PortfolioManager: ObservableObject {
         }
     }
 
-    private func updateRecentEvents() {
+    private func updateRecentDividends() {
         var recentEvents = [PortfolioListEventsRowViewModel]()
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constants.dateFormat
         let currentDate = Date()
-
-        // set formatter to GMT timezone (for Yahoo Finance format)
-        dateFormatter.timeZone = TimeZone(abbreviation: Constants.timezoneGMT)
+        guard let timeAgo = Calendar.current.date(byAdding: .month, value: Constants.recentDividendsMonthsAgoThreshold, to: currentDate),
+              let timeLater = Calendar.current.date(byAdding: .month, value: Constants.recentDividendsMonthsLaterThreshold, to: currentDate) else {
+            return
+        }
 
         for position in portfolioPositions {
-            if let lastDividendValue = position.lastDividendValue, lastDividendValue > 0, let lastDividendDate = position.lastDividendDate {
-                let lastDividendDateEpoch: TimeInterval = lastDividendDate
-                let lastDividendDateEpochDate = Date(timeIntervalSince1970: lastDividendDateEpoch)
+            DispatchQueue.global(qos: .background).async {
+                // fetch dividend data
+                let events = position.isMutualFundOrETF() ?
+                    WSApiClient.shared.getDividendEventsForFund(symbol: position.symbol) :
+                    WSApiClient.shared.getDividendEventsForIndividualEquity(symbol: position.symbol) // TODO: cache fetched results
 
-                let calendar = Calendar.current
-                let components = calendar.dateComponents([.day], from: lastDividendDateEpochDate, to: currentDate)
-                if let daysAgo = components.day, daysAgo <= Constants.recentEventsDaysAgoThreshold {
-                    let event = PortfolioListEventsRowViewModel(symbol: position.symbol,
-                                                                shareCount: position.shareCount,
-                                                                quoteType: position.quoteType,
-                                                                lastDividendValue: lastDividendValue,
-                                                                lastDividendDate: lastDividendDate,
-                                                                lastDividendDateString: dateFormatter.string(from: lastDividendDateEpochDate),
-                                                                estimatedIncome: position.shareCount * lastDividendValue)
-                    recentEvents.append(event)
+                // check event date if within range
+                for event in events {
+                    if event.date >= timeAgo && event.date <= timeLater {
+                        let event = PortfolioListEventsRowViewModel(symbol: position.symbol,
+                                                                    shareCount: position.shareCount,
+                                                                    quoteType: position.quoteType,
+                                                                    lastDividendValue: event.amount,
+                                                                    lastDividendDate: event.date.timeIntervalSince1970,
+                                                                    lastDividendDateString: dateFormatter.string(from: event.date),
+                                                                    estimatedIncome: position.shareCount * event.amount)
+                        recentEvents.append(event)
+                        // update events
+                        DispatchQueue.main.async {
+                            self.portfolioListEventsRowViewModels = recentEvents.sorted{ $0.lastDividendDate > $1.lastDividendDate }
+                        }
+                    }
                 }
             }
-        }
-        DispatchQueue.main.async {
-            self.portfolioListEventsRowViewModels = recentEvents.sorted{ $0.lastDividendDate > $1.lastDividendDate }
         }
     }
 

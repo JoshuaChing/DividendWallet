@@ -8,7 +8,8 @@
 import Foundation
 
 // used to represent what is to be displayed in portfolio event row
-struct PortfolioListEventsRowViewModel {
+struct PortfolioListEventsRowViewModel: Identifiable {
+    let id = UUID()
     let symbol: String
     let shareCount: Double
     let quoteType: String

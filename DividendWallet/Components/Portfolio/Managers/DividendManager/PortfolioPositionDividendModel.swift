@@ -17,3 +17,9 @@ struct PortfolioPositionDividendModel {
     let lastDividendValue: Double?
     let lastDividendDate: Double?
 }
+
+extension PortfolioPositionDividendModel {
+    func isMutualFundOrETF() -> Bool {
+        return self.quoteType == Constants.mutualFund || self.quoteType == Constants.etf
+    }
+}
