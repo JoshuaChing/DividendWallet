@@ -8,6 +8,6 @@
 import Foundation
 
 struct WSDividendEventModel {
-    let date: String
+    let date: Date
     let amount: Double
 }

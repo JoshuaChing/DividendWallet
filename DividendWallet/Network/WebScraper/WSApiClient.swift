@@ -18,11 +18,13 @@ class WSApiClient {
         static let dividendComDateColumn = 0
         static let dividendComAmountColumn = 1
         static let dividendComAmountPrefix = "$"
+        static let dividendComDateFormat = "MMM dd, yyyy"
 
         static let dividendInvestorUrlFormat = "https://www.dividendinvestor.com/dividend-history-detail/%@/"
         static let dividendInvestorColumnLimit = 5;
         static let dividendInvestorDateColumn = 3
         static let dividendInvestorAmountColumn = 5;
+        static let dividendInvestorDateFormat = "MM/dd/yy"
 
         static let dividendsTag = "dividends"
         static let detailTag = "detail"
@@ -41,15 +43,17 @@ class WSApiClient {
                 let dividendsTable = try document.getElementsByClass(Constants.dividendComDistributions).first()
                 let tbody = try dividendsTable?.getElementsByTag(Constants.tbodyTag).first()
                 if let rows = try tbody?.getElementsByTag(Constants.trTag), rows.count > 0 {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = Constants.dividendComDateFormat
                     for row in rows {
                         let cols = try row.getElementsByTag(Constants.tdTag)
                         if cols.count >= Constants.dividendComColumnLimit {
-                            let date = try cols[Constants.dividendComDateColumn].text()
+                            let dateString = try cols[Constants.dividendComDateColumn].text()
                             var amountString = try cols[Constants.dividendComAmountColumn].text()
                             if amountString.hasPrefix(Constants.dividendComAmountPrefix) {
                                 amountString = String(amountString.dropFirst())
                             }
-                            if let amount = Double(amountString) {
+                            if let amount = Double(amountString), let date = dateFormatter.date(from: dateString) {
                                 events.append(WSDividendEventModel(date: date, amount: amount))
                             }
                         }
@@ -71,12 +75,14 @@ class WSApiClient {
                 let dividendsTable = try document.getElementById(Constants.dividendsTag)
                 let tbody = try dividendsTable?.getElementsByTag(Constants.tbodyTag).first()
                 if let rows = try tbody?.getElementsByClass(Constants.detailTag), rows.count > 0 {
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = Constants.dividendInvestorDateFormat
                     for row in rows {
                         let cols = try row.getElementsByTag(Constants.tdTag)
                         if cols.count >= Constants.dividendInvestorColumnLimit,
-                           let date = try cols[Constants.dividendInvestorDateColumn].getElementsByClass(Constants.mobileTag).first()?.text(),
+                           let dateString = try cols[Constants.dividendInvestorDateColumn].getElementsByClass(Constants.mobileTag).first()?.text(),
                            let amountString = try cols[Constants.dividendInvestorAmountColumn].getElementsByTag(Constants.tdTag).first()?.text(),
-                           let amount = Double(amountString) {
+                           let amount = Double(amountString), let date = dateFormatter.date(from: dateString) {
                             events.append(WSDividendEventModel(date: date, amount: amount))
                         }
                     }
