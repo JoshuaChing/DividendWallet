@@ -41,8 +41,6 @@ struct Constants {
     static let portfolioTitle = "Portfolio"
 
     static let dateFormat = "MMM d"
-    static let recentDividendsMonthsAgoThreshold = -1
-    static let recentDividendsMonthsLaterThreshold = 1
     static let noRecentEvents = "No recent events"
     static let formatRecentEvent = "%@ · %@ (%@ per share)"
 

@@ -46,10 +46,8 @@ class PortfolioManager: ObservableObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constants.dateFormat
         let currentDate = Date()
-        guard let timeAgo = Calendar.current.date(byAdding: .month, value: Constants.recentDividendsMonthsAgoThreshold, to: currentDate),
-              let timeLater = Calendar.current.date(byAdding: .month, value: Constants.recentDividendsMonthsLaterThreshold, to: currentDate) else {
-            return
-        }
+        let currentMonth = Calendar.current.component(.month, from: currentDate)
+        let currentYear = Calendar.current.component(.year, from: currentDate)
 
         for position in portfolioPositions {
             DispatchQueue.global(qos: .background).async {
@@ -60,7 +58,9 @@ class PortfolioManager: ObservableObject {
 
                 // check event date if within range
                 for event in events {
-                    if event.date >= timeAgo && event.date <= timeLater {
+                    let eventMonth = Calendar.current.component(.month, from: event.date)
+                    let eventYear = Calendar.current.component(.year, from: event.date)
+                    if eventYear == currentYear && (eventMonth == currentMonth || eventMonth == currentMonth+1) {
                         let event = PortfolioListEventsRowViewModel(symbol: position.symbol,
                                                                     shareCount: position.shareCount,
                                                                     quoteType: position.quoteType,
