@@ -12,6 +12,10 @@ extension Double {
         return String(format: Constants.formatMoney, self)
     }
 
+    func toMoneyStringRounded() -> String {
+        return String(format: Constants.formatMoneyRounded, self)
+    }
+
     func toSharesString() -> String {
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = Constants.formatSharesMinDigits

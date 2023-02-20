@@ -30,6 +30,7 @@ struct Constants {
     static let monthlyDividendTitle = "Estimated Monthly Income"
     static let formatMonthlyText = "%@ Monthly"
     static let formatMoney = "$%.2f"
+    static let formatMoneyRounded = "$%.0f"
     static let formatShares = "%@ Shares"
     static let formatSharesMinDigits = 0
     static let formatSharesMaxDigits = 3
