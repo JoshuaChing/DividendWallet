@@ -45,6 +45,7 @@ struct PortfolioHeaderView: View {
                     .font(.title2)
                     .fontWeight(.ultraLight)
                     .tracking(Constants.trackingDefault)
+                DividendChartView(viewModel: portfolioManager.dividendChartViewModel)
             }
             .padding(.init(top: Constants.paddingSmall,
                            leading: Constants.paddingLarge,
