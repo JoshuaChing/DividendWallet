@@ -15,23 +15,30 @@ extension DividendChartView {
     }
 
     class ViewModel: ObservableObject {
+        private let MAX_MONTH_NUMBER = 12
+
         @Published var chartData: [ChartData] = [ChartData]()
 
         func isChartDataEmpty() -> Bool {
             return chartData.isEmpty
         }
 
-        func setFakeData() {
-            DispatchQueue.main.async { [weak self] in
-                self?.chartData = [
-                    .init(month: "Oct", value: 60.3),
-                    .init(month: "Nov", value: 20.40),
-                    .init(month: "Dec", value: 10.35),
-                    .init(month: "Jan", value: 60.3),
-                    .init(month: "Feb", value: 20.40),
-                    .init(month: "Mar", value: 10.35)
-                ]
+        func setChartData(currentMonth: Int, currentMonthTotal: Double, nextMonthTotal: Double) {
+            let newChartData = [
+                ChartData(month: getStringForMonthNumber(currentMonth), value: currentMonthTotal),
+                ChartData(month: getStringForMonthNumber(currentMonth+1), value: nextMonthTotal)
+            ]
+            DispatchQueue.main.async {
+                self.chartData = newChartData
             }
+        }
+
+        private func getStringForMonthNumber(_ monthNumber: Int) -> String {
+            var monthNumber = monthNumber
+            if monthNumber > MAX_MONTH_NUMBER {
+                monthNumber -= MAX_MONTH_NUMBER
+            }
+            return Calendar.current.monthSymbols[monthNumber-1]
         }
     }
 }

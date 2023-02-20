@@ -43,8 +43,12 @@ class PortfolioManager: ObservableObject {
     }
 
     private func updateRecentDividends() {
+        // variables to be displayed
         var recentEvents = [PortfolioListEventsRowViewModel]()
+        var currentMonthTotal = 0.0
+        var nextMonthTotal = 0.0
 
+        // business logic variables
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Constants.dateFormat
         let currentDate = Date()
@@ -64,21 +68,31 @@ class PortfolioManager: ObservableObject {
                     let eventMonth = Calendar.current.component(.month, from: event.date)
                     let eventYear = Calendar.current.component(.year, from: event.date)
                     if strongSelf.isRecentDividend(eventMonth: eventMonth, eventYear: eventYear, currentMonth: currentMonth, currentYear: currentYear) {
+                        let eventAmount = position.shareCount * event.amount
                         let event = PortfolioListEventsRowViewModel(symbol: position.symbol,
                                                                     shareCount: position.shareCount,
                                                                     quoteType: position.quoteType,
                                                                     lastDividendValue: event.amount,
                                                                     lastDividendDate: event.date.timeIntervalSince1970,
                                                                     lastDividendDateString: dateFormatter.string(from: event.date),
-                                                                    estimatedIncome: position.shareCount * event.amount)
+                                                                    estimatedIncome: eventAmount)
                         recentEvents.append(event)
+                        if eventMonth == currentMonth {
+                            currentMonthTotal += eventAmount
+                        } else {
+                            nextMonthTotal += eventAmount
+                        }
+
                         // update events
                         DispatchQueue.main.async { [weak self] in
                             guard let strongSelf = self else { return }
-                            strongSelf.self.portfolioListEventsRowViewModels = recentEvents.sorted{ $0.lastDividendDate > $1.lastDividendDate }
+                            strongSelf.portfolioListEventsRowViewModels = recentEvents.sorted{ $0.lastDividendDate > $1.lastDividendDate }
                         }
                     }
                 }
+
+                // update dividend chart
+                strongSelf.dividendChartViewModel.setChartData(currentMonth: currentMonth, currentMonthTotal: currentMonthTotal, nextMonthTotal: nextMonthTotal)
             }
         }
     }
