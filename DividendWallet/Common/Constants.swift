@@ -43,7 +43,7 @@ struct Constants {
 
     static let dateFormat = "MMM d"
     static let noRecentEvents = "No recent events"
-    static let formatRecentEvent = "%@ · %@ (%@ per share)"
+    static let formatDividendPerShare = "(%@ × %@)"
 
     static let etf = "ETF"
     static let mutualFund = "MUTUALFUND"

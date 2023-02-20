@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct PortfolioListEventsRowView: View {
+    private let EVENT_TEXT_WIDTH: CGFloat = 50
     var position: PortfolioListEventsRowViewModel
 
     var body: some View {
         HStack {
-            Text(String(format: Constants.formatRecentEvent, position.lastDividendDateString, position.symbol, position.lastDividendValue.toMoneyString()))
+            Text(position.lastDividendDateString)
+                .frame(width: EVENT_TEXT_WIDTH, alignment: .leading)
+            Text(position.symbol)
+                .frame(width: EVENT_TEXT_WIDTH, alignment: .leading)
+            Text(String(format: Constants.formatDividendPerShare, position.lastDividendValue.toMoneyString(), position.shareCount.toSharesString()))
+                .font(.caption)
             Spacer()
             Text((position.estimatedIncome).toMoneyString())
                 .multilineTextAlignment(.trailing)
