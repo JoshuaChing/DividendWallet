@@ -26,6 +26,7 @@ struct DividendChartView: View {
                     }
                 }
             }
+            .padding(.top, Constants.paddingMedium)
         }
     }
 }
