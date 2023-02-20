@@ -52,7 +52,8 @@ class PortfolioManager: ObservableObject {
         let currentYear = Calendar.current.component(.year, from: currentDate)
 
         for position in portfolioPositions {
-            DispatchQueue.global(qos: .background).async {
+            DispatchQueue.global(qos: .background).async { [weak self] in
+                guard let strongSelf = self else { return }
                 // fetch dividend data
                 let events = position.isMutualFundOrETF() ?
                     WSApiClient.shared.getDividendEventsForFund(symbol: position.symbol) :
@@ -62,7 +63,7 @@ class PortfolioManager: ObservableObject {
                 for event in events {
                     let eventMonth = Calendar.current.component(.month, from: event.date)
                     let eventYear = Calendar.current.component(.year, from: event.date)
-                    if eventYear == currentYear && (eventMonth == currentMonth || eventMonth == currentMonth+1) {
+                    if strongSelf.isRecentDividend(eventMonth: eventMonth, eventYear: eventYear, currentMonth: currentMonth, currentYear: currentYear) {
                         let event = PortfolioListEventsRowViewModel(symbol: position.symbol,
                                                                     shareCount: position.shareCount,
                                                                     quoteType: position.quoteType,
@@ -72,12 +73,21 @@ class PortfolioManager: ObservableObject {
                                                                     estimatedIncome: position.shareCount * event.amount)
                         recentEvents.append(event)
                         // update events
-                        DispatchQueue.main.async {
-                            self.portfolioListEventsRowViewModels = recentEvents.sorted{ $0.lastDividendDate > $1.lastDividendDate }
+                        DispatchQueue.main.async { [weak self] in
+                            guard let strongSelf = self else { return }
+                            strongSelf.self.portfolioListEventsRowViewModels = recentEvents.sorted{ $0.lastDividendDate > $1.lastDividendDate }
                         }
                     }
                 }
             }
+        }
+    }
+
+    private func isRecentDividend(eventMonth: Int, eventYear: Int, currentMonth: Int, currentYear: Int) -> Bool {
+        if currentMonth == 12 {
+            return (eventYear == currentYear && eventMonth == currentMonth) || (eventYear == currentYear+1 && eventMonth == 1)
+        } else {
+            return eventYear == currentYear && (eventMonth == currentMonth || eventMonth == currentMonth+1)
         }
     }
 
