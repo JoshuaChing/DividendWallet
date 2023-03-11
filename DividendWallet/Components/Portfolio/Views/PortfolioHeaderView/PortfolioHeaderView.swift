@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PortfolioHeaderView: View {
     @StateObject var viewModel: ViewModel
+    @StateObject var dividendChartViewModel: DividendChartView.ViewModel
     @ObservedObject var portfolioManager: PortfolioManager
     var portfolioStorageManager: PortfolioStorageProtocol
 
@@ -46,7 +47,7 @@ struct PortfolioHeaderView: View {
                     .font(.title2)
                     .fontWeight(.ultraLight)
                     .tracking(Constants.trackingDefault)
-                DividendChartView(viewModel: portfolioManager.dividendChartViewModel)
+                DividendChartView(viewModel: dividendChartViewModel)
             }
             .padding(.init(top: Constants.paddingSmall,
                            leading: Constants.paddingLarge,
@@ -60,6 +61,9 @@ struct PortfolioHeaderView: View {
 
 struct PortfolioHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioHeaderView(viewModel: PortfolioHeaderView.ViewModel(), portfolioManager: PortfolioManager(), portfolioStorageManager: FileStorageManager())
+        PortfolioHeaderView(viewModel: PortfolioHeaderView.ViewModel(),
+                            dividendChartViewModel: DividendChartView.ViewModel(),
+                            portfolioManager: PortfolioManager(),
+                            portfolioStorageManager: FileStorageManager())
     }
 }

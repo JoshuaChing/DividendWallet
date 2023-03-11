@@ -14,6 +14,7 @@ struct PortfolioView: View {
     var body: some View {
         VStack {
             PortfolioHeaderView(viewModel: portfolioManager.portfolioHeaderViewModel,
+                                dividendChartViewModel: portfolioManager.dividendChartViewModel,
                                 portfolioManager: portfolioManager,
                                 portfolioStorageManager: portfolioStorageManager)
             PortfolioListView(portfolioManager: portfolioManager)
