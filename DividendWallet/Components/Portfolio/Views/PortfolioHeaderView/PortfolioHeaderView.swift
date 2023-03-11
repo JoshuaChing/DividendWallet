@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PortfolioHeaderView: View {
+    @StateObject var viewModel: ViewModel
     @ObservedObject var portfolioManager: PortfolioManager
     var portfolioStorageManager: PortfolioStorageProtocol
 
@@ -28,7 +29,7 @@ struct PortfolioHeaderView: View {
                     .font(.subheadline)
                     .fontWeight(.medium)
                     .tracking(Constants.trackingDefault)
-                Text(portfolioManager.annualDividend.toMoneyString())
+                Text(viewModel.annualDividend.toMoneyString())
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.largeTitle)
                     .fontWeight(.ultraLight)
@@ -40,7 +41,7 @@ struct PortfolioHeaderView: View {
                     .font(.caption)
                     .fontWeight(.medium)
                     .tracking(Constants.trackingDefault)
-                Text((portfolioManager.annualDividend/Constants.numOfMonthsInYear).toMoneyString())
+                Text((viewModel.annualDividend/Constants.numOfMonthsInYear).toMoneyString())
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.title2)
                     .fontWeight(.ultraLight)
@@ -59,6 +60,6 @@ struct PortfolioHeaderView: View {
 
 struct PortfolioHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioHeaderView(portfolioManager: PortfolioManager(), portfolioStorageManager: FileStorageManager())
+        PortfolioHeaderView(viewModel: PortfolioHeaderView.ViewModel(), portfolioManager: PortfolioManager(), portfolioStorageManager: FileStorageManager())
     }
 }
