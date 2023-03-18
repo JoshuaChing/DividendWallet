@@ -9,19 +9,14 @@ import SwiftUI
 
 struct PortfolioHeaderSettingsView: View {
     var portfolioManager: PortfolioManager
-    var portfolioStorageManager: PortfolioStorageProtocol
-    @State private var editing = false
-    @State private var portfolioEditorText = ""
-    @State private var alertShow = false
-    @State private var alertTitle = ""
-    @State private var alertMessage = ""
+    @StateObject var viewModel: PortfolioHeaderSettingsView.ViewModel
 
     var body: some View {
         VStack {
             HStack {
                 Spacer()
                 // settings button
-                if !editing {
+                if !viewModel.editing {
                     Button(action: { onEdit() }) { Image(systemName: Constants.iconGear) }
                         .padding(.trailing, -Constants.paddingMedium)
                 } else {
@@ -36,15 +31,15 @@ struct PortfolioHeaderSettingsView: View {
             .font(.title3)
             .foregroundColor(Constants.secondaryTextColor)
             .padding(.top, Constants.paddingSmall)
-            .alert(isPresented: $alertShow) {
-                Alert(title: Text(alertTitle),
-                      message: Text(alertMessage),
+            .alert(isPresented: $viewModel.alertShow) {
+                Alert(title: Text(viewModel.alertTitle),
+                      message: Text(viewModel.alertMessage),
                       dismissButton: .cancel(Text(Constants.ok)))
             }
 
             // portfolio editor
-            if editing {
-                TextEditor(text: $portfolioEditorText)
+            if viewModel.editing {
+                TextEditor(text: $viewModel.portfolioEditorText)
                     .frame(height: Constants.portfolioEditorHeight)
                     .cornerRadius(Constants.cornerRadius)
             }
@@ -52,28 +47,28 @@ struct PortfolioHeaderSettingsView: View {
     }
 
     private func onEdit() {
-        portfolioEditorText = portfolioStorageManager.readPortfolioContent()
+        viewModel.portfolioEditorText = viewModel.portfolioStorageManager.readPortfolioContent()
         withAnimation{
-            self.editing = true
+            self.viewModel.editing = true
         }
     }
 
     private func onCancelEdit() {
         withAnimation{
-            self.editing = false
+            self.viewModel.editing = false
         }
     }
 
     private func onSaveEdit() {
-        if let errorMessage = portfolioStorageManager.savePortfolioContent(content: portfolioEditorText) {
-            self.alertMessage = errorMessage
-            self.alertTitle = Constants.saveError
-            self.alertShow = true
+        if let errorMessage = viewModel.portfolioStorageManager.savePortfolioContent(content: viewModel.portfolioEditorText) {
+            self.viewModel.alertMessage = errorMessage
+            self.viewModel.alertTitle = Constants.saveError
+            self.viewModel.alertShow = true
         } else {
-            let positions = portfolioStorageManager.fetchPortfolio()
+            let positions = viewModel.portfolioStorageManager.fetchPortfolio()
             portfolioManager.fetchPortfolio(positions: positions)
             withAnimation{
-                self.editing = false
+                self.viewModel.editing = false
             }
         }
     }
@@ -81,6 +76,6 @@ struct PortfolioHeaderSettingsView: View {
 
 struct PortfolioHeaderSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioHeaderSettingsView(portfolioManager: PortfolioManager(), portfolioStorageManager: FileStorageManager())
+        PortfolioHeaderSettingsView(portfolioManager: PortfolioManager(), viewModel: PortfolioHeaderSettingsView.ViewModel(portfolioStorageManager: FileStorageManager()))
     }
 }

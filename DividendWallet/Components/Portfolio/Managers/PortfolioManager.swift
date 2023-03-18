@@ -9,10 +9,11 @@ import Foundation
 import Combine
 
 class PortfolioManager: ObservableObject {
-    @Published var portfolioListEventsRowViewModels: [PortfolioListEventsRowViewModel] = [PortfolioListEventsRowViewModel]()
-    @Published var portfolioListRowViewModels: [PortfolioListRowViewModel] = [PortfolioListRowViewModel]()
-    @Published var portfolioHeaderViewModel: PortfolioHeaderView.ViewModel = PortfolioHeaderView.ViewModel()
-    @Published var dividendChartViewModel: DividendChartView.ViewModel = DividendChartView.ViewModel()
+    @Published var portfolioHeaderViewModel: PortfolioHeaderView.ViewModel
+    @Published var portfolioHeaderViewSettingsViewModel: PortfolioHeaderSettingsView.ViewModel
+    @Published var dividendChartViewModel: DividendChartView.ViewModel
+    @Published var portfolioListEventsRowViewModels: [PortfolioListEventsRowViewModel]
+    @Published var portfolioListRowViewModels: [PortfolioListRowViewModel]
 
     private var portfolioPositions: [PortfolioPositionDividendModel] = [] {
         didSet {
@@ -24,6 +25,15 @@ class PortfolioManager: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private let portfolioStorageManager: PortfolioStorageProtocol = FileStorageManager()
     private let dividendManager: DividendManagerProtocol = DividendManager()
+
+    init() {
+        // initialize all view models
+        self.portfolioHeaderViewModel = PortfolioHeaderView.ViewModel()
+        self.portfolioHeaderViewSettingsViewModel = PortfolioHeaderSettingsView.ViewModel(portfolioStorageManager: portfolioStorageManager)
+        self.dividendChartViewModel = DividendChartView.ViewModel()
+        self.portfolioListEventsRowViewModels = [PortfolioListEventsRowViewModel]()
+        self.portfolioListRowViewModels = [PortfolioListRowViewModel]()
+    }
 
     // MARK: HEADER section business logic
 
