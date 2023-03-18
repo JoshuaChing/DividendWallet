@@ -47,7 +47,7 @@ struct PortfolioHeaderSettingsView: View {
     }
 
     private func onEdit() {
-        viewModel.portfolioEditorText = viewModel.portfolioStorageManager.readPortfolioContent()
+        viewModel.onEdit()
         withAnimation{
             self.viewModel.editing = true
         }
@@ -60,11 +60,7 @@ struct PortfolioHeaderSettingsView: View {
     }
 
     private func onSaveEdit() {
-        if let errorMessage = viewModel.portfolioStorageManager.savePortfolioContent(content: viewModel.portfolioEditorText) {
-            self.viewModel.alertMessage = errorMessage
-            self.viewModel.alertTitle = Constants.saveError
-            self.viewModel.alertShow = true
-        } else {
+        if viewModel.onSaveEdit() {
             let positions = viewModel.portfolioStorageManager.fetchPortfolio()
             portfolioManager.fetchPortfolio(positions: positions)
             withAnimation{

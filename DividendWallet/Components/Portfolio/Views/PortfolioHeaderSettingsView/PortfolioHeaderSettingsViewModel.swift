@@ -25,5 +25,19 @@ extension PortfolioHeaderSettingsView {
         init(portfolioStorageManager: PortfolioStorageProtocol) {
             self.portfolioStorageManager = portfolioStorageManager
         }
+
+        func onEdit() {
+            portfolioEditorText = portfolioStorageManager.readPortfolioContent()
+        }
+
+        func onSaveEdit() -> Bool {
+            if let errorMessage = portfolioStorageManager.savePortfolioContent(content: portfolioEditorText) {
+                self.alertMessage = errorMessage
+                self.alertTitle = Constants.saveError
+                self.alertShow = true
+                return false
+            }
+            return true
+        }
     }
 }
