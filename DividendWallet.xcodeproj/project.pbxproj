@@ -205,6 +205,15 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		4BAF38E629C642A300509B6C /* PortfolioHeaderSettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				4BBE0FE3295389600018039F /* PortfolioHeaderSettingsView.swift */,
+				4B7102FE29BCEF9A004675E8 /* PortfolioHeaderSettingsViewModel.swift */,
+			);
+			path = PortfolioHeaderSettingsView;
+			sourceTree = "<group>";
+		};
 		4BB69702296BA67900B46646 /* PortfolioListRowView */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,11 +235,8 @@
 		4BB69704296BA90E00B46646 /* PortfolioHeaderView */ = {
 			isa = PBXGroup;
 			children = (
-				4B156E41299C9F83001E9C55 /* DividendChartView */,
 				4B90CF6029416D71006138EF /* PortfolioHeaderView.swift */,
 				4B9CC79929BC1EAD00F39A74 /* PortfolioHeaderViewModel.swift */,
-				4BBE0FE3295389600018039F /* PortfolioHeaderSettingsView.swift */,
-				4B7102FE29BCEF9A004675E8 /* PortfolioHeaderSettingsViewModel.swift */,
 			);
 			path = PortfolioHeaderView;
 			sourceTree = "<group>";
@@ -249,6 +255,8 @@
 			isa = PBXGroup;
 			children = (
 				4BB69704296BA90E00B46646 /* PortfolioHeaderView */,
+				4BAF38E629C642A300509B6C /* PortfolioHeaderSettingsView */,
+				4B156E41299C9F83001E9C55 /* DividendChartView */,
 				4BB69705296BA95900B46646 /* PortfolioListView */,
 				4B90CF6A2941A24D006138EF /* PortfolioView.swift */,
 			);
