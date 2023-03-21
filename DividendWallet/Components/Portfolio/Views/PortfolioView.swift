@@ -15,13 +15,13 @@ struct PortfolioView: View {
         VStack {
             PortfolioHeaderView(viewModel: portfolioManager.portfolioHeaderViewModel,
                                 portfolioHeaderSettingsViewModel: portfolioManager.portfolioHeaderViewSettingsViewModel,
-                                dividendChartViewModel: portfolioManager.dividendChartViewModel,
-                                portfolioManager: portfolioManager)
+                                dividendChartViewModel: portfolioManager.dividendChartViewModel)
             PortfolioListView(portfolioManager: portfolioManager)
         }
         .onAppear {
+            portfolioManager.setup()
             let positions = portfolioStorageManager.fetchPortfolio()
-            portfolioManager.fetchPortfolio(positions: positions)
+            NotificationCenter.default.post(name: Notification.Name(PortfolioManager.NOTIFICATON_FETCH_PORTFOLIO), object: positions)
         }
     }
 }

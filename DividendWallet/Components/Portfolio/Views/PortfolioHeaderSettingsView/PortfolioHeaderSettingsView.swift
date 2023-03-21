@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct PortfolioHeaderSettingsView: View {
-    var portfolioManager: PortfolioManager
     @StateObject var viewModel: PortfolioHeaderSettingsView.ViewModel
 
     var body: some View {
@@ -47,31 +46,26 @@ struct PortfolioHeaderSettingsView: View {
     }
 
     private func onEdit() {
-        viewModel.onEdit()
         withAnimation{
-            self.viewModel.editing = true
+            viewModel.onEdit()
         }
     }
 
     private func onCancelEdit() {
         withAnimation{
-            self.viewModel.editing = false
+            viewModel.onCancelEdit()
         }
     }
 
     private func onSaveEdit() {
-        if viewModel.onSaveEdit() {
-            let positions = viewModel.portfolioStorageManager.fetchPortfolio()
-            portfolioManager.fetchPortfolio(positions: positions)
-            withAnimation{
-                self.viewModel.editing = false
-            }
+        withAnimation {
+            viewModel.onSaveEdit()
         }
     }
 }
 
 struct PortfolioHeaderSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioHeaderSettingsView(portfolioManager: PortfolioManager(), viewModel: PortfolioHeaderSettingsView.ViewModel(portfolioStorageManager: FileStorageManager()))
+        PortfolioHeaderSettingsView(viewModel: PortfolioHeaderSettingsView.ViewModel(portfolioStorageManager: FileStorageManager()))
     }
 }

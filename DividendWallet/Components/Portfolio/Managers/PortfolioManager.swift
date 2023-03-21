@@ -9,6 +9,8 @@ import Foundation
 import Combine
 
 class PortfolioManager: ObservableObject {
+    static let NOTIFICATON_FETCH_PORTFOLIO = "PortfolioManagerFetchPortfolio"
+
     @Published var portfolioHeaderViewModel: PortfolioHeaderView.ViewModel
     @Published var portfolioHeaderViewSettingsViewModel: PortfolioHeaderSettingsView.ViewModel
     @Published var dividendChartViewModel: DividendChartView.ViewModel
@@ -25,6 +27,7 @@ class PortfolioManager: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private let portfolioStorageManager: PortfolioStorageProtocol = FileStorageManager()
     private let dividendManager: DividendManagerProtocol = DividendManager()
+    private var fetchPortfolioObserver: NSObjectProtocol?
 
     init() {
         // initialize all view models
@@ -33,6 +36,23 @@ class PortfolioManager: ObservableObject {
         self.dividendChartViewModel = DividendChartView.ViewModel()
         self.portfolioListEventsRowViewModels = [PortfolioListEventsRowViewModel]()
         self.portfolioListRowViewModels = [PortfolioListRowViewModel]()
+    }
+
+    deinit {
+        if let fetchPortfolioObserver = fetchPortfolioObserver {
+            NotificationCenter.default.removeObserver(fetchPortfolioObserver)
+        }
+    }
+
+    func setup() {
+        if fetchPortfolioObserver == nil {
+            fetchPortfolioObserver = NotificationCenter.default.addObserver(forName: Notification.Name(PortfolioManager.NOTIFICATON_FETCH_PORTFOLIO), object: nil, queue: nil) { [weak self] notification in
+                guard let strongSelf = self, let positions = notification.object as? [PortfolioPositionModel] else {
+                    return
+                }
+                strongSelf.fetchPortfolio(positions: positions)
+            }
+        }
     }
 
     // MARK: HEADER section business logic

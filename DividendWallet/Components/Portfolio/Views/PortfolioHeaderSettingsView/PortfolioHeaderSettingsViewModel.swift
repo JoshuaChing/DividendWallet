@@ -7,11 +7,6 @@
 
 import Foundation
 
-protocol PortfolioHeaderSettingsDelegate {
-    func onEdit()
-    func onSave()
-}
-
 extension PortfolioHeaderSettingsView {
     class ViewModel: ObservableObject {
         var portfolioStorageManager: PortfolioStorageProtocol
@@ -28,16 +23,23 @@ extension PortfolioHeaderSettingsView {
 
         func onEdit() {
             portfolioEditorText = portfolioStorageManager.readPortfolioContent()
+            self.editing = true
         }
 
-        func onSaveEdit() -> Bool {
+        func onCancelEdit() {
+            self.editing = false
+        }
+
+        func onSaveEdit() {
             if let errorMessage = portfolioStorageManager.savePortfolioContent(content: portfolioEditorText) {
                 self.alertMessage = errorMessage
                 self.alertTitle = Constants.saveError
                 self.alertShow = true
-                return false
+            } else {
+                let positions = self.portfolioStorageManager.fetchPortfolio()
+                NotificationCenter.default.post(name: Notification.Name(PortfolioManager.NOTIFICATON_FETCH_PORTFOLIO), object: positions)
+                self.editing = false
             }
-            return true
         }
     }
 }

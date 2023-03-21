@@ -11,12 +11,11 @@ struct PortfolioHeaderView: View {
     @StateObject var viewModel: ViewModel
     @StateObject var portfolioHeaderSettingsViewModel: PortfolioHeaderSettingsView.ViewModel
     @StateObject var dividendChartViewModel: DividendChartView.ViewModel
-    @ObservedObject var portfolioManager: PortfolioManager
 
     var body: some View {
         VStack {
             VStack {
-                PortfolioHeaderSettingsView(portfolioManager: portfolioManager, viewModel: portfolioHeaderSettingsViewModel)
+                PortfolioHeaderSettingsView(viewModel: portfolioHeaderSettingsViewModel)
                 Text(Constants.summaryTitle)
                     .textCase(.uppercase)
                     .font(.headline)
@@ -63,7 +62,6 @@ struct PortfolioHeaderView_Previews: PreviewProvider {
     static var previews: some View {
         PortfolioHeaderView(viewModel: PortfolioHeaderView.ViewModel(),
                             portfolioHeaderSettingsViewModel: PortfolioHeaderSettingsView.ViewModel(portfolioStorageManager: FileStorageManager()),
-                            dividendChartViewModel: DividendChartView.ViewModel(),
-                            portfolioManager: PortfolioManager())
+                            dividendChartViewModel: DividendChartView.ViewModel())
     }
 }
