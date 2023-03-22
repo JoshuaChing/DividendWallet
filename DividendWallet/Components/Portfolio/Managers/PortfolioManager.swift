@@ -33,7 +33,7 @@ class PortfolioManager: ObservableObject {
         // initialize all view models
         self.portfolioHeaderViewModel = PortfolioHeaderView.ViewModel()
         self.portfolioHeaderViewSettingsViewModel = PortfolioHeaderSettingsView.ViewModel(portfolioStorageManager: portfolioStorageManager)
-        self.dividendChartViewModel = DividendChartView.ViewModel()
+        self.dividendChartViewModel = DividendChartView.ViewModel(pastMonthsToShow: Constants.pastMonthsToShow, futureMonthsToShow: Constants.futureMonthsToShow)
         self.portfolioListEventsRowViewModels = [PortfolioListEventsRowViewModel]()
         self.portfolioListRowViewModels = [PortfolioListRowViewModel]()
     }

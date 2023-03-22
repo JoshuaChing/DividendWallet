@@ -10,10 +10,10 @@ import SwiftUI
 
 struct Constants {
     static let windowTitle = "Dividend Wallet"
-    static let windowMinWidth:CGFloat = 300
-    static let windowMinHeight:CGFloat = 300
-    static let windowIdealWidth:CGFloat = 500
-    static let windowIdealHeight: CGFloat = 750
+    static let windowMinWidth:CGFloat = 1200
+    static let windowMinHeight:CGFloat = 800
+    static let windowIdealWidth:CGFloat = 1200
+    static let windowIdealHeight: CGFloat = 800
 
     static let paddingSmall: CGFloat = 5
     static let paddingMedium: CGFloat = 10
@@ -48,12 +48,14 @@ struct Constants {
     static let etf = "ETF"
     static let mutualFund = "MUTUALFUND"
 
-    static let numOfMonthsInYear = 12.0
-
     static let fileDelimiter = ","
     static let filePortfolioName = "portfolio"
     static let fileTxtExtension = "txt"
     static let filePortfolioError = "Internal error when getting url for \(Constants.filePortfolioName).\(Constants.fileTxtExtension)"
+
+    static let numOfMonthsInYear = 12.0
+    static let pastMonthsToShow = 0
+    static let futureMonthsToShow = 1
 
     /*
      dark gray color: Color(red: 34.0/255.0, green: 37.0/255.0, blue: 40.0/255.0)

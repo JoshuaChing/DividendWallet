@@ -30,6 +30,7 @@ struct DividendChartView: View {
             }
             .padding(.top, Constants.paddingMedium)
             .frame(minHeight: CHART_MIN_HEIGHT, maxHeight: CHART_MAX_HEIGHT)
+            .animation(.easeInOut, value: viewModel.chartData)
         }
     }
 }

@@ -62,6 +62,6 @@ struct PortfolioHeaderView_Previews: PreviewProvider {
     static var previews: some View {
         PortfolioHeaderView(viewModel: PortfolioHeaderView.ViewModel(),
                             portfolioHeaderSettingsViewModel: PortfolioHeaderSettingsView.ViewModel(portfolioStorageManager: FileStorageManager()),
-                            dividendChartViewModel: DividendChartView.ViewModel())
+                            dividendChartViewModel: DividendChartView.ViewModel(pastMonthsToShow: Constants.pastMonthsToShow, futureMonthsToShow: Constants.futureMonthsToShow))
     }
 }
