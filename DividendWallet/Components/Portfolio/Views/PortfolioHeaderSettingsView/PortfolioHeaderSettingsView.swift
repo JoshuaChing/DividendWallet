@@ -40,6 +40,10 @@ struct PortfolioHeaderSettingsView: View {
             if viewModel.editing {
                 TextEditor(text: $viewModel.portfolioEditorText)
                     .frame(height: Constants.portfolioEditorHeight)
+                    .scrollContentBackground(.hidden)
+                    .padding(Constants.paddingMedium)
+                    .foregroundColor(Constants.secondaryTextColor)
+                    .background(Constants.secondaryBackgroundColorRaised)
                     .cornerRadius(Constants.cornerRadius)
             }
         }
