@@ -9,7 +9,7 @@ import Foundation
 
 extension PortfolioHeaderSettingsView {
     class ViewModel: ObservableObject {
-        var portfolioStorageManager: PortfolioStorageProtocol
+        private var portfolioStorageManager: PortfolioStorageProtocol
 
         @Published var editing = false
         @Published var portfolioEditorText = ""

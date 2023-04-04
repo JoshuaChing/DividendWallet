@@ -40,7 +40,19 @@
 		4BD6BAE4295A7F5A009577DE /* PortfolioListEventsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6BAE3295A7F5A009577DE /* PortfolioListEventsRowView.swift */; };
 		4BD6BAE6295A83C4009577DE /* PortfolioListEventsRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6BAE5295A83C4009577DE /* PortfolioListEventsRowViewModel.swift */; };
 		4BD955C829A3279000DAAD2B /* DividendChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD955C729A3279000DAAD2B /* DividendChartViewModel.swift */; };
+		4BFEB88429DBD2B600364BAA /* PortfolioHeaderSettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFEB88329DBD2B600364BAA /* PortfolioHeaderSettingsViewModelTests.swift */; };
+		4BFEB88729DBD38A00364BAA /* PortfolioStorageSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFEB88629DBD38A00364BAA /* PortfolioStorageSpy.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4BFEB87E29DBD2A400364BAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B90CF282940D96B006138EF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4B90CF2F2940D96B006138EF;
+			remoteInfo = "Dividend Wallet";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4B156E42299C9FAA001E9C55 /* DividendChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividendChartView.swift; sourceTree = "<group>"; };
@@ -77,6 +89,9 @@
 		4BD6BAE3295A7F5A009577DE /* PortfolioListEventsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioListEventsRowView.swift; sourceTree = "<group>"; };
 		4BD6BAE5295A83C4009577DE /* PortfolioListEventsRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioListEventsRowViewModel.swift; sourceTree = "<group>"; };
 		4BD955C729A3279000DAAD2B /* DividendChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividendChartViewModel.swift; sourceTree = "<group>"; };
+		4BFEB87A29DBD2A300364BAA /* DividendWalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DividendWalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BFEB88329DBD2B600364BAA /* PortfolioHeaderSettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioHeaderSettingsViewModelTests.swift; sourceTree = "<group>"; };
+		4BFEB88629DBD38A00364BAA /* PortfolioStorageSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioStorageSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +100,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B366FD52977A26C00FBF721 /* SwiftSoup in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BFEB87729DBD2A300364BAA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				4B90CF322940D96B006138EF /* DividendWallet */,
+				4BFEB87B29DBD2A400364BAA /* DividendWalletTests */,
 				4B90CF312940D96B006138EF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -131,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				4B90CF302940D96B006138EF /* Dividend Wallet.app */,
+				4BFEB87A29DBD2A300364BAA /* DividendWalletTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -291,6 +315,23 @@
 			path = DividendManager;
 			sourceTree = "<group>";
 		};
+		4BFEB87B29DBD2A400364BAA /* DividendWalletTests */ = {
+			isa = PBXGroup;
+			children = (
+				4BFEB88329DBD2B600364BAA /* PortfolioHeaderSettingsViewModelTests.swift */,
+				4BFEB88529DBD36C00364BAA /* Spy */,
+			);
+			path = DividendWalletTests;
+			sourceTree = "<group>";
+		};
+		4BFEB88529DBD36C00364BAA /* Spy */ = {
+			isa = PBXGroup;
+			children = (
+				4BFEB88629DBD38A00364BAA /* PortfolioStorageSpy.swift */,
+			);
+			path = Spy;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -314,6 +355,24 @@
 			productReference = 4B90CF302940D96B006138EF /* Dividend Wallet.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4BFEB87929DBD2A300364BAA /* DividendWalletTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BFEB88229DBD2A400364BAA /* Build configuration list for PBXNativeTarget "DividendWalletTests" */;
+			buildPhases = (
+				4BFEB87629DBD2A300364BAA /* Sources */,
+				4BFEB87729DBD2A300364BAA /* Frameworks */,
+				4BFEB87829DBD2A300364BAA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4BFEB87F29DBD2A400364BAA /* PBXTargetDependency */,
+			);
+			name = DividendWalletTests;
+			productName = DividendWalletTests;
+			productReference = 4BFEB87A29DBD2A300364BAA /* DividendWalletTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -321,11 +380,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					4B90CF2F2940D96B006138EF = {
 						CreatedOnToolsVersion = 14.1;
+					};
+					4BFEB87929DBD2A300364BAA = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 4B90CF2F2940D96B006138EF;
 					};
 				};
 			};
@@ -346,6 +409,7 @@
 			projectRoot = "";
 			targets = (
 				4B90CF2F2940D96B006138EF /* Dividend Wallet */,
+				4BFEB87929DBD2A300364BAA /* DividendWalletTests */,
 			);
 		};
 /* End PBXProject section */
@@ -358,6 +422,13 @@
 				4B90CF3B2940D96C006138EF /* Preview Assets.xcassets in Resources */,
 				4B90CF382940D96C006138EF /* Assets.xcassets in Resources */,
 				4BC8C764294D617100434B2F /* portfolio.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4BFEB87829DBD2A300364BAA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,7 +471,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4BFEB87629DBD2A300364BAA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BFEB88429DBD2B600364BAA /* PortfolioHeaderSettingsViewModelTests.swift in Sources */,
+				4BFEB88729DBD38A00364BAA /* PortfolioStorageSpy.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4BFEB87F29DBD2A400364BAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4B90CF2F2940D96B006138EF /* Dividend Wallet */;
+			targetProxy = 4BFEB87E29DBD2A400364BAA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		4B90CF3D2940D96C006138EF /* Debug */ = {
@@ -566,6 +654,40 @@
 			};
 			name = Release;
 		};
+		4BFEB88029DBD2A400364BAA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jching.DividendWalletTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dividend Wallet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Dividend Wallet";
+			};
+			name = Debug;
+		};
+		4BFEB88129DBD2A400364BAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jching.DividendWalletTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dividend Wallet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Dividend Wallet";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -583,6 +705,15 @@
 			buildConfigurations = (
 				4B90CF402940D96C006138EF /* Debug */,
 				4B90CF412940D96C006138EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4BFEB88229DBD2A400364BAA /* Build configuration list for PBXNativeTarget "DividendWalletTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BFEB88029DBD2A400364BAA /* Debug */,
+				4BFEB88129DBD2A400364BAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
