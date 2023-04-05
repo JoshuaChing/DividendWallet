@@ -9,18 +9,18 @@ import SwiftUI
 
 struct PortfolioListEventsRowView: View {
     private let EVENT_TEXT_WIDTH: CGFloat = 50
-    var position: PortfolioListEventsRowViewModel
+    var viewModel: PortfolioListEventsRowView.ViewModel
 
     var body: some View {
         HStack {
-            Text(position.lastDividendDateString)
+            Text(viewModel.lastDividendDateString)
                 .frame(width: EVENT_TEXT_WIDTH, alignment: .leading)
-            Text(position.symbol)
+            Text(viewModel.symbol)
                 .frame(width: EVENT_TEXT_WIDTH, alignment: .leading)
-            Text(String(format: Constants.formatDividendPerShare, position.lastDividendValue.toMoneyString(), position.shareCount.toSharesString()))
+            Text(String(format: Constants.formatDividendPerShare, viewModel.lastDividendValue.toMoneyString(), viewModel.shareCount.toSharesString()))
                 .font(.caption)
             Spacer()
-            Text((position.estimatedIncome).toMoneyString())
+            Text((viewModel.estimatedIncome).toMoneyString())
                 .multilineTextAlignment(.trailing)
         }
         .padding(.trailing, Constants.paddingSmall)
@@ -29,12 +29,12 @@ struct PortfolioListEventsRowView: View {
 
 struct PortfolioListEventsRowView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioListEventsRowView(position: PortfolioListEventsRowViewModel(symbol: "SCHD",
-                                                                             shareCount: 1,
-                                                                             quoteType: "ETF",
-                                                                             lastDividendValue: 0.703,
-                                                                             lastDividendDate: 1670423400,
-                                                                             lastDividendDateString: "2022-12-07",
-                                                                             estimatedIncome: 0.703))
+        PortfolioListEventsRowView(viewModel: PortfolioListEventsRowView.ViewModel(symbol: "SCHD",
+                                                                                   shareCount: 1,
+                                                                                   quoteType: "ETF",
+                                                                                   lastDividendValue: 0.703,
+                                                                                   lastDividendDate: 1670423400,
+                                                                                   lastDividendDateString: "2022-12-07",
+                                                                                   estimatedIncome: 0.703))
     }
 }

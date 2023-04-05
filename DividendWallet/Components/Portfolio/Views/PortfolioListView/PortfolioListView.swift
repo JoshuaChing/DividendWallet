@@ -19,8 +19,8 @@ struct PortfolioListView: View {
                     .fontWeight(.medium)
                     .tracking(Constants.trackingDefault)
                 if !portfolioManager.portfolioListEventsRowViewModels.isEmpty {
-                    ForEach(portfolioManager.portfolioListEventsRowViewModels, id: (\.id)) { position in
-                        PortfolioListEventsRowView(position: position)
+                    ForEach(portfolioManager.portfolioListEventsRowViewModels, id: (\.id)) { viewModel in
+                        PortfolioListEventsRowView(viewModel: viewModel)
                     }
                 } else {
                     Text(Constants.noRecentEvents)
@@ -33,8 +33,8 @@ struct PortfolioListView: View {
                     .font(.caption)
                     .fontWeight(.medium)
                     .tracking(Constants.trackingDefault)
-                ForEach(portfolioManager.portfolioListRowViewModels, id: \.symbol) { position in
-                    PortfolioListRowView(position: position)
+                ForEach(portfolioManager.portfolioListRowViewModels, id: \.symbol) { viewModel in
+                    PortfolioListRowView(viewModel: viewModel)
                 }
             }
         }

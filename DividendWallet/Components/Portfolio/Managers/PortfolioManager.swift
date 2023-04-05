@@ -14,8 +14,8 @@ class PortfolioManager: ObservableObject {
     @Published var portfolioHeaderViewModel: PortfolioHeaderView.ViewModel
     @Published var portfolioHeaderViewSettingsViewModel: PortfolioHeaderSettingsView.ViewModel
     @Published var dividendChartViewModel: DividendChartView.ViewModel
-    @Published var portfolioListEventsRowViewModels: [PortfolioListEventsRowViewModel]
-    @Published var portfolioListRowViewModels: [PortfolioListRowViewModel]
+    @Published var portfolioListEventsRowViewModels: [PortfolioListEventsRowView.ViewModel]
+    @Published var portfolioListRowViewModels: [PortfolioListRowView.ViewModel]
 
     private var portfolioPositions: [PortfolioPositionDividendModel] = [] {
         didSet {
@@ -34,8 +34,8 @@ class PortfolioManager: ObservableObject {
         self.portfolioHeaderViewModel = PortfolioHeaderView.ViewModel()
         self.portfolioHeaderViewSettingsViewModel = PortfolioHeaderSettingsView.ViewModel(portfolioStorageManager: portfolioStorageManager)
         self.dividendChartViewModel = DividendChartView.ViewModel(pastMonthsToShow: Constants.pastMonthsToShow, futureMonthsToShow: Constants.futureMonthsToShow)
-        self.portfolioListEventsRowViewModels = [PortfolioListEventsRowViewModel]()
-        self.portfolioListRowViewModels = [PortfolioListRowViewModel]()
+        self.portfolioListEventsRowViewModels = [PortfolioListEventsRowView.ViewModel]()
+        self.portfolioListRowViewModels = [PortfolioListRowView.ViewModel]()
     }
 
     deinit {
@@ -81,7 +81,7 @@ class PortfolioManager: ObservableObject {
 
     private func updateRecentDividends() {
         // variables to be displayed
-        var recentEvents = [PortfolioListEventsRowViewModel]()
+        var recentEvents = [PortfolioListEventsRowView.ViewModel]()
         var currentMonthTotal = 0.0
         var nextMonthTotal = 0.0
 
@@ -106,13 +106,13 @@ class PortfolioManager: ObservableObject {
                     let eventYear = Calendar.current.component(.year, from: event.date)
                     if strongSelf.isRecentDividend(eventMonth: eventMonth, eventYear: eventYear, currentMonth: currentMonth, currentYear: currentYear) {
                         let eventAmount = position.shareCount * event.amount
-                        let event = PortfolioListEventsRowViewModel(symbol: position.symbol,
-                                                                    shareCount: position.shareCount,
-                                                                    quoteType: position.quoteType,
-                                                                    lastDividendValue: event.amount,
-                                                                    lastDividendDate: event.date.timeIntervalSince1970,
-                                                                    lastDividendDateString: dateFormatter.string(from: event.date),
-                                                                    estimatedIncome: eventAmount)
+                        let event = PortfolioListEventsRowView.ViewModel(symbol: position.symbol,
+                                                                         shareCount: position.shareCount,
+                                                                         quoteType: position.quoteType,
+                                                                         lastDividendValue: event.amount,
+                                                                         lastDividendDate: event.date.timeIntervalSince1970,
+                                                                         lastDividendDateString: dateFormatter.string(from: event.date),
+                                                                         estimatedIncome: eventAmount)
                         recentEvents.append(event)
                         if eventMonth == currentMonth {
                             currentMonthTotal += eventAmount
