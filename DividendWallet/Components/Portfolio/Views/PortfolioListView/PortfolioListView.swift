@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct PortfolioListView: View {
-    @ObservedObject var portfolioManager: PortfolioManager
+    var portfolioListEventsRowViewModels: [PortfolioListEventsRowView.ViewModel]
+    var portfolioListRowViewModels: [PortfolioListRowView.ViewModel]
 
     var body: some View {
         List {
@@ -18,8 +19,8 @@ struct PortfolioListView: View {
                     .font(.caption)
                     .fontWeight(.medium)
                     .tracking(Constants.trackingDefault)
-                if !portfolioManager.portfolioListEventsRowViewModels.isEmpty {
-                    ForEach(portfolioManager.portfolioListEventsRowViewModels, id: (\.id)) { viewModel in
+                if !portfolioListEventsRowViewModels.isEmpty {
+                    ForEach(portfolioListEventsRowViewModels, id: (\.id)) { viewModel in
                         PortfolioListEventsRowView(viewModel: viewModel)
                     }
                 } else {
@@ -33,7 +34,7 @@ struct PortfolioListView: View {
                     .font(.caption)
                     .fontWeight(.medium)
                     .tracking(Constants.trackingDefault)
-                ForEach(portfolioManager.portfolioListRowViewModels, id: \.symbol) { viewModel in
+                ForEach(portfolioListRowViewModels, id: \.symbol) { viewModel in
                     PortfolioListRowView(viewModel: viewModel)
                 }
             }
@@ -41,12 +42,12 @@ struct PortfolioListView: View {
         .padding(.leading, Constants.paddingSmall)
         .padding(.trailing, Constants.paddingSmall)
         .scrollContentBackground(.hidden)
-        .animation(.default, value: portfolioManager.portfolioListRowViewModels.count)
+        .animation(.default, value: portfolioListRowViewModels.count)
     }
 }
 
 struct AssetListView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioListView(portfolioManager: PortfolioManager())
+        PortfolioListView(portfolioListEventsRowViewModels: [], portfolioListRowViewModels: [])
     }
 }

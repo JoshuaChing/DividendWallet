@@ -16,7 +16,8 @@ struct PortfolioView: View {
             PortfolioHeaderView(viewModel: portfolioManager.portfolioHeaderViewModel,
                                 portfolioHeaderSettingsViewModel: portfolioManager.portfolioHeaderViewSettingsViewModel,
                                 dividendChartViewModel: portfolioManager.dividendChartViewModel)
-            PortfolioListView(portfolioManager: portfolioManager)
+            PortfolioListView(portfolioListEventsRowViewModels: portfolioManager.portfolioListEventsRowViewModels,
+                              portfolioListRowViewModels: portfolioManager.portfolioListRowViewModels)
         }
         .onAppear {
             portfolioManager.setup()
