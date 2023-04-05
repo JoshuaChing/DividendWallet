@@ -162,10 +162,11 @@
 		4B90CF322940D96B006138EF /* DividendWallet */ = {
 			isa = PBXGroup;
 			children = (
-				4BC8C767294D689300434B2F /* Resources */,
-				4B90CF5A29414DFE006138EF /* Components */,
-				4B90CF5729411EF9006138EF /* Common */,
+				4BC8C74C294D554600434B2F /* Components */,
+				4BC8C761294D60BA00434B2F /* Managers */,
 				4B90CF4F294103D9006138EF /* Network */,
+				4B90CF5729411EF9006138EF /* Common */,
+				4BC8C767294D689300434B2F /* Resources */,
 				4B90CF332940D96B006138EF /* DividendWalletApp.swift */,
 				4B90CF352940D96B006138EF /* ContentView.swift */,
 				4B90CF372940D96C006138EF /* Assets.xcassets */,
@@ -181,15 +182,6 @@
 				4B90CF3A2940D96C006138EF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		4B90CF422940E787006138EF /* Portfolio */ = {
-			isa = PBXGroup;
-			children = (
-				4BC8C761294D60BA00434B2F /* Managers */,
-				4BC8C74C294D554600434B2F /* Views */,
-			);
-			path = Portfolio;
 			sourceTree = "<group>";
 		};
 		4B90CF4F294103D9006138EF /* Network */ = {
@@ -219,14 +211,6 @@
 				4B90CF6229417E76006138EF /* Helper.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		4B90CF5A29414DFE006138EF /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				4B90CF422940E787006138EF /* Portfolio */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		4BAF38E629C642A300509B6C /* PortfolioHeaderSettingsView */ = {
@@ -275,7 +259,7 @@
 			path = PortfolioListView;
 			sourceTree = "<group>";
 		};
-		4BC8C74C294D554600434B2F /* Views */ = {
+		4BC8C74C294D554600434B2F /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				4BB69704296BA90E00B46646 /* PortfolioHeaderView */,
@@ -284,7 +268,7 @@
 				4BB69705296BA95900B46646 /* PortfolioListView */,
 				4B90CF6A2941A24D006138EF /* PortfolioView.swift */,
 			);
-			path = Views;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		4BC8C761294D60BA00434B2F /* Managers */ = {
