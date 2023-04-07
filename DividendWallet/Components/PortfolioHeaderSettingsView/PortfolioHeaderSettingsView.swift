@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PortfolioHeaderSettingsView: View {
-    @StateObject var viewModel: PortfolioHeaderSettingsView.ViewModel
+    @StateObject var viewModel: PortfolioHeaderSettingsViewModel
 
     var body: some View {
         VStack {
@@ -70,6 +70,6 @@ struct PortfolioHeaderSettingsView: View {
 
 struct PortfolioHeaderSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioHeaderSettingsView(viewModel: PortfolioHeaderSettingsView.ViewModel(portfolioStorageManager: FileStorageManager()))
+        PortfolioHeaderSettingsView(viewModel: PortfolioHeaderSettingsViewModel(portfolioStorageManager: FileStorageManager()))
     }
 }

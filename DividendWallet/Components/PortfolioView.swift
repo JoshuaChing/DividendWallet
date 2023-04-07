@@ -13,7 +13,7 @@ struct PortfolioView: View {
 
     var body: some View {
         VStack {
-            PortfolioHeaderView(viewModel: PortfolioHeaderView.ViewModel(),
+            PortfolioHeaderView(viewModel: PortfolioHeaderViewModel(),
                                 portfolioHeaderSettingsViewModel: portfolioManager.portfolioHeaderViewSettingsViewModel,
                                 dividendChartViewModel: portfolioManager.dividendChartViewModel)
             PortfolioListView(portfolioListEventsRowViewModels: portfolioManager.portfolioListEventsRowViewModels,

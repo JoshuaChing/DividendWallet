@@ -6,15 +6,14 @@
 //
 
 import Foundation
-@testable import Dividend_Wallet
 
 class PortfolioStorageSpy: PortfolioStorageProtocol {
     var storedContent: String = ""
     var shouldReturnSaveError = false
     var saveErrorMessage = ""
-    var models: [Dividend_Wallet.PortfolioPositionModel] = []
+    var models: [PortfolioPositionModel] = []
 
-    func fetchPortfolio() -> [Dividend_Wallet.PortfolioPositionModel] {
+    func fetchPortfolio() -> [PortfolioPositionModel] {
         return models
     }
 

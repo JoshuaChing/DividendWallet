@@ -6,7 +6,6 @@
 //
 
 import XCTest
-@testable import Dividend_Wallet
 
 final class PortfolioHeaderSettingsViewModelTests: XCTestCase {
 
@@ -48,12 +47,12 @@ final class PortfolioHeaderSettingsViewModelTests: XCTestCase {
     }
 
     func test_onSaveEdit_fetchPositions() {
-        let models: [Dividend_Wallet.PortfolioPositionModel] = [
-            Dividend_Wallet.PortfolioPositionModel(symbol: "AAPL", shareCount: 10)
+        let models: [PortfolioPositionModel] = [
+            PortfolioPositionModel(symbol: "AAPL", shareCount: 10)
         ]
         let sut = createSystemUnderTest(models: models)
         let handler: (Notification) -> Bool = { notification in
-            guard let models = notification.object as? [Dividend_Wallet.PortfolioPositionModel] else {
+            guard let models = notification.object as? [PortfolioPositionModel] else {
                 XCTFail("Notification failed to receive models.")
                 return false
             }
@@ -63,7 +62,7 @@ final class PortfolioHeaderSettingsViewModelTests: XCTestCase {
             return true
         }
 
-        expectation(forNotification: Notification.Name(PortfolioManager.NOTIFICATON_FETCH_PORTFOLIO),
+        expectation(forNotification: Notification.Name("PortfolioManagerFetchPortfolio"),
                     object: nil,
                     handler: handler)
         sut.onSaveEdit()
@@ -76,12 +75,12 @@ final class PortfolioHeaderSettingsViewModelTests: XCTestCase {
     func createSystemUnderTest(storedContent: String = "",
                                saveErrorMessage: String = "",
                                shouldReturnSaveError: Bool = false,
-                               models: [Dividend_Wallet.PortfolioPositionModel] = []) -> PortfolioHeaderSettingsView.ViewModel {
+                               models: [PortfolioPositionModel] = []) -> PortfolioHeaderSettingsViewModel {
         let storageSpy = PortfolioStorageSpy()
         storageSpy.storedContent = storedContent
         storageSpy.saveErrorMessage = saveErrorMessage
         storageSpy.shouldReturnSaveError = shouldReturnSaveError
         storageSpy.models = models
-        return PortfolioHeaderSettingsView.ViewModel(portfolioStorageManager: storageSpy)
+        return PortfolioHeaderSettingsViewModel(portfolioStorageManager: storageSpy)
     }
 }

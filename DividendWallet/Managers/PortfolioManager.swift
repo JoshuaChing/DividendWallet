@@ -11,7 +11,7 @@ import Combine
 class PortfolioManager: ObservableObject {
     static let NOTIFICATON_FETCH_PORTFOLIO = "PortfolioManagerFetchPortfolio"
 
-    @Published var portfolioHeaderViewSettingsViewModel: PortfolioHeaderSettingsView.ViewModel
+    @Published var portfolioHeaderViewSettingsViewModel: PortfolioHeaderSettingsViewModel
     @Published var dividendChartViewModel: DividendChartView.ViewModel
     @Published var portfolioListEventsRowViewModels: [PortfolioListEventsRowView.ViewModel]
     @Published var portfolioListRowViewModels: [PortfolioListRowView.ViewModel]
@@ -30,7 +30,7 @@ class PortfolioManager: ObservableObject {
 
     init() {
         // initialize all view models
-        self.portfolioHeaderViewSettingsViewModel = PortfolioHeaderSettingsView.ViewModel(portfolioStorageManager: portfolioStorageManager)
+        self.portfolioHeaderViewSettingsViewModel = PortfolioHeaderSettingsViewModel(portfolioStorageManager: portfolioStorageManager)
         self.dividendChartViewModel = DividendChartView.ViewModel(pastMonthsToShow: Constants.pastMonthsToShow, futureMonthsToShow: Constants.futureMonthsToShow)
         self.portfolioListEventsRowViewModels = [PortfolioListEventsRowView.ViewModel]()
         self.portfolioListRowViewModels = [PortfolioListRowView.ViewModel]()

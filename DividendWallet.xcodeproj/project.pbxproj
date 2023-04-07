@@ -12,9 +12,17 @@
 		4B366FD82977A6A400FBF721 /* WSApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B366FD72977A6A400FBF721 /* WSApiClient.swift */; };
 		4B4104352956800E00D8B706 /* YFQuoteSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4104342956800E00D8B706 /* YFQuoteSummaryModel.swift */; };
 		4B52AE5B29DFC677001132C3 /* NotificationCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52AE5A29DFC677001132C3 /* NotificationCenterManager.swift */; };
+		4B52AE5F29DFD45A001132C3 /* PortfolioHeaderViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52AE5E29DFD45A001132C3 /* PortfolioHeaderViewModelTests.swift */; };
 		4B7102FF29BCEF9A004675E8 /* PortfolioHeaderSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7102FE29BCEF9A004675E8 /* PortfolioHeaderSettingsViewModel.swift */; };
 		4B74A6B82959960F00E28C4D /* PortfolioStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B74A6B72959960F00E28C4D /* PortfolioStorageProtocol.swift */; };
 		4B817442298A17BC007A9CD3 /* WSDividendEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B817441298A17BC007A9CD3 /* WSDividendEventModel.swift */; };
+		4B82962329DFEE7800A9C1C1 /* PortfolioPositionDividendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6BADD295A6EC6009577DE /* PortfolioPositionDividendModel.swift */; };
+		4B82962429DFEE8B00A9C1C1 /* PortfolioHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9CC79929BC1EAD00F39A74 /* PortfolioHeaderViewModel.swift */; };
+		4B82962529DFEE9100A9C1C1 /* NotificationCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52AE5A29DFC677001132C3 /* NotificationCenterManager.swift */; };
+		4B82962629DFEEE000A9C1C1 /* PortfolioPositionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8C75D294D604500434B2F /* PortfolioPositionModel.swift */; };
+		4B82962729DFEF3600A9C1C1 /* PortfolioHeaderSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7102FE29BCEF9A004675E8 /* PortfolioHeaderSettingsViewModel.swift */; };
+		4B82962829DFEF7500A9C1C1 /* PortfolioStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B74A6B72959960F00E28C4D /* PortfolioStorageProtocol.swift */; };
+		4B82962929DFEFDB00A9C1C1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF5829411F02006138EF /* Constants.swift */; };
 		4B90CF342940D96B006138EF /* DividendWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF332940D96B006138EF /* DividendWalletApp.swift */; };
 		4B90CF362940D96B006138EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90CF352940D96B006138EF /* ContentView.swift */; };
 		4B90CF382940D96C006138EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B90CF372940D96C006138EF /* Assets.xcassets */; };
@@ -60,6 +68,7 @@
 		4B366FD72977A6A400FBF721 /* WSApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSApiClient.swift; sourceTree = "<group>"; };
 		4B4104342956800E00D8B706 /* YFQuoteSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YFQuoteSummaryModel.swift; sourceTree = "<group>"; };
 		4B52AE5A29DFC677001132C3 /* NotificationCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterManager.swift; sourceTree = "<group>"; };
+		4B52AE5E29DFD45A001132C3 /* PortfolioHeaderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioHeaderViewModelTests.swift; sourceTree = "<group>"; };
 		4B7102FE29BCEF9A004675E8 /* PortfolioHeaderSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioHeaderSettingsViewModel.swift; sourceTree = "<group>"; };
 		4B74A6B72959960F00E28C4D /* PortfolioStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioStorageProtocol.swift; sourceTree = "<group>"; };
 		4B817441298A17BC007A9CD3 /* WSDividendEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSDividendEventModel.swift; sourceTree = "<group>"; };
@@ -313,8 +322,9 @@
 		4BFEB87B29DBD2A400364BAA /* DividendWalletTests */ = {
 			isa = PBXGroup;
 			children = (
-				4BFEB88329DBD2B600364BAA /* PortfolioHeaderSettingsViewModelTests.swift */,
 				4BFEB88529DBD36C00364BAA /* Spy */,
+				4BFEB88329DBD2B600364BAA /* PortfolioHeaderSettingsViewModelTests.swift */,
+				4B52AE5E29DFD45A001132C3 /* PortfolioHeaderViewModelTests.swift */,
 			);
 			path = DividendWalletTests;
 			sourceTree = "<group>";
@@ -383,7 +393,6 @@
 					};
 					4BFEB87929DBD2A300364BAA = {
 						CreatedOnToolsVersion = 14.3;
-						TestTargetID = 4B90CF2F2940D96B006138EF;
 					};
 				};
 			};
@@ -471,7 +480,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B82962929DFEFDB00A9C1C1 /* Constants.swift in Sources */,
+				4B82962829DFEF7500A9C1C1 /* PortfolioStorageProtocol.swift in Sources */,
+				4B82962729DFEF3600A9C1C1 /* PortfolioHeaderSettingsViewModel.swift in Sources */,
+				4B82962629DFEEE000A9C1C1 /* PortfolioPositionModel.swift in Sources */,
+				4B82962529DFEE9100A9C1C1 /* NotificationCenterManager.swift in Sources */,
+				4B82962429DFEE8B00A9C1C1 /* PortfolioHeaderViewModel.swift in Sources */,
+				4B82962329DFEE7800A9C1C1 /* PortfolioPositionDividendModel.swift in Sources */,
 				4BFEB88429DBD2B600364BAA /* PortfolioHeaderSettingsViewModelTests.swift in Sources */,
+				4B52AE5F29DFD45A001132C3 /* PortfolioHeaderViewModelTests.swift in Sources */,
 				4BFEB88729DBD38A00364BAA /* PortfolioStorageSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -653,7 +670,6 @@
 		4BFEB88029DBD2A400364BAA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -663,14 +679,12 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dividend Wallet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Dividend Wallet";
 			};
 			name = Debug;
 		};
 		4BFEB88129DBD2A400364BAA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -680,7 +694,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dividend Wallet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Dividend Wallet";
 			};
 			name = Release;
 		};

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct PortfolioHeaderView: View {
-    @StateObject var viewModel: ViewModel
-    @StateObject var portfolioHeaderSettingsViewModel: PortfolioHeaderSettingsView.ViewModel
+    @StateObject var viewModel: PortfolioHeaderViewModel
+    @StateObject var portfolioHeaderSettingsViewModel: PortfolioHeaderSettingsViewModel
     @StateObject var dividendChartViewModel: DividendChartView.ViewModel
 
     var body: some View {
@@ -60,8 +60,8 @@ struct PortfolioHeaderView: View {
 
 struct PortfolioHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioHeaderView(viewModel: PortfolioHeaderView.ViewModel(),
-                            portfolioHeaderSettingsViewModel: PortfolioHeaderSettingsView.ViewModel(portfolioStorageManager: FileStorageManager()),
+        PortfolioHeaderView(viewModel: PortfolioHeaderViewModel(),
+                            portfolioHeaderSettingsViewModel: PortfolioHeaderSettingsViewModel(portfolioStorageManager: FileStorageManager()),
                             dividendChartViewModel: DividendChartView.ViewModel(pastMonthsToShow: Constants.pastMonthsToShow, futureMonthsToShow: Constants.futureMonthsToShow))
     }
 }

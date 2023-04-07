@@ -7,39 +7,37 @@
 
 import Foundation
 
-extension PortfolioHeaderSettingsView {
-    class ViewModel: ObservableObject {
-        private var portfolioStorageManager: PortfolioStorageProtocol
+class PortfolioHeaderSettingsViewModel: ObservableObject {
+    private var portfolioStorageManager: PortfolioStorageProtocol
 
-        @Published var editing = false
-        @Published var portfolioEditorText = ""
-        @Published var alertShow = false
-        @Published var alertTitle = ""
-        @Published var alertMessage = ""
+    @Published var editing = false
+    @Published var portfolioEditorText = ""
+    @Published var alertShow = false
+    @Published var alertTitle = ""
+    @Published var alertMessage = ""
 
-        init(portfolioStorageManager: PortfolioStorageProtocol) {
-            self.portfolioStorageManager = portfolioStorageManager
-        }
+    init(portfolioStorageManager: PortfolioStorageProtocol) {
+        self.portfolioStorageManager = portfolioStorageManager
+    }
 
-        func onEdit() {
-            portfolioEditorText = portfolioStorageManager.readPortfolioContent()
-            self.editing = true
-        }
+    func onEdit() {
+        portfolioEditorText = portfolioStorageManager.readPortfolioContent()
+        self.editing = true
+    }
 
-        func onCancelEdit() {
+    func onCancelEdit() {
+        self.editing = false
+    }
+
+    func onSaveEdit() {
+        if let errorMessage = portfolioStorageManager.savePortfolioContent(content: portfolioEditorText) {
+            self.alertMessage = errorMessage
+            self.alertTitle = Constants.saveError
+            self.alertShow = true
+        } else {
+            let positions = self.portfolioStorageManager.fetchPortfolio()
+            NotificationCenter.default.post(name: Notification.Name("PortfolioManagerFetchPortfolio"), object: positions)
             self.editing = false
-        }
-
-        func onSaveEdit() {
-            if let errorMessage = portfolioStorageManager.savePortfolioContent(content: portfolioEditorText) {
-                self.alertMessage = errorMessage
-                self.alertTitle = Constants.saveError
-                self.alertShow = true
-            } else {
-                let positions = self.portfolioStorageManager.fetchPortfolio()
-                NotificationCenter.default.post(name: Notification.Name(PortfolioManager.NOTIFICATON_FETCH_PORTFOLIO), object: positions)
-                self.editing = false
-            }
         }
     }
 }
