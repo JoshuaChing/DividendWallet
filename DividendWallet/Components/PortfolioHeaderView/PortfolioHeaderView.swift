@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PortfolioHeaderView: View {
-    @StateObject var viewModel: PortfolioHeaderViewModel
+    @StateObject var viewModel = PortfolioHeaderViewModel()
     @StateObject var portfolioHeaderSettingsViewModel: PortfolioHeaderSettingsViewModel
     @StateObject var dividendChartViewModel: DividendChartView.ViewModel
 
