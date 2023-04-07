@@ -11,6 +11,7 @@
 		4B366FD52977A26C00FBF721 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 4B366FD42977A26C00FBF721 /* SwiftSoup */; };
 		4B366FD82977A6A400FBF721 /* WSApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B366FD72977A6A400FBF721 /* WSApiClient.swift */; };
 		4B4104352956800E00D8B706 /* YFQuoteSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4104342956800E00D8B706 /* YFQuoteSummaryModel.swift */; };
+		4B52AE5B29DFC677001132C3 /* NotificationCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B52AE5A29DFC677001132C3 /* NotificationCenterManager.swift */; };
 		4B7102FF29BCEF9A004675E8 /* PortfolioHeaderSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7102FE29BCEF9A004675E8 /* PortfolioHeaderSettingsViewModel.swift */; };
 		4B74A6B82959960F00E28C4D /* PortfolioStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B74A6B72959960F00E28C4D /* PortfolioStorageProtocol.swift */; };
 		4B817442298A17BC007A9CD3 /* WSDividendEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B817441298A17BC007A9CD3 /* WSDividendEventModel.swift */; };
@@ -58,6 +59,7 @@
 		4B156E42299C9FAA001E9C55 /* DividendChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividendChartView.swift; sourceTree = "<group>"; };
 		4B366FD72977A6A400FBF721 /* WSApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSApiClient.swift; sourceTree = "<group>"; };
 		4B4104342956800E00D8B706 /* YFQuoteSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YFQuoteSummaryModel.swift; sourceTree = "<group>"; };
+		4B52AE5A29DFC677001132C3 /* NotificationCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterManager.swift; sourceTree = "<group>"; };
 		4B7102FE29BCEF9A004675E8 /* PortfolioHeaderSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioHeaderSettingsViewModel.swift; sourceTree = "<group>"; };
 		4B74A6B72959960F00E28C4D /* PortfolioStorageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioStorageProtocol.swift; sourceTree = "<group>"; };
 		4B817441298A17BC007A9CD3 /* WSDividendEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSDividendEventModel.swift; sourceTree = "<group>"; };
@@ -129,6 +131,14 @@
 				4B817441298A17BC007A9CD3 /* WSDividendEventModel.swift */,
 			);
 			path = WebScraper;
+			sourceTree = "<group>";
+		};
+		4B52AE5929DFC66A001132C3 /* NotificationCenterManager */ = {
+			isa = PBXGroup;
+			children = (
+				4B52AE5A29DFC677001132C3 /* NotificationCenterManager.swift */,
+			);
+			path = NotificationCenterManager;
 			sourceTree = "<group>";
 		};
 		4B74A6B6295995EF00E28C4D /* PortfolioStorageManager */ = {
@@ -274,6 +284,7 @@
 		4BC8C761294D60BA00434B2F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				4B52AE5929DFC66A001132C3 /* NotificationCenterManager */,
 				4BD6BADA295A4745009577DE /* DividendManager */,
 				4B74A6B6295995EF00E28C4D /* PortfolioStorageManager */,
 				4B90CF702941A654006138EF /* PortfolioManager.swift */,
@@ -434,6 +445,7 @@
 				4B90CF462940E7C2006138EF /* PortfolioListRowView.swift in Sources */,
 				4B90CF362940D96B006138EF /* ContentView.swift in Sources */,
 				4BC8C760294D606600434B2F /* PortfolioListRowViewModel.swift in Sources */,
+				4B52AE5B29DFC677001132C3 /* NotificationCenterManager.swift in Sources */,
 				4B7102FF29BCEF9A004675E8 /* PortfolioHeaderSettingsViewModel.swift in Sources */,
 				4B74A6B82959960F00E28C4D /* PortfolioStorageProtocol.swift in Sources */,
 				4B90CF342940D96B006138EF /* DividendWalletApp.swift in Sources */,

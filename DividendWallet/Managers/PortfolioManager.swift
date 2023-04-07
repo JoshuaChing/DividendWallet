@@ -11,7 +11,6 @@ import Combine
 class PortfolioManager: ObservableObject {
     static let NOTIFICATON_FETCH_PORTFOLIO = "PortfolioManagerFetchPortfolio"
 
-    @Published var portfolioHeaderViewModel: PortfolioHeaderView.ViewModel
     @Published var portfolioHeaderViewSettingsViewModel: PortfolioHeaderSettingsView.ViewModel
     @Published var dividendChartViewModel: DividendChartView.ViewModel
     @Published var portfolioListEventsRowViewModels: [PortfolioListEventsRowView.ViewModel]
@@ -31,7 +30,6 @@ class PortfolioManager: ObservableObject {
 
     init() {
         // initialize all view models
-        self.portfolioHeaderViewModel = PortfolioHeaderView.ViewModel()
         self.portfolioHeaderViewSettingsViewModel = PortfolioHeaderSettingsView.ViewModel(portfolioStorageManager: portfolioStorageManager)
         self.dividendChartViewModel = DividendChartView.ViewModel(pastMonthsToShow: Constants.pastMonthsToShow, futureMonthsToShow: Constants.futureMonthsToShow)
         self.portfolioListEventsRowViewModels = [PortfolioListEventsRowView.ViewModel]()
@@ -58,14 +56,7 @@ class PortfolioManager: ObservableObject {
     // MARK: HEADER section business logic
 
     private func updateAnnualDividend() {
-        var sum = 0.0
-        for position in portfolioPositions {
-            sum += position.estimatedAnnualDividendIncome
-        }
-        DispatchQueue.main.async { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.portfolioHeaderViewModel.annualDividend = sum
-        }
+        NotificationCenterManager.postUpdatePositionsDividends(positions: self.portfolioPositions)
     }
 
     // MARK: PORTFOLIO section business logic
