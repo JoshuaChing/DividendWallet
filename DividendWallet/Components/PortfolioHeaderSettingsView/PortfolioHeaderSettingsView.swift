@@ -70,6 +70,6 @@ struct PortfolioHeaderSettingsView: View {
 
 struct PortfolioHeaderSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioHeaderSettingsView(viewModel: PortfolioHeaderSettingsViewModel(portfolioStorageManager: FileStorageManager()))
+        PortfolioHeaderSettingsView()
     }
 }

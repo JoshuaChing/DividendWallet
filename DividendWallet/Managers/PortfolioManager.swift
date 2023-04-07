@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class PortfolioManager: ObservableObject {
-    static let NOTIFICATON_FETCH_PORTFOLIO = "PortfolioManagerFetchPortfolio"
+    static let NOTIFICATON_FETCH_PORTFOLIO = "PortfolioManagerFetchPortfolio" // TODO: use new notification manager
 
     @Published var dividendChartViewModel: DividendChartView.ViewModel
     @Published var portfolioListEventsRowViewModels: [PortfolioListEventsRowView.ViewModel]

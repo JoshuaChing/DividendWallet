@@ -36,7 +36,7 @@ class PortfolioHeaderSettingsViewModel: ObservableObject {
             self.alertShow = true
         } else {
             let positions = self.portfolioStorageManager.fetchPortfolio()
-            NotificationCenter.default.post(name: Notification.Name("PortfolioManagerFetchPortfolio"), object: positions)
+            NotificationCenter.default.post(name: Notification.Name("PortfolioManagerFetchPortfolio"), object: positions) // TODO: use new notification manager
             self.editing = false
         }
     }

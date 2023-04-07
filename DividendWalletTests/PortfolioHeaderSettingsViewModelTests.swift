@@ -62,7 +62,7 @@ final class PortfolioHeaderSettingsViewModelTests: XCTestCase {
             return true
         }
 
-        expectation(forNotification: Notification.Name("PortfolioManagerFetchPortfolio"),
+        expectation(forNotification: Notification.Name("PortfolioManagerFetchPortfolio"), // TODO: use new notification manager
                     object: nil,
                     handler: handler)
         sut.onSaveEdit()
