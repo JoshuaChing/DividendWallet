@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PortfolioHeaderSettingsView: View {
-    @StateObject var viewModel: PortfolioHeaderSettingsViewModel
+    @StateObject var viewModel = PortfolioHeaderSettingsViewModel(portfolioStorageManager: FileStorageManager())
 
     var body: some View {
         VStack {

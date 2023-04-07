@@ -31,7 +31,6 @@ final class PortfolioHeaderViewModelTests: XCTestCase {
         NotificationCenterManager.postUpdatePositionsDividends(positions: positions)
 
         // Then
-        print(sut.annualDividend)
         XCTAssertEqual(sut.annualDividend, 6.6)
     }
 

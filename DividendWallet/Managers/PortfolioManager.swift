@@ -11,7 +11,6 @@ import Combine
 class PortfolioManager: ObservableObject {
     static let NOTIFICATON_FETCH_PORTFOLIO = "PortfolioManagerFetchPortfolio"
 
-    @Published var portfolioHeaderViewSettingsViewModel: PortfolioHeaderSettingsViewModel
     @Published var dividendChartViewModel: DividendChartView.ViewModel
     @Published var portfolioListEventsRowViewModels: [PortfolioListEventsRowView.ViewModel]
     @Published var portfolioListRowViewModels: [PortfolioListRowView.ViewModel]
@@ -24,13 +23,11 @@ class PortfolioManager: ObservableObject {
         }
     }
     private var cancellables = Set<AnyCancellable>()
-    private let portfolioStorageManager: PortfolioStorageProtocol = FileStorageManager()
     private let dividendManager: DividendManagerProtocol = DividendManager()
     private var fetchPortfolioObserver: NSObjectProtocol?
 
     init() {
         // initialize all view models
-        self.portfolioHeaderViewSettingsViewModel = PortfolioHeaderSettingsViewModel(portfolioStorageManager: portfolioStorageManager)
         self.dividendChartViewModel = DividendChartView.ViewModel(pastMonthsToShow: Constants.pastMonthsToShow, futureMonthsToShow: Constants.futureMonthsToShow)
         self.portfolioListEventsRowViewModels = [PortfolioListEventsRowView.ViewModel]()
         self.portfolioListRowViewModels = [PortfolioListRowView.ViewModel]()
