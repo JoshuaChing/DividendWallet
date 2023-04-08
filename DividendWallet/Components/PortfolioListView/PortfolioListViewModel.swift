@@ -9,9 +9,9 @@ import Foundation
 import Combine
 
 class PortfolioListViewModel: ObservableObject {
-    var portfolioListEventsRowViewModels: [PortfolioListEventsRowView.ViewModel] = []
-    @Published var portfolioListRowViewModels: [PortfolioListRowView.ViewModel] = []
-    var positionsDividendsSubscriber: AnyCancellable?
+    var portfolioListEventsRowViewModels: [PortfolioListEventsRowViewModel] = []
+    @Published var portfolioListRowViewModels: [PortfolioListRowViewModel] = []
+    private var positionsDividendsSubscriber: AnyCancellable?
 
     init() {
         subscribeToPositionsDividendsPublisher()

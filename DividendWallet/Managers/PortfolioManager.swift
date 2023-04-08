@@ -12,7 +12,7 @@ class PortfolioManager: ObservableObject {
     static let NOTIFICATON_FETCH_PORTFOLIO = "PortfolioManagerFetchPortfolio" // TODO: use new notification manager
 
     @Published var dividendChartViewModel: DividendChartView.ViewModel
-    @Published var portfolioListEventsRowViewModels: [PortfolioListEventsRowView.ViewModel]
+    @Published var portfolioListEventsRowViewModels: [PortfolioListEventsRowViewModel]
 
     private var portfolioPositions: [PortfolioPositionDividendModel] = [] {
         didSet {
@@ -27,7 +27,7 @@ class PortfolioManager: ObservableObject {
     init() {
         // initialize all view models
         self.dividendChartViewModel = DividendChartView.ViewModel(pastMonthsToShow: Constants.pastMonthsToShow, futureMonthsToShow: Constants.futureMonthsToShow)
-        self.portfolioListEventsRowViewModels = [PortfolioListEventsRowView.ViewModel]()
+        self.portfolioListEventsRowViewModels = [PortfolioListEventsRowViewModel]()
     }
 
     deinit {
@@ -51,7 +51,7 @@ class PortfolioManager: ObservableObject {
 
     private func updateRecentDividends() {
         // variables to be displayed
-        var recentEvents = [PortfolioListEventsRowView.ViewModel]()
+        var recentEvents = [PortfolioListEventsRowViewModel]()
         var currentMonthTotal = 0.0
         var nextMonthTotal = 0.0
 
@@ -76,13 +76,13 @@ class PortfolioManager: ObservableObject {
                     let eventYear = Calendar.current.component(.year, from: event.date)
                     if strongSelf.isRecentDividend(eventMonth: eventMonth, eventYear: eventYear, currentMonth: currentMonth, currentYear: currentYear) {
                         let eventAmount = position.shareCount * event.amount
-                        let event = PortfolioListEventsRowView.ViewModel(symbol: position.symbol,
-                                                                         shareCount: position.shareCount,
-                                                                         quoteType: position.quoteType,
-                                                                         lastDividendValue: event.amount,
-                                                                         lastDividendDate: event.date.timeIntervalSince1970,
-                                                                         lastDividendDateString: dateFormatter.string(from: event.date),
-                                                                         estimatedIncome: eventAmount)
+                        let event = PortfolioListEventsRowViewModel(symbol: position.symbol,
+                                                                    shareCount: position.shareCount,
+                                                                    quoteType: position.quoteType,
+                                                                    lastDividendValue: event.amount,
+                                                                    lastDividendDate: event.date.timeIntervalSince1970,
+                                                                    lastDividendDateString: dateFormatter.string(from: event.date),
+                                                                    estimatedIncome: eventAmount)
                         recentEvents.append(event)
                         if eventMonth == currentMonth {
                             currentMonthTotal += eventAmount

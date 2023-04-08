@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PortfolioListRowView: View {
-    var viewModel: PortfolioListRowView.ViewModel
+    var viewModel: PortfolioListRowViewModel
 
     var body: some View {
         VStack() {
@@ -32,11 +32,11 @@ struct PortfolioListRowView: View {
 
 struct PortfolioListRowView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioListRowView(viewModel: PortfolioListRowView.ViewModel(symbol: "AAPL",
-                                                                       shareCount: 1,
-                                                                       quoteType: "EQUITY",
-                                                                       trailingAnnualDividendRate: 0.9,
-                                                                       trailingAnnualDividendYield: 0.6,
-                                                                       estimatedAnnualDividendIncome: 0.9))
+        PortfolioListRowView(viewModel: PortfolioListRowViewModel(symbol: "AAPL",
+                                                                  shareCount: 1,
+                                                                  quoteType: "EQUITY",
+                                                                  trailingAnnualDividendRate: 0.9,
+                                                                  trailingAnnualDividendYield: 0.6,
+                                                                  estimatedAnnualDividendIncome: 0.9))
     }
 }

@@ -17,33 +17,21 @@ final class PortfolioHeaderViewModelTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func tests_positionsDividendsUpdated_annualDividendUpdates() async {
+    func tests_positionsDividendsUpdated_annualDividendUpdates() {
         // Given
         let positions: [PortfolioPositionDividendModel] = [
-            createDividendPosition(value: 1.1),
-            createDividendPosition(value: 2.2),
-            createDividendPosition(value: 3.3)
+            PortfolioPositionDividendModel.createModel(estimatedAnnualDividend: 1.1),
+            PortfolioPositionDividendModel.createModel(estimatedAnnualDividend: 2.2),
+            PortfolioPositionDividendModel.createModel(estimatedAnnualDividend: 3.3)
         ]
         let sut = PortfolioHeaderViewModel()
         XCTAssertEqual(sut.annualDividend, 0.0)
 
         // When
         NotificationCenterManager.postUpdatePositionsDividends(positions: positions)
+        RunLoop.main.run(mode: .default, before: .distantPast)
 
         // Then
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-            XCTAssertEqual(sut.annualDividend, 6.6)
-        }
-    }
-
-    private func createDividendPosition(value: Double) -> PortfolioPositionDividendModel {
-        PortfolioPositionDividendModel(symbol: "",
-                                       shareCount: 0,
-                                       quoteType: "",
-                                       estimatedAnnualDividendIncome: value,
-                                       trailingAnnualDividendRate: nil,
-                                       trailingAnnualDividendYield: nil,
-                                       lastDividendValue: nil,
-                                       lastDividendDate: nil)
+        XCTAssertEqual(sut.annualDividend, 6.6)
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PortfolioListEventsRowView: View {
     private let EVENT_TEXT_WIDTH: CGFloat = 50
-    var viewModel: PortfolioListEventsRowView.ViewModel
+    var viewModel: PortfolioListEventsRowViewModel
 
     var body: some View {
         HStack {
@@ -29,12 +29,12 @@ struct PortfolioListEventsRowView: View {
 
 struct PortfolioListEventsRowView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioListEventsRowView(viewModel: PortfolioListEventsRowView.ViewModel(symbol: "SCHD",
-                                                                                   shareCount: 1,
-                                                                                   quoteType: "ETF",
-                                                                                   lastDividendValue: 0.703,
-                                                                                   lastDividendDate: 1670423400,
-                                                                                   lastDividendDateString: "2022-12-07",
-                                                                                   estimatedIncome: 0.703))
+        PortfolioListEventsRowView(viewModel: PortfolioListEventsRowViewModel(symbol: "SCHD",
+                                                                              shareCount: 1,
+                                                                              quoteType: "ETF",
+                                                                              lastDividendValue: 0.703,
+                                                                              lastDividendDate: 1670423400,
+                                                                              lastDividendDateString: "2022-12-07",
+                                                                              estimatedIncome: 0.703))
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PortfolioListView: View {
     @StateObject var viewModel = PortfolioListViewModel()
-    var portfolioListEventsRowViewModels: [PortfolioListEventsRowView.ViewModel]
+    var portfolioListEventsRowViewModels: [PortfolioListEventsRowViewModel]
 
     var body: some View {
         List {
