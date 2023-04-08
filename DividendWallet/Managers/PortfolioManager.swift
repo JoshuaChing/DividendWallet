@@ -16,7 +16,7 @@ class PortfolioManager: ObservableObject {
 
     private var portfolioPositions: [PortfolioPositionDividendModel] = [] {
         didSet {
-            updateAnnualDividend()
+            NotificationCenterManager.postUpdatePositionsDividends(positions: self.portfolioPositions)
             updateRecentDividends()
         }
     }
@@ -45,12 +45,6 @@ class PortfolioManager: ObservableObject {
                 strongSelf.fetchPortfolio(positions: positions)
             }
         }
-    }
-
-    // MARK: HEADER section business logic
-
-    private func updateAnnualDividend() {
-        NotificationCenterManager.postUpdatePositionsDividends(positions: self.portfolioPositions)
     }
 
     // MARK: UPCOMING DIVIDENDS section business logic

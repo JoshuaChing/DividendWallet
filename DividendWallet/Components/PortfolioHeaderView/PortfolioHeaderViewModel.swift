@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class PortfolioHeaderViewModel: ObservableObject {
-    var annualDividend = 0.0
+    @Published var annualDividend = 0.0
     private var positionsDividendsSubscriber: AnyCancellable?
 
     init() {
@@ -36,6 +36,11 @@ class PortfolioHeaderViewModel: ObservableObject {
         for position in positions {
             sum += position.estimatedAnnualDividendIncome
         }
-        self.annualDividend = sum
+        DispatchQueue.main.async { [weak self] in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.annualDividend = sum
+        }
     }
 }

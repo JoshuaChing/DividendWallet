@@ -31,7 +31,9 @@ final class PortfolioHeaderViewModelTests: XCTestCase {
         NotificationCenterManager.postUpdatePositionsDividends(positions: positions)
 
         // Then
-        XCTAssertEqual(sut.annualDividend, 6.6)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+            XCTAssertEqual(sut.annualDividend, 6.6)
+        }
     }
 
     private func createDividendPosition(value: Double) -> PortfolioPositionDividendModel {
