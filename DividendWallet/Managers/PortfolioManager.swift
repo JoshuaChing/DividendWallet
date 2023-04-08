@@ -13,12 +13,10 @@ class PortfolioManager: ObservableObject {
 
     @Published var dividendChartViewModel: DividendChartView.ViewModel
     @Published var portfolioListEventsRowViewModels: [PortfolioListEventsRowView.ViewModel]
-    @Published var portfolioListRowViewModels: [PortfolioListRowView.ViewModel]
 
     private var portfolioPositions: [PortfolioPositionDividendModel] = [] {
         didSet {
             updateAnnualDividend()
-            updatePortfolioPositions()
             updateRecentDividends()
         }
     }
@@ -30,7 +28,6 @@ class PortfolioManager: ObservableObject {
         // initialize all view models
         self.dividendChartViewModel = DividendChartView.ViewModel(pastMonthsToShow: Constants.pastMonthsToShow, futureMonthsToShow: Constants.futureMonthsToShow)
         self.portfolioListEventsRowViewModels = [PortfolioListEventsRowView.ViewModel]()
-        self.portfolioListRowViewModels = [PortfolioListRowView.ViewModel]()
     }
 
     deinit {
@@ -54,15 +51,6 @@ class PortfolioManager: ObservableObject {
 
     private func updateAnnualDividend() {
         NotificationCenterManager.postUpdatePositionsDividends(positions: self.portfolioPositions)
-    }
-
-    // MARK: PORTFOLIO section business logic
-
-    private func updatePortfolioPositions() {
-        DispatchQueue.main.async {
-            let convertedModels = self.portfolioPositions.map { $0.toPortfolioListRowViewModel() }
-            self.portfolioListRowViewModels = convertedModels.sorted{ $0.estimatedAnnualDividendIncome > $1.estimatedAnnualDividendIncome }
-        }
     }
 
     // MARK: UPCOMING DIVIDENDS section business logic

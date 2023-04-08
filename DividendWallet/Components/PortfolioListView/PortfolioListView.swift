@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct PortfolioListView: View {
+    @StateObject var viewModel = PortfolioListViewModel()
     var portfolioListEventsRowViewModels: [PortfolioListEventsRowView.ViewModel]
-    var portfolioListRowViewModels: [PortfolioListRowView.ViewModel]
 
     var body: some View {
         List {
@@ -34,7 +34,7 @@ struct PortfolioListView: View {
                     .font(.caption)
                     .fontWeight(.medium)
                     .tracking(Constants.trackingDefault)
-                ForEach(portfolioListRowViewModels, id: \.symbol) { viewModel in
+                ForEach(viewModel.portfolioListRowViewModels, id: \.symbol) { viewModel in
                     PortfolioListRowView(viewModel: viewModel)
                 }
             }
@@ -42,12 +42,12 @@ struct PortfolioListView: View {
         .padding(.leading, Constants.paddingSmall)
         .padding(.trailing, Constants.paddingSmall)
         .scrollContentBackground(.hidden)
-        .animation(.default, value: portfolioListRowViewModels.count)
+        .animation(.default, value: viewModel.portfolioListRowViewModels.count)
     }
 }
 
 struct AssetListView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioListView(portfolioListEventsRowViewModels: [], portfolioListRowViewModels: [])
+        PortfolioListView(portfolioListEventsRowViewModels: [])
     }
 }

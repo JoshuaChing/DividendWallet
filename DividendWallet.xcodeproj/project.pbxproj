@@ -49,6 +49,7 @@
 		4BD6BAE4295A7F5A009577DE /* PortfolioListEventsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6BAE3295A7F5A009577DE /* PortfolioListEventsRowView.swift */; };
 		4BD6BAE6295A83C4009577DE /* PortfolioListEventsRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6BAE5295A83C4009577DE /* PortfolioListEventsRowViewModel.swift */; };
 		4BD955C829A3279000DAAD2B /* DividendChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD955C729A3279000DAAD2B /* DividendChartViewModel.swift */; };
+		4BDBF42729E0ED0A00BE1EAA /* PortfolioListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDBF42629E0ED0A00BE1EAA /* PortfolioListViewModel.swift */; };
 		4BFEB88429DBD2B600364BAA /* PortfolioHeaderSettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFEB88329DBD2B600364BAA /* PortfolioHeaderSettingsViewModelTests.swift */; };
 		4BFEB88729DBD38A00364BAA /* PortfolioStorageSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFEB88629DBD38A00364BAA /* PortfolioStorageSpy.swift */; };
 /* End PBXBuildFile section */
@@ -100,6 +101,7 @@
 		4BD6BAE3295A7F5A009577DE /* PortfolioListEventsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioListEventsRowView.swift; sourceTree = "<group>"; };
 		4BD6BAE5295A83C4009577DE /* PortfolioListEventsRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioListEventsRowViewModel.swift; sourceTree = "<group>"; };
 		4BD955C729A3279000DAAD2B /* DividendChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividendChartViewModel.swift; sourceTree = "<group>"; };
+		4BDBF42629E0ED0A00BE1EAA /* PortfolioListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioListViewModel.swift; sourceTree = "<group>"; };
 		4BFEB87A29DBD2A300364BAA /* DividendWalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DividendWalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BFEB88329DBD2B600364BAA /* PortfolioHeaderSettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioHeaderSettingsViewModelTests.swift; sourceTree = "<group>"; };
 		4BFEB88629DBD38A00364BAA /* PortfolioStorageSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioStorageSpy.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				4B90CF492940E80D006138EF /* PortfolioListView.swift */,
+				4BDBF42629E0ED0A00BE1EAA /* PortfolioListViewModel.swift */,
 				4BB69702296BA67900B46646 /* PortfolioListRowView */,
 				4BB69703296BA7B200B46646 /* PortfolioListEventsRowView */,
 			);
@@ -456,6 +459,7 @@
 				4BC8C760294D606600434B2F /* PortfolioListRowViewModel.swift in Sources */,
 				4B52AE5B29DFC677001132C3 /* NotificationCenterManager.swift in Sources */,
 				4B7102FF29BCEF9A004675E8 /* PortfolioHeaderSettingsViewModel.swift in Sources */,
+				4BDBF42729E0ED0A00BE1EAA /* PortfolioListViewModel.swift in Sources */,
 				4B74A6B82959960F00E28C4D /* PortfolioStorageProtocol.swift in Sources */,
 				4B90CF342940D96B006138EF /* DividendWalletApp.swift in Sources */,
 				4B90CF6129416D71006138EF /* PortfolioHeaderView.swift in Sources */,
