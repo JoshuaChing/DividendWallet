@@ -17,6 +17,7 @@ class PortfolioListViewModel: ObservableObject {
         subscribeToPositionsDividendsPublisher()
     }
 
+    // set up subscription to portfolio update
     private func subscribeToPositionsDividendsPublisher() {
         positionsDividendsSubscriber = NotificationCenterManager
             .getUpdatePositionsDividendsPublisher()
@@ -29,6 +30,7 @@ class PortfolioListViewModel: ObservableObject {
             })
     }
 
+    // update portfolio list row view
     private func updateListRowsModels(positions: [PortfolioPositionDividendModel]) {
         let convertedModels = positions.map { $0.toPortfolioListRowViewModel() }
         DispatchQueue.main.async { [weak self] in

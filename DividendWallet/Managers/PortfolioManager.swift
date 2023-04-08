@@ -91,6 +91,7 @@ class PortfolioManager: ObservableObject {
                         }
 
                         // update events
+                        // TODO: fix bug where recent events is not clearing
                         DispatchQueue.main.async { [weak self] in
                             guard let strongSelf = self else { return }
                             strongSelf.portfolioListEventsRowViewModels = recentEvents.sorted{ $0.lastDividendDate > $1.lastDividendDate }
