@@ -17,9 +17,8 @@ struct PortfolioView: View {
             PortfolioListView(portfolioListEventsRowViewModels: portfolioManager.portfolioListEventsRowViewModels)
         }
         .onAppear {
-            portfolioManager.setup()
             let positions = portfolioStorageManager.fetchPortfolio()
-            NotificationCenter.default.post(name: Notification.Name(PortfolioManager.NOTIFICATON_FETCH_PORTFOLIO), object: positions)
+            NotificationCenterManager.postUpdatePositions(positions: positions)
         }
     }
 }

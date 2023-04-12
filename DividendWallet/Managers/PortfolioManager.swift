@@ -9,8 +9,6 @@ import Foundation
 import Combine
 
 class PortfolioManager: ObservableObject {
-    static let NOTIFICATON_FETCH_PORTFOLIO = "PortfolioManagerFetchPortfolio" // TODO: use new notification manager
-
     @Published var dividendChartViewModel: DividendChartView.ViewModel
     @Published var portfolioListEventsRowViewModels: [PortfolioListEventsRowViewModel]
 
@@ -22,28 +20,29 @@ class PortfolioManager: ObservableObject {
     }
     private var cancellables = Set<AnyCancellable>()
     private let dividendManager: DividendManagerProtocol = DividendManager()
-    private var fetchPortfolioObserver: NSObjectProtocol?
+    private var positionsSubscription: AnyCancellable?
 
     init() {
         // initialize all view models
         self.dividendChartViewModel = DividendChartView.ViewModel(pastMonthsToShow: Constants.pastMonthsToShow, futureMonthsToShow: Constants.futureMonthsToShow)
         self.portfolioListEventsRowViewModels = [PortfolioListEventsRowViewModel]()
+        subscribeToPositionsPublisher()
     }
 
     deinit {
-        if let fetchPortfolioObserver = fetchPortfolioObserver {
-            NotificationCenter.default.removeObserver(fetchPortfolioObserver)
-        }
+        positionsSubscription?.cancel()
     }
 
-    func setup() {
-        if fetchPortfolioObserver == nil {
-            fetchPortfolioObserver = NotificationCenter.default.addObserver(forName: Notification.Name(PortfolioManager.NOTIFICATON_FETCH_PORTFOLIO), object: nil, queue: nil) { [weak self] notification in
-                guard let strongSelf = self, let positions = notification.object as? [PortfolioPositionModel] else {
-                    return
-                }
-                strongSelf.fetchPortfolio(positions: positions)
-            }
+    private func subscribeToPositionsPublisher() {
+        if positionsSubscription == nil {
+            positionsSubscription = NotificationCenterManager.getUpdatePositionsPublisher()
+                .map { $0.object as? [PortfolioPositionModel] }
+                .sink(receiveValue: { [weak self] positions in
+                    guard let strongSelf = self, let unwrappedPositions = positions else {
+                        return
+                    }
+                    strongSelf.fetchPortfolio(positions: unwrappedPositions)
+                })
         }
     }
 

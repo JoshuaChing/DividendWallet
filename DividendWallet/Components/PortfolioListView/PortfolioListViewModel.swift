@@ -11,15 +11,19 @@ import Combine
 class PortfolioListViewModel: ObservableObject {
     var portfolioListEventsRowViewModels: [PortfolioListEventsRowViewModel] = []
     @Published var portfolioListRowViewModels: [PortfolioListRowViewModel] = []
-    private var positionsDividendsSubscriber: AnyCancellable?
+    private var positionsDividendsSubscription: AnyCancellable?
 
     init() {
         subscribeToPositionsDividendsPublisher()
     }
 
+    deinit {
+        positionsDividendsSubscription?.cancel()
+    }
+
     // set up subscription to portfolio update
     private func subscribeToPositionsDividendsPublisher() {
-        positionsDividendsSubscriber = NotificationCenterManager
+        positionsDividendsSubscription = NotificationCenterManager
             .getUpdatePositionsDividendsPublisher()
             .map { $0.object as? [PortfolioPositionDividendModel] }
             .sink(receiveValue: { [weak self] positions in
