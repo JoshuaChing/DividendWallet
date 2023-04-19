@@ -11,11 +11,13 @@ import Combine
 class PortfolioManager: ObservableObject {
     @Published var dividendChartViewModel: DividendChartView.ViewModel
     @Published var portfolioListEventsRowViewModels: [PortfolioListEventsRowViewModel]
+    private var dividendHistoryCache: DividendHistoryModel = [:]
 
     private var portfolioPositions: [PortfolioPositionDividendModel] = [] {
         didSet {
             NotificationCenterManager.postUpdatePositionsDividends(positions: self.portfolioPositions)
-            updateRecentDividends()
+            updateRecentDividends() // TODO: remove after refactor
+            // fetchDividendHistory() // TODO: add after refactor
         }
     }
     private var cancellables = Set<AnyCancellable>()
@@ -43,6 +45,35 @@ class PortfolioManager: ObservableObject {
                     }
                     strongSelf.fetchPortfolio(positions: unwrappedPositions)
                 })
+        }
+    }
+
+    // MARK: fetch dividend history
+
+    private func fetchDividendHistory() {
+        let dispatchGroup = DispatchGroup()
+        var currentDividendHistory:DividendHistoryModel = [:]
+
+        for position in portfolioPositions {
+            dispatchGroup.enter()
+
+            // fetch dividend history if not in cache
+            if ((dividendHistoryCache[position.symbol]) == nil) {
+                let fetchedEvents = position.isMutualFundOrETF() ?
+                    WSApiClient.shared.getDividendEventsForFund(symbol: position.symbol) :
+                    WSApiClient.shared.getDividendEventsForIndividualEquity(symbol: position.symbol)
+                dividendHistoryCache[position.symbol] = fetchedEvents
+            }
+
+            // build current dividend history
+            currentDividendHistory[position.symbol] = dividendHistoryCache[position.symbol]
+
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .global(qos: .background)) {
+            // post positions dividend history
+            NotificationCenterManager.postUpdatePositionsDividendHistory(dividendHistory: currentDividendHistory)
         }
     }
 

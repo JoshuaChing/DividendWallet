@@ -12,13 +12,16 @@ class PortfolioListViewModel: ObservableObject {
     var portfolioListEventsRowViewModels: [PortfolioListEventsRowViewModel] = []
     @Published var portfolioListRowViewModels: [PortfolioListRowViewModel] = []
     private var positionsDividendsSubscription: AnyCancellable?
+    private var positionsDividendHistorySubscription: AnyCancellable?
 
     init() {
         subscribeToPositionsDividendsPublisher()
+        subscribeToDividendHistoryPublisher()
     }
 
     deinit {
         positionsDividendsSubscription?.cancel()
+        positionsDividendHistorySubscription?.cancel()
     }
 
     // set up subscription to portfolio update
@@ -43,5 +46,23 @@ class PortfolioListViewModel: ObservableObject {
             }
             strongSelf.portfolioListRowViewModels = convertedModels.sorted{ $0.estimatedAnnualDividendIncome > $1.estimatedAnnualDividendIncome }
         }
+    }
+
+    // set up subscription for dividend history update
+    private func subscribeToDividendHistoryPublisher() {
+        positionsDividendHistorySubscription = NotificationCenterManager
+            .getUpdatePositionsDividendHistoryPublisher()
+            .map { $0.object as? DividendHistoryModel }
+            .sink(receiveValue: { [weak self] dividendHistory in
+                guard let strongSelf = self, let unwrappedDividendHistory = dividendHistory else {
+                    return
+                }
+                strongSelf.updateDividendHistoryEvents(dividendHistory: unwrappedDividendHistory)
+            })
+    }
+
+    // update dividend history events
+    private func updateDividendHistoryEvents(dividendHistory: DividendHistoryModel) {
+        print(dividendHistory)
     }
 }
