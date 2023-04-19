@@ -31,7 +31,6 @@ struct PortfolioListEventsRowView_Previews: PreviewProvider {
     static var previews: some View {
         PortfolioListEventsRowView(viewModel: PortfolioListEventsRowViewModel(symbol: "SCHD",
                                                                               shareCount: 1,
-                                                                              quoteType: "ETF",
                                                                               lastDividendValue: 0.703,
                                                                               lastDividendDate: 1670423400,
                                                                               lastDividendDateString: "2022-12-07",

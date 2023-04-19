@@ -12,7 +12,6 @@ struct PortfolioListEventsRowViewModel: Identifiable {
     let id = UUID()
     let symbol: String
     let shareCount: Double
-    let quoteType: String
     let lastDividendValue: Double
     let lastDividendDate: Double
     let lastDividendDateString: String

@@ -76,6 +76,7 @@ class PortfolioManager: ObservableObject {
         }
     }
 
+    // TODO: remove after refactor dividend charts
     // MARK: UPCOMING DIVIDENDS section business logic
 
     private func updateRecentDividends() {
@@ -107,7 +108,6 @@ class PortfolioManager: ObservableObject {
                         let eventAmount = position.shareCount * event.amount
                         let event = PortfolioListEventsRowViewModel(symbol: position.symbol,
                                                                     shareCount: position.shareCount,
-                                                                    quoteType: position.quoteType,
                                                                     lastDividendValue: event.amount,
                                                                     lastDividendDate: event.date.timeIntervalSince1970,
                                                                     lastDividendDateString: dateFormatter.string(from: event.date),

@@ -81,7 +81,6 @@ class PortfolioListViewModel: ObservableObject {
                     let estimatedIncome = position.shareCount * event.amount
                     let event = PortfolioListEventsRowViewModel(symbol: symbol,
                                                                 shareCount: position.shareCount,
-                                                                quoteType: "", // TODO: remove unused variables
                                                                 lastDividendValue: event.amount,
                                                                 lastDividendDate: event.date.timeIntervalSince1970,
                                                                 lastDividendDateString: dateFormatter.string(from: event.date),
