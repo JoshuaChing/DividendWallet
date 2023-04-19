@@ -18,7 +18,7 @@ struct PortfolioListView: View {
                     .font(.caption)
                     .fontWeight(.medium)
                     .tracking(Constants.trackingDefault)
-                if !viewModel.portfolioListEventsRowViewModels.isEmpty {
+                if viewModel.shouldShowEvents() {
                     ForEach(viewModel.portfolioListEventsRowViewModels, id: (\.id)) { PortfolioListEventsRowView(viewModel: $0) }
                 } else {
                     Text(Constants.noRecentEvents)

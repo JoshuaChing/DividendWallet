@@ -24,6 +24,10 @@ class PortfolioListViewModel: ObservableObject {
         positionsDividendHistorySubscription?.cancel()
     }
 
+    public func shouldShowEvents() -> Bool {
+        return !portfolioListEventsRowViewModels.isEmpty
+    }
+
     // set up subscription to portfolio update
     private func subscribeToPositionsDividendsPublisher() {
         positionsDividendsSubscription = NotificationCenterManager
