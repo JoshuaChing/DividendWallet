@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PortfolioListView: View {
     @StateObject var viewModel = PortfolioListViewModel()
-    var portfolioListEventsRowViewModels: [PortfolioListEventsRowViewModel]
 
     var body: some View {
         List {
@@ -19,8 +18,8 @@ struct PortfolioListView: View {
                     .font(.caption)
                     .fontWeight(.medium)
                     .tracking(Constants.trackingDefault)
-                if !portfolioListEventsRowViewModels.isEmpty {
-                    ForEach(portfolioListEventsRowViewModels, id: (\.id)) { PortfolioListEventsRowView(viewModel: $0) }
+                if !viewModel.portfolioListEventsRowViewModels.isEmpty {
+                    ForEach(viewModel.portfolioListEventsRowViewModels, id: (\.id)) { PortfolioListEventsRowView(viewModel: $0) }
                 } else {
                     Text(Constants.noRecentEvents)
                         .italic(true)
@@ -44,6 +43,6 @@ struct PortfolioListView: View {
 
 struct AssetListView_Previews: PreviewProvider {
     static var previews: some View {
-        PortfolioListView(portfolioListEventsRowViewModels: [])
+        PortfolioListView()
     }
 }

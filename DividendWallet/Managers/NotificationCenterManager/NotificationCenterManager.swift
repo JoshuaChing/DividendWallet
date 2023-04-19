@@ -34,7 +34,7 @@ struct NotificationCenterManager {
 
     // MARK: handling notifications for portfolio dividend history updates
 
-    static func postUpdatePositionsDividendHistory(dividendHistory: DividendHistoryModel) {
+    static func postUpdatePositionsDividendHistory(dividendHistory: PositionsDividendHistoryModel) {
         NotificationCenter.default.post(name: NotificationCenterManager.UPDATE_POSITIONS_DIVIDEND_HISTORY_NOTIFICATION, object: dividendHistory)
     }
 

@@ -14,7 +14,7 @@ struct PortfolioView: View {
     var body: some View {
         VStack {
             PortfolioHeaderView(dividendChartViewModel: portfolioManager.dividendChartViewModel)
-            PortfolioListView(portfolioListEventsRowViewModels: portfolioManager.portfolioListEventsRowViewModels)
+            PortfolioListView()
         }
         .onAppear {
             let positions = portfolioStorageManager.fetchPortfolio()

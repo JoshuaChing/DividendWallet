@@ -10,14 +10,12 @@ import Combine
 
 class PortfolioManager: ObservableObject {
     @Published var dividendChartViewModel: DividendChartView.ViewModel
-    @Published var portfolioListEventsRowViewModels: [PortfolioListEventsRowViewModel]
     private var dividendHistoryCache: DividendHistoryModel = [:]
 
     private var portfolioPositions: [PortfolioPositionDividendModel] = [] {
         didSet {
             NotificationCenterManager.postUpdatePositionsDividends(positions: self.portfolioPositions)
-            updateRecentDividends() // TODO: remove after refactor
-            // fetchDividendHistory() // TODO: add after refactor
+            fetchDividendHistory()
         }
     }
     private var cancellables = Set<AnyCancellable>()
@@ -27,7 +25,6 @@ class PortfolioManager: ObservableObject {
     init() {
         // initialize all view models
         self.dividendChartViewModel = DividendChartView.ViewModel(pastMonthsToShow: Constants.pastMonthsToShow, futureMonthsToShow: Constants.futureMonthsToShow)
-        self.portfolioListEventsRowViewModels = [PortfolioListEventsRowViewModel]()
         subscribeToPositionsPublisher()
     }
 
@@ -52,7 +49,7 @@ class PortfolioManager: ObservableObject {
 
     private func fetchDividendHistory() {
         let dispatchGroup = DispatchGroup()
-        var currentDividendHistory:DividendHistoryModel = [:]
+        var currentDividendHistory:PositionsDividendHistoryModel = [:]
 
         for position in portfolioPositions {
             dispatchGroup.enter()
@@ -66,7 +63,9 @@ class PortfolioManager: ObservableObject {
             }
 
             // build current dividend history
-            currentDividendHistory[position.symbol] = dividendHistoryCache[position.symbol]
+            if let events = dividendHistoryCache[position.symbol] {
+                currentDividendHistory[position.symbol] = PositionDividendHistoryModel(events: events, shareCount: position.shareCount)
+            }
 
             dispatchGroup.leave()
         }
@@ -118,13 +117,6 @@ class PortfolioManager: ObservableObject {
                             currentMonthTotal += eventAmount
                         } else {
                             nextMonthTotal += eventAmount
-                        }
-
-                        // update events
-                        // TODO: fix bug where recent events is not clearing
-                        DispatchQueue.main.async { [weak self] in
-                            guard let strongSelf = self else { return }
-                            strongSelf.portfolioListEventsRowViewModels = recentEvents.sorted{ $0.lastDividendDate > $1.lastDividendDate }
                         }
                     }
                 }

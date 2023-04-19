@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class PortfolioListViewModel: ObservableObject {
-    var portfolioListEventsRowViewModels: [PortfolioListEventsRowViewModel] = []
+    @Published var portfolioListEventsRowViewModels: [PortfolioListEventsRowViewModel] = []
     @Published var portfolioListRowViewModels: [PortfolioListRowViewModel] = []
     private var positionsDividendsSubscription: AnyCancellable?
     private var positionsDividendHistorySubscription: AnyCancellable?
@@ -52,7 +52,7 @@ class PortfolioListViewModel: ObservableObject {
     private func subscribeToDividendHistoryPublisher() {
         positionsDividendHistorySubscription = NotificationCenterManager
             .getUpdatePositionsDividendHistoryPublisher()
-            .map { $0.object as? DividendHistoryModel }
+            .map { $0.object as? PositionsDividendHistoryModel }
             .sink(receiveValue: { [weak self] dividendHistory in
                 guard let strongSelf = self, let unwrappedDividendHistory = dividendHistory else {
                     return
@@ -62,7 +62,52 @@ class PortfolioListViewModel: ObservableObject {
     }
 
     // update dividend history events
-    private func updateDividendHistoryEvents(dividendHistory: DividendHistoryModel) {
-        print(dividendHistory)
+    private func updateDividendHistoryEvents(dividendHistory: PositionsDividendHistoryModel) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.dateFormat
+        let currentDate = Date()
+        let currentMonth = Calendar.current.component(.month, from: currentDate)
+        let currentYear = Calendar.current.component(.year, from: currentDate)
+        var recentEvents: [PortfolioListEventsRowViewModel] = []
+
+        let dispatchGroup = DispatchGroup()
+        for (symbol, position) in dividendHistory {
+            dispatchGroup.enter()
+
+            for event in position.events {
+                let eventMonth = Calendar.current.component(.month, from: event.date)
+                let eventYear = Calendar.current.component(.year, from: event.date)
+                if isRecentDividend(eventMonth: eventMonth, eventYear: eventYear, currentMonth: currentMonth, currentYear: currentYear) {
+                    let estimatedIncome = position.shareCount * event.amount
+                    let event = PortfolioListEventsRowViewModel(symbol: symbol,
+                                                                shareCount: position.shareCount,
+                                                                quoteType: "", // TODO: remove unused variables
+                                                                lastDividendValue: event.amount,
+                                                                lastDividendDate: event.date.timeIntervalSince1970,
+                                                                lastDividendDateString: dateFormatter.string(from: event.date),
+                                                                estimatedIncome: estimatedIncome)
+                    recentEvents.append(event)
+                }
+            }
+
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            guard let strongSelf = self else {
+                return
+            }
+            // update recent dividends
+            strongSelf.portfolioListEventsRowViewModels = recentEvents.sorted{ $0.lastDividendDate > $1.lastDividendDate }
+        }
+    }
+
+    // helper function for determining recent dividend
+    private func isRecentDividend(eventMonth: Int, eventYear: Int, currentMonth: Int, currentYear: Int) -> Bool {
+        if currentMonth == 12 {
+            return (eventYear == currentYear && eventMonth == currentMonth) || (eventYear == currentYear+1 && eventMonth == 1)
+        } else {
+            return eventYear == currentYear && (eventMonth == currentMonth || eventMonth == currentMonth+1)
+        }
     }
 }
