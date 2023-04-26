@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class PortfolioManager: ObservableObject {
-    @Published var dividendChartViewModel: DividendChartView.ViewModel
+    @Published var dividendChartViewModel: DividendChartViewModel
     private var dividendHistoryCache: DividendHistoryModel = [:]
 
     private var portfolioPositions: [PortfolioPositionDividendModel] = [] {
@@ -24,7 +24,7 @@ class PortfolioManager: ObservableObject {
 
     init() {
         // initialize all view models
-        self.dividendChartViewModel = DividendChartView.ViewModel(pastMonthsToShow: Constants.pastMonthsToShow, futureMonthsToShow: Constants.futureMonthsToShow)
+        self.dividendChartViewModel = DividendChartViewModel(pastMonthsToShow: Constants.pastMonthsToShow, futureMonthsToShow: Constants.futureMonthsToShow)
         subscribeToPositionsPublisher()
     }
 

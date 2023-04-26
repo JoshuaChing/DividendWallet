@@ -11,10 +11,10 @@ import Charts
 struct DividendChartView: View {
     private let X_KEY = "Month"
     private let Y_KEY = "Amount ($)"
-    private let CHART_MIN_HEIGHT: CGFloat = 100
-    private let CHART_MAX_HEIGHT: CGFloat = 150
+    private let CHART_MIN_HEIGHT: CGFloat = 300
+    private let CHART_MAX_HEIGHT: CGFloat = 300
 
-    @StateObject var viewModel: ViewModel
+    @StateObject var viewModel: DividendChartViewModel
 
     var body: some View {
         if !viewModel.isChartDataEmpty() {

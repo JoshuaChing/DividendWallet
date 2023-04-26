@@ -54,7 +54,7 @@ struct Constants {
     static let filePortfolioError = "Internal error when getting url for \(Constants.filePortfolioName).\(Constants.fileTxtExtension)"
 
     static let numOfMonthsInYear = 12.0
-    static let pastMonthsToShow = 0
+    static let pastMonthsToShow = 10
     static let futureMonthsToShow = 1
 
     /*
