@@ -14,7 +14,7 @@ struct DividendChartView: View {
     private let CHART_MIN_HEIGHT: CGFloat = 300
     private let CHART_MAX_HEIGHT: CGFloat = 300
 
-    @StateObject var viewModel: DividendChartViewModel
+    @StateObject var viewModel = DividendChartViewModel(pastMonthsToShow: Constants.pastMonthsToShow, futureMonthsToShow: Constants.futureMonthsToShow)
 
     var body: some View {
         if !viewModel.isChartDataEmpty() {

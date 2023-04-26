@@ -13,7 +13,7 @@ struct PortfolioView: View {
 
     var body: some View {
         VStack {
-            PortfolioHeaderView(dividendChartViewModel: portfolioManager.dividendChartViewModel)
+            PortfolioHeaderView()
             PortfolioListView()
         }
         .onAppear {

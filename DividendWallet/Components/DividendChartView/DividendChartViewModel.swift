@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 struct ChartData: Identifiable, Equatable {
     var id = UUID()
@@ -21,10 +22,12 @@ class DividendChartViewModel: ObservableObject {
     private let MAX_MONTH_NUMBER = 12
     private let DEFAULT_MONTH = ""
     private let DEFAULT_VALUE = 0.0
+    private var positionsDividendHistorySubscription: AnyCancellable?
 
     @Published var chartData: [ChartData] = []
 
     init(pastMonthsToShow: Int, futureMonthsToShow: Int) {
+        // init empty columns
         var monthIndex = Calendar.current.component(.month, from: Date()) - pastMonthsToShow // get start month index
         let totalMonthsToShow = 1 + pastMonthsToShow + futureMonthsToShow // current month + months prior + future months
         let initChartData = Array(repeating: ChartData(month: DEFAULT_MONTH, value: DEFAULT_VALUE), count: totalMonthsToShow)
@@ -34,17 +37,35 @@ class DividendChartViewModel: ObservableObject {
                 return data
             }
         chartData = initChartData
+
+        // set up subscriber
+        subscribeToDividendHistoryPublisher()
+    }
+
+    deinit {
+        positionsDividendHistorySubscription?.cancel()
     }
 
     func isChartDataEmpty() -> Bool {
         return chartData.isEmpty
     }
 
-    func setChartData(currentMonth: Int, currentMonthTotal: Double, nextMonthTotal: Double) {
-        DispatchQueue.main.async {
-            self.chartData[0].value = currentMonthTotal
-            self.chartData[1].value = nextMonthTotal
-        }
+    // set up subscription for dividend history update
+    private func subscribeToDividendHistoryPublisher() {
+        positionsDividendHistorySubscription = NotificationCenterManager
+            .getUpdatePositionsDividendHistoryPublisher()
+            .map { $0.object as? PositionsDividendHistoryModel }
+            .sink(receiveValue: { [weak self] dividendHistory in
+                guard let strongSelf = self, let unwrappedDividendHistory = dividendHistory else {
+                    return
+                }
+                strongSelf.updateChart(dividendHistory: unwrappedDividendHistory)
+            })
+    }
+
+    // update chart
+    private func updateChart(dividendHistory: PositionsDividendHistoryModel) {
+        print(dividendHistory)
     }
 
     private func getStringForMonthNumber(_ monthNumber: Int) -> String {
