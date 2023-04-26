@@ -38,12 +38,14 @@ final class PortfolioListViewModelTests: XCTestCase {
         let mockDividendHistoryModel = createMockDividendHistoryModel()
         let sut = PortfolioListViewModel()
         XCTAssertEqual(sut.portfolioListEventsRowViewModels.count, 0)
+        XCTAssertFalse(sut.shouldShowEvents())
 
         // When
         NotificationCenterManager.postUpdatePositionsDividendHistory(dividendHistory: mockDividendHistoryModel)
         RunLoop.main.run(mode: .default, before: .distantPast)
 
         // Then
+        XCTAssertTrue(sut.shouldShowEvents())
         XCTAssertEqual(sut.portfolioListEventsRowViewModels.count, 2)
         XCTAssertEqual(sut.portfolioListEventsRowViewModels[0].symbol, "C")
         XCTAssertEqual(sut.portfolioListEventsRowViewModels[0].lastDividendValue, 2.0)
