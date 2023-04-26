@@ -9,8 +9,8 @@ A simple macOS app that estimates the annual dividend income of a portfolio. The
 4. click save
 
 <p float="left" align="middle">
-  <img src="https://user-images.githubusercontent.com/5932487/220476756-78695490-a375-4857-a80f-4b6eb062ffb1.png" width="45%">
-  <img src="https://user-images.githubusercontent.com/5932487/220476817-1f7a89e1-6787-42f5-ae06-cad0907b6871.png" width="45%">
+  <img src="https://user-images.githubusercontent.com/5932487/234473246-e63825df-e746-4a49-83bb-1d17ae73b964.png" width="49%">
+  <img src="https://user-images.githubusercontent.com/5932487/234473339-043ed890-3b37-4a7a-a986-030d457a49f3.png" width="49%">
 </p>
 
 ## Special Ticker Symbols
