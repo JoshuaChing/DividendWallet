@@ -20,7 +20,7 @@ class YFApiClient {
     func fetchQuotes(symbols: [String]) -> Future<[YFQuoteResponseResult], Error> {
         return Future { promise in
             let symbolsJoined = symbols.joined(separator: ",")
-            let urlString = "https://query2.finance.yahoo.com/v7/finance/quote?symbols=\(symbolsJoined)"
+            let urlString = "https://query2.finance.yahoo.com/v6/finance/quote?symbols=\(symbolsJoined)"
             guard let url = URL(string: urlString) else {
                 promise(.failure(YFError.invalidUrl))
                 return

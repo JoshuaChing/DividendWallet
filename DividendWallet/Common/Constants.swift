@@ -10,9 +10,9 @@ import SwiftUI
 
 struct Constants {
     static let windowTitle = "Dividend Wallet"
-    static let windowMinWidth:CGFloat = 1200
+    static let windowMinWidth:CGFloat = 1000
     static let windowMinHeight:CGFloat = 800
-    static let windowIdealWidth:CGFloat = 1200
+    static let windowIdealWidth:CGFloat = 1000
     static let windowIdealHeight: CGFloat = 800
 
     static let paddingSmall: CGFloat = 5
